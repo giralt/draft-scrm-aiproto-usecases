@@ -2,14 +2,19 @@
 
 
 
-WG Working Group                                              Y. N. Here
-Internet-Draft                                    Your Organization Here
-Intended status: Informational                           16 January 2026
-Expires: 20 July 2026
+WG Working Group                                               R. Schott
+Internet-Draft                                          Deutsche Telekom
+Intended status: Informational                            J. Maisonneuve
+Expires: 20 July 2026                                    Nokia Bell Labs
+                                                         L. M. Contreras
+                                                              Telefonica
+                                                           J. Ros-Giralt
+                                                   Qualcomm Europe, Inc.
+                                                         16 January 2026
 
 
-                           TODO - Your title
-                  draft-todo-yourname-protocol-latest
+                          Agentic AI Use Cases
+                   draft-scrm-aiproto-usecases-latest
 
 Abstract
 
@@ -19,17 +24,12 @@ About This Document
 
    This note is to be removed before publishing as an RFC.
 
-   The latest revision of this draft can be found at
-   https://example.com/LATEST.  Status information for this document may
-   be found at https://datatracker.ietf.org/doc/draft-todo-yourname-
-   protocol/.
-
-   Discussion of this document takes place on the WG Working Group
-   mailing list (mailto:WG@example.com), which is archived at
-   https://example.com/WG.
+   Status information for this document may be found at
+   https://datatracker.ietf.org/doc/draft-scrm-aiproto-usecases/.
 
    Source for this draft and an issue tracker can be found at
-   https://github.com/USER/REPO.
+   https://github.com/https://github.com/giralt/draft-scrm-aiproto-
+   usecases.
 
 Status of This Memo
 
@@ -70,7 +70,7 @@ Table of Contents
    4.  IANA Considerations
    5.  Normative References
    Acknowledgments
-   Author's Address
+   Authors' Addresses
 
 1.  Introduction
 
@@ -107,8 +107,23 @@ Acknowledgments
 
    TODO acknowledge.
 
-Author's Address
+Authors' Addresses
 
-   Your Name Here
-   Your Organization Here
-   Email: your.email@example.com
+   Roland Schott
+   Deutsche Telekom
+   Email: Roland.Schott@telekom.de
+
+
+   Julien Maisonneuve
+   Nokia Bell Labs
+   Email: julien.maisonneuve@nokia.com
+
+
+   L. M. Contreras
+   Telefonica
+   Email: luismiguel.contrerasmurillo@telefonica.com
+
+
+   Jordi Ros-Giralt
+   Qualcomm Europe, Inc.
+   Email: jros@qti.qualcomm.com
