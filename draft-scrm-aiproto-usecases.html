@@ -28,7 +28,7 @@
     pycountry 24.6.1
     PyYAML 6.0.3
     requests 2.32.5
-    wcwidth 0.2.14
+    wcwidth 0.3.0
 -->
 <link href="draft-scrm-aiproto-usecases.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
@@ -569,6 +569,7 @@ aside, blockquote {
 }
 blockquote {
   margin: 1em 0;
+  border-left: 2px var(--pilcrow-strong) solid;
 }
 cite {
   display: block;
@@ -639,7 +640,7 @@ a.pilcrow {
   }
 }
 @media not print {
-  :hover > a.pilcrow {
+  :hover > a.pilcrow, a.pilcrow:focus {
     opacity: 1;
   }
   a.pilcrow[href]:hover {
@@ -1051,7 +1052,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Schott, et al.</td>
-<td class="center">Expires 20 July 2026</td>
+<td class="center">Expires 27 July 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1064,12 +1065,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-scrm-aiproto-usecases-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-01-16" class="published">16 January 2026</time>
+<time datetime="2026-01-23" class="published">23 January 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-07-20">20 July 2026</time></dd>
+<dd class="expires"><time datetime="2026-07-27">27 July 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1125,7 +1126,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 20 July 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 27 July 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1161,19 +1162,41 @@ svg :is([fill="white"], [fill^="#fff"]) {
             <p id="section-toc.1-1.2.1" class="keepWithNext"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-conventions-and-definitions" class="internal xref">Conventions and Definitions</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3">
-            <p id="section-toc.1-1.3.1" class="keepWithNext"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
+            <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-use-cases" class="internal xref">Use Cases</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1">
+                <p id="section-toc.1-1.3.2.1.1"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-deep-search" class="internal xref">Deep Search</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1.2.1">
+                    <p id="section-toc.1-1.3.2.1.2.1.1" class="keepWithNext"><a href="#section-3.1.1" class="auto internal xref">3.1.1</a>.  <a href="#name-building-blocks" class="internal xref">Building Blocks</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1.2.2">
+                    <p id="section-toc.1-1.3.2.1.2.2.1"><a href="#section-3.1.2" class="auto internal xref">3.1.2</a>.  <a href="#name-why-this-use-case-matters" class="internal xref">Why this use case matters</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1.2.3">
+                    <p id="section-toc.1-1.3.2.1.2.3.1"><a href="#section-3.1.3" class="auto internal xref">3.1.3</a>.  <a href="#name-example-open-deep-search-pr" class="internal xref">Example: Open Deep Search project</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1.2.4">
+                    <p id="section-toc.1-1.3.2.1.2.4.1"><a href="#section-3.1.4" class="auto internal xref">3.1.4</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
+</li>
+                </ul>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
-            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
+            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
-            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
-            <p id="section-toc.1-1.6.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
-            <p id="section-toc.1-1.7.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
+            <p id="section-toc.1-1.7.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
+            <p id="section-toc.1-1.8.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
 </li>
         </ul>
 </nav>
@@ -1198,26 +1221,224 @@ described in BCP 14 <span>[<a href="#RFC2119" class="cite xref">RFC2119</a>]</s
 appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="security-considerations">
+<div id="use-cases">
 <section id="section-3">
-      <h2 id="name-security-considerations">
-<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+      <h2 id="name-use-cases">
+<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-use-cases" class="section-name selfRef">Use Cases</a>
       </h2>
-<p id="section-3-1">TODO Security<a href="#section-3-1" class="pilcrow">¶</a></p>
+<div id="deep-search">
+<section id="section-3.1">
+        <h3 id="name-deep-search">
+<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-deep-search" class="section-name selfRef">Deep Search</a>
+        </h3>
+<p id="section-3.1-1"><strong>Deep Search</strong> refers to an <em>agentic</em> information‑seeking workflow in which an AI agent plans, executes, and iteratively refines multi‑step research across heterogeneous sources (open web, enterprise knowledge bases, APIs, files, and computational tools). Unlike one‑shot retrieval or a single RAG call, Deep Search is <strong>long‑horizon</strong> and <strong>goal‑directed</strong>: the agent decomposes a task into sub‑goals, issues searches and crawls, reads and filters evidence, runs auxiliary computations (e.g., code or math), verifies claims, tracks provenance/citations, and synthesizes a final answer—often over minutes or hours rather than milliseconds. This loop is typically implemented as <em>think → act (tool) → observe → reflect → refine plan</em> until success criteria (coverage, confidence, cost/time budgets) are met.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
+<div id="building-blocks">
+<section id="section-3.1.1">
+          <h4 id="name-building-blocks">
+<a href="#section-3.1.1" class="section-number selfRef">3.1.1. </a><a href="#name-building-blocks" class="section-name selfRef">Building Blocks</a>
+          </h4>
+<p id="section-3.1.1-1">A conformant Deep Search workflow comprises the following components:<a href="#section-3.1.1-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.1.1-2.1">
+              <p id="section-3.1.1-2.1.1"><strong>Base LLM (reasoning + tool use).</strong>
+A model capable of multi‑step reasoning (e.g., chain‑of‑thought/verification, self‑reflection) <em>and</em> structured tool invocation (function/tool calling) to plan, call tools, parse results, and revise plans.<a href="#section-3.1.1-2.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-3.1.1-2.2">
+              <p id="section-3.1.1-2.2.1"><strong>Planner/Orchestrator.</strong>
+A lightweight controller (can be the LLM itself or a graph/agent runtime) that maintains task state, goals, and budgets (tokens, latency, rate limits), and schedules steps (parallel vs. sequential).<a href="#section-3.1.1-2.2.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-3.1.1-2.3">
+              <p id="section-3.1.1-2.3.1"><strong>Tooling layer (invoked by the agent):</strong><a href="#section-3.1.1-2.3.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.1.1-2.3.2.1">
+                  <p id="section-3.1.1-2.3.2.1.1"><strong>Web search &amp; crawling</strong> (SERP APIs, focused crawlers, HTML/PDF parsers, robots.txt compliance).<a href="#section-3.1.1-2.3.2.1.1" class="pilcrow">¶</a></p>
+</li>
+                <li class="normal" id="section-3.1.1-2.3.2.2">
+                  <p id="section-3.1.1-2.3.2.2.1"><strong>Knowledge access</strong> (enterprise KBs, document stores, wikis, code repos).<a href="#section-3.1.1-2.3.2.2.1" class="pilcrow">¶</a></p>
+</li>
+                <li class="normal" id="section-3.1.1-2.3.2.3">
+                  <p id="section-3.1.1-2.3.2.3.1"><strong>Retrieval‑Augmented Generation (RAG)</strong> (indexing, re‑ranking, query rewriting, dedup, chunking).<a href="#section-3.1.1-2.3.2.3.1" class="pilcrow">¶</a></p>
+</li>
+                <li class="normal" id="section-3.1.1-2.3.2.4">
+                  <p id="section-3.1.1-2.3.2.4.1"><strong>Computation tools</strong> (e.g., <strong>Python interpreter</strong> for factual checks, data wrangling, statistics/plots).<a href="#section-3.1.1-2.3.2.4.1" class="pilcrow">¶</a></p>
+</li>
+                <li class="normal" id="section-3.1.1-2.3.2.5">
+                  <p id="section-3.1.1-2.3.2.5.1"><strong>Specialized services</strong> (scholarly search, calculators, geocoders, OCR, table extraction, etc.).<a href="#section-3.1.1-2.3.2.5.1" class="pilcrow">¶</a></p>
+</li>
+                <li class="normal" id="section-3.1.1-2.3.2.6">
+                  <p id="section-3.1.1-2.3.2.6.1"><strong>Verification/critique</strong> (fact‑checking, citation validation, deduplication, hallucination detection).<a href="#section-3.1.1-2.3.2.6.1" class="pilcrow">¶</a></p>
+</li>
+                <li class="normal" id="section-3.1.1-2.3.2.7">
+                  <p id="section-3.1.1-2.3.2.7.1"><strong>Provenance &amp; citation store</strong> (source URIs, timestamps, quotes/snippets, hashes).<a href="#section-3.1.1-2.3.2.7.1" class="pilcrow">¶</a></p>
+</li>
+              </ul>
+</li>
+            <li class="normal" id="section-3.1.1-2.4">
+              <p id="section-3.1.1-2.4.1"><strong>Short‑term memory / working set.</strong>
+Scratchpad to hold the evolving evidence graph: normalized documents, extracted entities/claims, metadata, and confidence scores.<a href="#section-3.1.1-2.4.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-3.1.1-2.5">
+              <p id="section-3.1.1-2.5.1"><strong>Synthesis &amp; reporting.</strong>
+Templates or renderers that compile the final artifact (report/brief/bibliography), with explicit citations to the evidence used.<a href="#section-3.1.1-2.5.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-3.1.1-2.6">
+              <p id="section-3.1.1-2.6.1"><strong>Observability &amp; policy.</strong>
+Logging, traces, and red‑team hooks for auditability; safety filters (PII, ToS, copyright/robots policy), rate limiting, attribution.<a href="#section-3.1.1-2.6.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+<span id="name-deep-search-agentic-workflo"></span><div id="fig-deep-search">
+<figure id="figure-1">
+            <div class="alignCenter art-ascii-art art-text artwork" id="section-3.1.1-3.1">
+<pre>
+                          +--------------------------------------+
+                          |              Planning Loop           |
+                          |  (reason over goals, budgets, time)  |
+                          +--------------------------------------+
+                                          |
+                                   (1) User Goal / Query
+                                          |
+                                          v
++------------------+     plan / subgoals     +------------------------+
+|  Reasoning LLM   |&lt;-----------------------&gt;|   Orchestrator /       |
+| (tool-capable)   |  reflect / revise plan  |   Task Controller      |
++------------------+                         +------------------------+
+        |                                               |
+        | (2) tool calls                                | (3) schedule/monitor
+        v                                               v
++------------------+    +------------------+    +------------------+    +------------------+
+| Web Search /     |    |  Crawlers        |    |  KB / RAG Index  |    |  Python / Tools |
+| SERP APIs        |---&gt;|  (focused fetch) |---&gt;|  (embed/rerank)  |---&gt;|  (compute, eval) |
++------------------+    +------------------+    +------------------+    +------------------+
+        \___________________________  |  _______________________________________________/
+                                      v
+                          +-----------------------------+
+                          |   Evidence / Working Set    |
+                          | (docs, snippets, claims,    |
+                          |  citations, confidence)     |
+                          +-----------------------------+
+                                          |
+                                 (4) verify / critique
+                                          v
+                               +---------------------+
+                               |  Verifier/Critic    |
+                               | (consistency,       |
+                               |  provenance checks) |
+                               +---------------------+
+                                          |
+                                   (5) synthesize
+                                          v
+                          +--------------------------------------+
+                          |  Report / Answer with Citations      |
+                          |  (export, stream, or hand off)       |
+                          +--------------------------------------+
+</pre>
+</div>
+<figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
+<a href="#name-deep-search-agentic-workflo" class="selfRef">Deep Search agentic workflow</a>
+            </figcaption></figure>
+</div>
+<p id="section-3.1.1-4">The loop repeats until success criteria are met (coverage/quality thresholds, budget, or explicit user stop).<a href="#section-3.1.1-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="why-this-use-case-matters">
+<section id="section-3.1.2">
+          <h4 id="name-why-this-use-case-matters">
+<a href="#section-3.1.2" class="section-number selfRef">3.1.2. </a><a href="#name-why-this-use-case-matters" class="section-name selfRef">Why this use case matters</a>
+          </h4>
+<p id="section-3.1.2-1">Deep Search is inherently <strong>compositional</strong>: it coordinates <em>multiple</em> agents and <em>many</em> tools over extended time. Without standard protocols, systems devolve into brittle, one‑off integrations that are hard to test, secure, or reuse. Two complementary interoperability layers are especially relevant:<a href="#section-3.1.2-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.1.2-2.1">
+              <p id="section-3.1.2-2.1.1"><strong>Agent‑to‑Tool standardization (inside an agent).</strong>
+The <strong>Model Context Protocol (MCP)</strong> defines a common way for agents/hosts to discover, describe, and invoke tools, resources, and prompts over JSON‑RPC across transports (stdio, HTTP/SSE, WebSocket). MCP enables portable tool catalogs (search, crawler, RAG, Python) with consistent schemas, capability negotiation, progress/cancellation, and security prompts/consent. <a href="https://modelcontextprotocol.io/specification/2025-03-26">Model Context Protocol specification</a> • <a href="https://github.com/modelcontextprotocol">MCP GitHub org</a>.<a href="#section-3.1.2-2.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-3.1.2-2.2">
+              <p id="section-3.1.2-2.2.1"><strong>Agent‑to‑Agent standardization (between agents/systems).</strong>
+The <strong>Agent2Agent (A2A)</strong> protocol focuses on inter‑agent collaboration—capability discovery (Agent Cards), task lifecycle (create/cancel/status), streaming updates for long‑running jobs, and opaque collaboration without sharing proprietary internals. A2A complements MCP (A2A connects <em>agents</em>; MCP connects an agent to its <em>tools</em>). See the overview/spec and announcement: <a href="https://a2a-protocol.org/latest/">A2A protocol site/spec</a> • <a href="https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/">Google Developers announcement</a> • <a href="https://github.com/a2aproject/A2A">A2A GitHub</a>. The IETF has also created a non‑WG <strong>agent2agent</strong> list to scope standardization work in this space (<a href="https://mailarchive.ietf.org/arch/msg/agent2agent/a6ORMj_pMlYZI_KU3gPMhB-K9Ng/">IETF mail archive</a>).<a href="#section-3.1.2-2.2.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+<p id="section-3.1.2-3"><strong>Implications for Deep Search.</strong> Using A2A and MCP together lets implementers compose portable Deep Search stacks:<a href="#section-3.1.2-3" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.1.2-4.1">
+              <p id="section-3.1.2-4.1.1">Tools like crawlers, scholarly search, RAG, and Python are exposed via <strong>MCP</strong> with typed inputs/outputs and consent flows.<a href="#section-3.1.2-4.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-3.1.2-4.2">
+              <p id="section-3.1.2-4.2.1">Long‑running research tasks, delegation to specialized researcher/verifier agents, background execution, progress streaming, and result handoff occur via <strong>A2A</strong>.<a href="#section-3.1.2-4.2.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-3.1.2-4.3">
+              <p id="section-3.1.2-4.3.1">Provenance (URIs, hashes, timestamps) and citation schemas can be standardized at the protocol boundary to enable verifiable research traces across vendors.<a href="#section-3.1.2-4.3.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-3.1.2-4.4">
+              <p id="section-3.1.2-4.4.1">Enterprise requirements—authn/z, quotas, observability/tracing, policy enforcement (robots/copyright), and safety reviews—become portable rather than per‑integration glue.<a href="#section-3.1.2-4.4.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+</section>
+</div>
+<div id="example-open-deep-search-project">
+<section id="section-3.1.3">
+          <h4 id="name-example-open-deep-search-pr">
+<a href="#section-3.1.3" class="section-number selfRef">3.1.3. </a><a href="#name-example-open-deep-search-pr" class="section-name selfRef">Example: Open Deep Search project</a>
+          </h4>
+<p id="section-3.1.3-1">Open implementations illustrate agentic architectures for Deep Search:<a href="#section-3.1.3-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.1.3-2.1">
+              <p id="section-3.1.3-2.1.1"><strong>Open Deep Search (ODS).</strong> A modular open‑source framework that augments a base LLM with a <strong>Reasoning Agent</strong> and an <strong>Open Search Tool</strong>, reporting state‑of‑the‑art results on benchmarks like SimpleQA and FRAMES; paper and code are available. <a href="https://arxiv.org/abs/2503.20201">Alzubi et al., 2025 (arXiv)</a> • <a href="https://github.com/sentient-agi/OpenDeepSearch">sentient‑agi/OpenDeepSearch (GitHub)</a>.<a href="#section-3.1.3-2.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-3.1.3-2.2">
+              <p id="section-3.1.3-2.2.1"><strong>Open Deep Research (LangChain).</strong> An agentic “deep research” reference built on LangGraph that works across model providers, search tools, and <strong>MCP servers</strong>; includes supervisor/sub‑agent patterns and evaluation harnesses. <a href="https://www.blog.langchain.com/open-deep-research/">Project blog</a> • <a href="https://github.com/langchain-ai/open_deep_research">langchain‑ai/open_deep_research (GitHub)</a>.<a href="#section-3.1.3-2.2.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+<p id="section-3.1.3-3">These systems exemplify the building blocks in §2 and are consistent with the interoperability layering in §4 (MCP for tools; A2A for inter‑agent collaboration).<a href="#section-3.1.3-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="informative-references">
+<section id="section-3.1.4">
+          <h4 id="name-informative-references">
+<a href="#section-3.1.4" class="section-number selfRef">3.1.4. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+          </h4>
+<ul class="normal">
+<li class="normal" id="section-3.1.4-1.1">
+              <p id="section-3.1.4-1.1.1">Model Context Protocol (spec &amp; docs): <a href="https://modelcontextprotocol.io/specification/2025-03-26">modelcontextprotocol.io</a>, <a href="https://github.com/modelcontextprotocol">GitHub organization</a>.<a href="#section-3.1.4-1.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-3.1.4-1.2">
+              <p id="section-3.1.4-1.2.1">Agent2Agent Protocol (A2A): <a href="https://a2a-protocol.org/latest/">a2a‑protocol.org</a>, <a href="https://a2a-protocol.org/latest/specification/">spec</a>, <a href="https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/">Google Developers announcement</a>, <a href="https://developers.googleblog.com/en/google-cloud-donates-a2a-to-linux-foundation/">Linux Foundation news</a>.<a href="#section-3.1.4-1.2.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-3.1.4-1.3">
+              <p id="section-3.1.4-1.3.1">IETF “agent2agent” list (standardization discussion): <a href="https://mailarchive.ietf.org/arch/msg/agent2agent/a6ORMj_pMlYZI_KU3gPMhB-K9Ng/">mailarchive.ietf.org</a>.<a href="#section-3.1.4-1.3.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-3.1.4-1.4">
+              <p id="section-3.1.4-1.4.1">Open Deep Search (ODS): <a href="https://arxiv.org/abs/2503.20201">arXiv:2503.20201</a>, <a href="https://github.com/sentient-agi/OpenDeepSearch">GitHub repository</a>.<a href="#section-3.1.4-1.4.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-3.1.4-1.5">
+              <p id="section-3.1.4-1.5.1">LangChain Open Deep Research: <a href="https://www.blog.langchain.com/open-deep-research/">project blog</a>, <a href="https://github.com/langchain-ai/open_deep_research">GitHub</a>.
+``<a href="#section-3.1.4-1.5.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+</section>
+</div>
+</section>
+</div>
+</section>
+</div>
+<div id="security-considerations">
+<section id="section-4">
+      <h2 id="name-security-considerations">
+<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+      </h2>
+<p id="section-4-1">TODO Security<a href="#section-4-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-considerations">
-<section id="section-4">
+<section id="section-5">
       <h2 id="name-iana-considerations">
-<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
+<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
       </h2>
-<p id="section-4-1">This document has no IANA actions.<a href="#section-4-1" class="pilcrow">¶</a></p>
+<p id="section-5-1">This document has no IANA actions.<a href="#section-5-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-normative-references">
-<section id="section-5">
+<section id="section-6">
       <h2 id="name-normative-references">
-<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
       </h2>
 <dl class="references">
 <dt id="RFC2119">[RFC2119]</dt>
