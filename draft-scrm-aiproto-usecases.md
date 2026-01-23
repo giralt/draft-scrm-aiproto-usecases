@@ -74,6 +74,8 @@ TODO Introduction
 
 **Deep Search** refers to an *agentic* information‑seeking workflow in which an AI agent plans, executes, and iteratively refines multi‑step research across heterogeneous sources (open web, enterprise knowledge bases, APIs, files, and computational tools). Unlike one‑shot retrieval or a single RAG call, Deep Search is **long‑horizon** and **goal‑directed**: the agent decomposes a task into sub‑goals, issues searches and crawls, reads and filters evidence, runs auxiliary computations (e.g., code or math), verifies claims, tracks provenance/citations, and synthesizes a final answer—often over minutes or hours rather than milliseconds. This loop is typically implemented as *think → act (tool) → observe → reflect → refine plan* until success criteria (coverage, confidence, cost/time budgets) are met.
 
+
+
 ### Building Blocks
 
 A conformant Deep Search workflow comprises the following components:
