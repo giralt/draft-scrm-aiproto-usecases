@@ -72,13 +72,12 @@ TODO Introduction
 
 ## Deep Search
 
-**Deep Search** refers to an *agentic* information‑seeking workflow in which an AI agent plans, executes, and iteratively refines multi‑step research across heterogeneous sources (open web, enterprise knowledge bases, APIs, files, and computational tools). Unlike one‑shot retrieval or a single RAG call, Deep Search is **long‑horizon** and **goal‑directed**: the agent decomposes a task into sub‑goals, issues searches and crawls, reads and filters evidence, runs auxiliary computations (e.g., code or math), verifies claims, tracks provenance/citations, and synthesizes a final answer—often over minutes or hours rather than milliseconds. This loop is typically implemented as *think → act (tool) → observe → reflect → refine plan* until success criteria (coverage, confidence, cost/time budgets) are met.
-
+Deep Search refers to an *agentic* information‑seeking workflow in which an AI agent plans, executes, and iteratively refines multi‑step research across heterogeneous sources such as open web, enterprise knowledge bases, APIs, files, and computational tools, among others. Unlike one‑shot retrieval or a single RAG call, Deep Search is *long‑horizon* and *goal‑directed*: the agent decomposes a task into sub‑goals, issues searches and crawls, reads and filters evidence, runs auxiliary computations (e.g., code or math), verifies claims, tracks provenance/citations, and synthesizes a final answer—often over minutes or hours rather than milliseconds. This loop is typically implemented as *think → act (tool) → observe → reflect → refine plan* until success criteria (e.g., coverage, confidence, cost/time budgets) are met.
 
 
 ### Building Blocks
 
-A conformant Deep Search workflow comprises the following components:
+A conformant Deep Search workflow generally comprises the following components:
 
 - **Base LLM (reasoning + tool use).**
   A model capable of multi‑step reasoning (e.g., chain‑of‑thought/verification, self‑reflection) *and* structured tool invocation (function/tool calling) to plan, call tools, parse results, and revise plans.
@@ -152,7 +151,7 @@ A conformant Deep Search workflow comprises the following components:
 
 The loop repeats until success criteria are met (coverage/quality thresholds, budget, or explicit user stop).
 
-### Why this use case matters
+### Why this use case matters in the context of protocol standards
 
 Deep Search is inherently **compositional**: it coordinates *multiple* agents and *many* tools over extended time. Without standard protocols, systems devolve into brittle, one‑off integrations that are hard to test, secure, or reuse. Two complementary interoperability layers are especially relevant:
 
@@ -177,7 +176,7 @@ Open implementations illustrate agentic architectures for Deep Search:
 
 - **Open Deep Research (LangChain).** An agentic “deep research” reference built on LangGraph that works across model providers, search tools, and **MCP servers**; includes supervisor/sub‑agent patterns and evaluation harnesses. [Project blog](https://www.blog.langchain.com/open-deep-research/) • [langchain‑ai/open_deep_research (GitHub)](https://github.com/langchain-ai/open_deep_research).
 
-These systems exemplify the building blocks in §2 and are consistent with the interoperability layering in §4 (MCP for tools; A2A for inter‑agent collaboration).
+These systems exemplify the building blocks described earlier and are consistent with the interoperability layering (MCP for tools; A2A for inter‑agent collaboration).
 
 ### Informative References
 
