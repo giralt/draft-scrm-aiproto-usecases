@@ -5,12 +5,12 @@
 WG Working Group                                               R. Schott
 Internet-Draft                                          Deutsche Telekom
 Intended status: Informational                            J. Maisonneuve
-Expires: 27 July 2026                                    Nokia Bell Labs
+Expires: 3 August 2026                                   Nokia Bell Labs
                                                          L. M. Contreras
                                                               Telefonica
                                                            J. Ros-Giralt
                                                    Qualcomm Europe, Inc.
-                                                         23 January 2026
+                                                         30 January 2026
 
 
                           Agentic AI Use Cases
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 27 July 2026.
+   This Internet-Draft will expire on 3 August 2026.
 
 Copyright Notice
 
@@ -69,7 +69,8 @@ Table of Contents
    3.  Use Cases
      3.1.  Deep Search
        3.1.1.  Building Blocks
-       3.1.2.  Why this use case matters
+       3.1.2.  Why this use case matters in the context of protocol
+               standards
        3.1.3.  Example: Open Deep Search project
        3.1.4.  Informative References
    4.  Security Considerations
@@ -94,23 +95,24 @@ Table of Contents
 
 3.1.  Deep Search
 
-   *Deep Search* refers to an _agentic_ information-seeking workflow in
+   Deep Search refers to an _agentic_ information-seeking workflow in
    which an AI agent plans, executes, and iteratively refines multi-step
-   research across heterogeneous sources (open web, enterprise knowledge
-   bases, APIs, files, and computational tools).  Unlike one-shot
-   retrieval or a single RAG call, Deep Search is *long-horizon* and
-   *goal-directed*: the agent decomposes a task into sub-goals, issues
-   searches and crawls, reads and filters evidence, runs auxiliary
-   computations (e.g., code or math), verifies claims, tracks
-   provenance/citations, and synthesizes a final answer—often over
-   minutes or hours rather than milliseconds.  This loop is typically
-   implemented as _think → act (tool) → observe → reflect → refine plan_
-   until success criteria (coverage, confidence, cost/time budgets) are
-   met.
+   research across heterogeneous sources such as open web, enterprise
+   knowledge bases, APIs, files, and computational tools, among others.
+   Unlike one-shot retrieval or a single RAG call, Deep Search is
+   _long-horizon_ and _goal-directed_: the agent decomposes a task into
+   sub-goals, issues searches and crawls, reads and filters evidence,
+   runs auxiliary computations (e.g., code or math), verifies claims,
+   tracks provenance/citations, and synthesizes a final answer—often
+   over minutes or hours rather than milliseconds.  This loop is
+   typically implemented as _think → act (tool) → observe → reflect →
+   refine plan_ until success criteria (e.g., coverage, confidence,
+   cost/time budgets) are met.
 
 3.1.1.  Building Blocks
 
-   A conformant Deep Search workflow comprises the following components:
+   A conformant Deep Search workflow generally comprises the following
+   components:
 
    *  *Base LLM (reasoning + tool use).* A model capable of multi-step
       reasoning (e.g., chain-of-thought/verification, self-reflection)
@@ -204,7 +206,7 @@ Table of Contents
    The loop repeats until success criteria are met (coverage/quality
    thresholds, budget, or explicit user stop).
 
-3.1.2.  Why this use case matters
+3.1.2.  Why this use case matters in the context of protocol standards
 
    Deep Search is inherently *compositional*: it coordinates _multiple_
    agents and _many_ tools over extended time.  Without standard
@@ -278,8 +280,8 @@ Table of Contents
       langchain-ai/open_deep_research (GitHub) (https://github.com/
       langchain-ai/open_deep_research).
 
-   These systems exemplify the building blocks in §2 and are consistent
-   with the interoperability layering in §4 (MCP for tools; A2A for
+   These systems exemplify the building blocks described earlier and are
+   consistent with the interoperability layering (MCP for tools; A2A for
    inter-agent collaboration).
 
 3.1.4.  Informative References

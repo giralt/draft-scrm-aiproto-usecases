@@ -1052,7 +1052,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Schott, et al.</td>
-<td class="center">Expires 27 July 2026</td>
+<td class="center">Expires 3 August 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1065,12 +1065,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-scrm-aiproto-usecases-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-01-23" class="published">23 January 2026</time>
+<time datetime="2026-01-30" class="published">30 January 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-07-27">27 July 2026</time></dd>
+<dd class="expires"><time datetime="2026-08-03">3 August 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1126,7 +1126,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 27 July 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 3 August 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1171,7 +1171,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
                     <p id="section-toc.1-1.3.2.1.2.1.1" class="keepWithNext"><a href="#section-3.1.1" class="auto internal xref">3.1.1</a>.  <a href="#name-building-blocks" class="internal xref">Building Blocks</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1.2.2">
-                    <p id="section-toc.1-1.3.2.1.2.2.1"><a href="#section-3.1.2" class="auto internal xref">3.1.2</a>.  <a href="#name-why-this-use-case-matters" class="internal xref">Why this use case matters</a></p>
+                    <p id="section-toc.1-1.3.2.1.2.2.1"><a href="#section-3.1.2" class="auto internal xref">3.1.2</a>.  <a href="#name-why-this-use-case-matters-i" class="internal xref">Why this use case matters in the context of protocol standards</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1.2.3">
                     <p id="section-toc.1-1.3.2.1.2.3.1"><a href="#section-3.1.3" class="auto internal xref">3.1.3</a>.  <a href="#name-example-open-deep-search-pr" class="internal xref">Example: Open Deep Search project</a></p>
@@ -1231,13 +1231,13 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
         <h3 id="name-deep-search">
 <a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-deep-search" class="section-name selfRef">Deep Search</a>
         </h3>
-<p id="section-3.1-1"><strong>Deep Search</strong> refers to an <em>agentic</em> information‑seeking workflow in which an AI agent plans, executes, and iteratively refines multi‑step research across heterogeneous sources (open web, enterprise knowledge bases, APIs, files, and computational tools). Unlike one‑shot retrieval or a single RAG call, Deep Search is <strong>long‑horizon</strong> and <strong>goal‑directed</strong>: the agent decomposes a task into sub‑goals, issues searches and crawls, reads and filters evidence, runs auxiliary computations (e.g., code or math), verifies claims, tracks provenance/citations, and synthesizes a final answer—often over minutes or hours rather than milliseconds. This loop is typically implemented as <em>think → act (tool) → observe → reflect → refine plan</em> until success criteria (coverage, confidence, cost/time budgets) are met.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.1-1">Deep Search refers to an <em>agentic</em> information‑seeking workflow in which an AI agent plans, executes, and iteratively refines multi‑step research across heterogeneous sources such as open web, enterprise knowledge bases, APIs, files, and computational tools, among others. Unlike one‑shot retrieval or a single RAG call, Deep Search is <em>long‑horizon</em> and <em>goal‑directed</em>: the agent decomposes a task into sub‑goals, issues searches and crawls, reads and filters evidence, runs auxiliary computations (e.g., code or math), verifies claims, tracks provenance/citations, and synthesizes a final answer—often over minutes or hours rather than milliseconds. This loop is typically implemented as <em>think → act (tool) → observe → reflect → refine plan</em> until success criteria (e.g., coverage, confidence, cost/time budgets) are met.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
 <div id="building-blocks">
 <section id="section-3.1.1">
           <h4 id="name-building-blocks">
 <a href="#section-3.1.1" class="section-number selfRef">3.1.1. </a><a href="#name-building-blocks" class="section-name selfRef">Building Blocks</a>
           </h4>
-<p id="section-3.1.1-1">A conformant Deep Search workflow comprises the following components:<a href="#section-3.1.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.1.1-1">A conformant Deep Search workflow generally comprises the following components:<a href="#section-3.1.1-1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.1.1-2.1">
               <p id="section-3.1.1-2.1.1"><strong>Base LLM (reasoning + tool use).</strong>
@@ -1340,10 +1340,10 @@ Logging, traces, and red‑team hooks for auditability; safety filters (PII, ToS
 <p id="section-3.1.1-4">The loop repeats until success criteria are met (coverage/quality thresholds, budget, or explicit user stop).<a href="#section-3.1.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="why-this-use-case-matters">
+<div id="why-this-use-case-matters-in-the-context-of-protocol-standards">
 <section id="section-3.1.2">
-          <h4 id="name-why-this-use-case-matters">
-<a href="#section-3.1.2" class="section-number selfRef">3.1.2. </a><a href="#name-why-this-use-case-matters" class="section-name selfRef">Why this use case matters</a>
+          <h4 id="name-why-this-use-case-matters-i">
+<a href="#section-3.1.2" class="section-number selfRef">3.1.2. </a><a href="#name-why-this-use-case-matters-i" class="section-name selfRef">Why this use case matters in the context of protocol standards</a>
           </h4>
 <p id="section-3.1.2-1">Deep Search is inherently <strong>compositional</strong>: it coordinates <em>multiple</em> agents and <em>many</em> tools over extended time. Without standard protocols, systems devolve into brittle, one‑off integrations that are hard to test, secure, or reuse. Two complementary interoperability layers are especially relevant:<a href="#section-3.1.2-1" class="pilcrow">¶</a></p>
 <ul class="normal">
@@ -1387,7 +1387,7 @@ The <strong>Agent2Agent (A2A)</strong> protocol focuses on inter‑agent collabo
               <p id="section-3.1.3-2.2.1"><strong>Open Deep Research (LangChain).</strong> An agentic “deep research” reference built on LangGraph that works across model providers, search tools, and <strong>MCP servers</strong>; includes supervisor/sub‑agent patterns and evaluation harnesses. <a href="https://www.blog.langchain.com/open-deep-research/">Project blog</a> • <a href="https://github.com/langchain-ai/open_deep_research">langchain‑ai/open_deep_research (GitHub)</a>.<a href="#section-3.1.3-2.2.1" class="pilcrow">¶</a></p>
 </li>
           </ul>
-<p id="section-3.1.3-3">These systems exemplify the building blocks in §2 and are consistent with the interoperability layering in §4 (MCP for tools; A2A for inter‑agent collaboration).<a href="#section-3.1.3-3" class="pilcrow">¶</a></p>
+<p id="section-3.1.3-3">These systems exemplify the building blocks described earlier and are consistent with the interoperability layering (MCP for tools; A2A for inter‑agent collaboration).<a href="#section-3.1.3-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="informative-references">
