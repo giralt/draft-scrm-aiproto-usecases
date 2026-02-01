@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-01-29T01:17:33.907048+00:00",
+  "timestamp": "2026-02-01T01:29:39.938618+00:00",
   "repo": "giralt/draft-scrm-aiproto-usecases",
   "labels": [
     {
@@ -50,5 +50,32 @@
     }
   ],
   "issues": [],
-  "pulls": []
+  "pulls": [
+    {
+      "number": 1,
+      "id": "PR_kwDOQ7GYI87AYYbh",
+      "title": "Update draft-scrm-aiproto-usecases.md",
+      "url": "https://github.com/giralt/draft-scrm-aiproto-usecases/pull/1",
+      "state": "OPEN",
+      "author": "giralt",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-01-30T12:13:57Z",
+      "updatedAt": "2026-01-30T12:13:57Z",
+      "baseRepository": "giralt/draft-scrm-aiproto-usecases",
+      "baseRefName": "main",
+      "baseRefOid": "d7079cf89fa3b5f584eca621d2d87d6719d67111",
+      "headRepository": "giralt/draft-scrm-aiproto-usecases",
+      "headRefName": "Use-Case-Ideas-of-Roland",
+      "headRefOid": "24313ed3cca249b4e0dd8bb86df8dbcc8c50c66d",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    }
+  ]
 }
