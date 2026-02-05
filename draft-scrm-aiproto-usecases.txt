@@ -69,25 +69,12 @@ Table of Contents
    3.  Use Cases
      3.1.  Deep Search
        3.1.1.  Building Blocks
-       3.1.2.  User / Client
-       3.1.3.  DeepSearch Orchestrator
-       3.1.4.  A2A Agent Communication Bus
-       3.1.5.  Agents Mesh
-       3.1.6.  MCP Tooling Layer
-       3.1.7.  Web Search & Crawling
-       3.1.8.  Knowledge Base (KB) / Retrieval Augmented Generation
-               (RAG) Index
-       3.1.9.  Python / Tools
-       3.1.10. Iterative Improvement Loop
-       3.1.11. Final Answer / Output
-       3.1.12. Why this use case matters in the context of protocol
-               standards
-       3.1.13. Example: Open Deep Search (ODS)
+       3.1.2.  Why This Use Case Matters
+       3.1.3.  Example: Open Deep Search (ODS)
      3.2.  Hybrid AI
        3.2.1.  Building Blocks
        3.2.2.  Interaction Model
-       3.2.3.  Why this use case matters in the context of protocol
-               standards
+       3.2.3.  Why This Use Case Matters
    4.  Security Considerations
    5.  IANA Considerations
    6.  References
@@ -198,7 +185,7 @@ Table of Contents
    logical function rather than a specific implementation, and multiple
    components may be co-located or distributed in practice.
 
-3.1.2.  User / Client
+3.1.1.1.  User / Client
 
    The _User / Client_ is the entry point to the system.  It provides
    the initial goal or query, along with optional constraints (e.g.,
@@ -206,7 +193,7 @@ Table of Contents
    tools or agents; all interactions are mediated by the DeepSearch
    Orchestrator.
 
-3.1.3.  DeepSearch Orchestrator
+3.1.1.2.  DeepSearch Orchestrator
 
    The _DeepSearch Orchestrator_ acts as the control plane of the
    system.  Its responsibilities include:
@@ -224,7 +211,7 @@ Table of Contents
    instead, it delegates work to agents and manages the overall
    execution flow.
 
-3.1.4.  A2A Agent Communication Bus
+3.1.1.3.  A2A Agent Communication Bus
 
    The _A2A Agent Communication Bus_ provides a standardized messaging
    layer that enables agent-to-agent coordination.  It supports:
@@ -238,7 +225,7 @@ Table of Contents
    This bus allows agents to operate independently while still
    contributing to a coherent end-to-end workflow.
 
-3.1.5.  Agents Mesh
+3.1.1.4.  Agents Mesh
 
    The _Agents Mesh_ block represents a set of specialized, cooperative
    agents operating over the A2A bus.  Typical agent roles include:
@@ -254,7 +241,7 @@ Table of Contents
    Agents are responsible for invoking tools, interpreting results, and
    returning structured observations to the orchestrator.
 
-3.1.6.  MCP Tooling Layer
+3.1.1.5.  MCP Tooling Layer
 
    The _MCP Tooling Layer_ provides a standardized interface between
    agents and external tools.  It enables:
@@ -268,7 +255,7 @@ Table of Contents
    MCP acts as an abstraction boundary that simplifies integration and
    evolution of external capabilities.
 
-3.1.7.  Web Search & Crawling
+3.1.1.6.  Web Search & Crawling
 
    The _Web Search & Crawling_ component combines content discovery and
    acquisition.  It typically includes:
@@ -280,7 +267,8 @@ Table of Contents
    This component supplies raw external data that can be further
    processed and indexed.
 
-3.1.8.  Knowledge Base (KB) / Retrieval Augmented Generation (RAG) Index
+3.1.1.7.  Knowledge Base (KB) / Retrieval Augmented Generation (RAG)
+          Index
 
    The _KB / RAG Index_ component manages knowledge representation and
    retrieval.  Its responsibilities include:
@@ -295,7 +283,7 @@ Table of Contents
    This block provides structured, queryable knowledge derived from
    external sources.
 
-3.1.9.  Python / Tools
+3.1.1.8.  Python / Tools
 
    The _Python / Tools_ component represents general-purpose computation
    and evaluation capabilities.  Examples include:
@@ -309,7 +297,7 @@ Table of Contents
    These tools are typically invoked by analysis-oriented agents via the
    MCP layer.
 
-3.1.10.  Iterative Improvement Loop
+3.1.1.9.  Iterative Improvement Loop
 
    The _Iterative Improvement Loop_ captures the system’s ability to
    refine results over multiple passes and is also implemeted by the
@@ -321,7 +309,7 @@ Table of Contents
    orchestrator, which may adjust plans, agent assignments, or tool
    usage before producing the final output.
 
-3.1.11.  Final Answer / Output
+3.1.1.10.  Final Answer / Output
 
    The _Final Answer / Output_ is the synthesized result returned to the
    user.  It may include:
@@ -335,7 +323,7 @@ Table of Contents
    This output reflects the outcome of one or more iterative refinement
    cycles.
 
-3.1.12.  Why this use case matters in the context of protocol standards
+3.1.2.  Why This Use Case Matters
 
    Deep Search is inherently _compositional_: it coordinates _multiple_
    agents and _many_ tools over extended time.  Without standard
@@ -384,7 +372,7 @@ Table of Contents
       policy enforcement (robots/copyright), and safety reviews—become
       portable rather than per-integration glue.
 
-3.1.13.  Example: Open Deep Search (ODS)
+3.1.3.  Example: Open Deep Search (ODS)
 
    Open implementations illustrate agentic architectures for Deep
    Search.
@@ -545,7 +533,7 @@ Table of Contents
        until success criteria (quality, coverage, cost/time budget) are
        met.
 
-3.2.3.  Why this use case matters in the context of protocol standards
+3.2.3.  Why This Use Case Matters
 
    Hybrid AI is inherently _trade-off aware_: it balances *privacy*,
    *latency*, and *cost* at the edge with *capability* and *breadth* in
