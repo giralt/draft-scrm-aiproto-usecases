@@ -1206,8 +1206,19 @@ svg :is([fill="white"], [fill^="#fff"]) {
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1.2.13">
                     <p id="section-toc.1-1.3.2.1.2.13.1"><a href="#section-3.1.13" class="auto internal xref">3.1.13</a>. <a href="#name-example-open-deep-search-od" class="internal xref">Example: Open Deep Search (ODS)</a></p>
 </li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1.2.14">
-                    <p id="section-toc.1-1.3.2.1.2.14.1"><a href="#section-3.1.14" class="auto internal xref">3.1.14</a>. <a href="#name-informative-references" class="internal xref">Informative References</a></p>
+                </ul>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2">
+                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-hybrid-ai" class="internal xref">Hybrid AI</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2.2.1">
+                    <p id="section-toc.1-1.3.2.2.2.1.1"><a href="#section-3.2.1" class="auto internal xref">3.2.1</a>.  <a href="#name-building-blocks-2" class="internal xref">Building Blocks</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2.2.2">
+                    <p id="section-toc.1-1.3.2.2.2.2.1"><a href="#section-3.2.2" class="auto internal xref">3.2.2</a>.  <a href="#name-interaction-model" class="internal xref">Interaction Model</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2.2.3">
+                    <p id="section-toc.1-1.3.2.2.2.3.1"><a href="#section-3.2.3" class="auto internal xref">3.2.3</a>.  <a href="#name-why-this-use-case-matters-in" class="internal xref">Why this use case matters in the context of protocol standards</a></p>
 </li>
                 </ul>
 </li>
@@ -1226,7 +1237,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
                 <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="auto internal xref">6.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2">
-                <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="auto internal xref">6.2</a>.  <a href="#name-informative-references-2" class="internal xref">Informative References</a></p>
+                <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="auto internal xref">6.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
 </li>
             </ul>
 </li>
@@ -1577,27 +1588,153 @@ The <em>Agent2Agent (A2A)</em> protocol focuses on standardized inter-agent coll
 <p id="section-3.1.13-3">ODS exemplifies the building blocks described earlier in this document and is consistent with the proposed interoperability layering, using standardized tool invocation for search and retrieval and agent-centric coordination to manage planning, execution, and refinement.<a href="#section-3.1.13-3" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="informative-references">
-<section id="section-3.1.14">
-          <h4 id="name-informative-references">
-<a href="#section-3.1.14" class="section-number selfRef">3.1.14. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+</section>
+</div>
+<div id="hybrid-ai">
+<section id="section-3.2">
+        <h3 id="name-hybrid-ai">
+<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-hybrid-ai" class="section-name selfRef">Hybrid AI</a>
+        </h3>
+<p id="section-3.2-1">Hybrid AI generally refers to an <em>edge–cloud cooperative</em> inference workflow in which two or more models collaborate to solve a task: (1) a <strong>smaller on‑device model</strong> (typically a few billion parameters) that prioritizes low latency, lower cost, and privacy; and (2) a <strong>larger cloud model</strong> (hundreds of billions to trillion‑scale parameters) that offers higher capability and broader knowledge. The two models coordinate over an agent‑to‑agent channel and may invoke tools locally or remotely as needed. Unlike single‑endpoint inference, Hybrid AI is <em>adaptive and budget‑aware</em>: the on‑device model handles as much work as possible locally (classification, summarization, intent detection, light reasoning), and escalates to the cloud model when additional capability is required (multi‑hop reasoning, long‑context synthesis, domain expertise). The models can exchange plans, partial results, and constraints over <span>[<a href="#A2A" class="cite xref">A2A</a>]</span>, and both sides can discover and invoke tools via <span>[<a href="#MCP" class="cite xref">MCP</a>]</span>.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
+<div id="building-blocks-1">
+<section id="section-3.2.1">
+          <h4 id="name-building-blocks-2">
+<a href="#section-3.2.1" class="section-number selfRef">3.2.1. </a><a href="#name-building-blocks-2" class="section-name selfRef">Building Blocks</a>
           </h4>
+<p id="section-3.2.1-1">A Hybrid AI workflow may generally comprise the components shown in the next Figure:<a href="#section-3.2.1-1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-3.1.14-1.1">
-              <p id="section-3.1.14-1.1.1">Model Context Protocol (spec &amp; docs): <a href="https://modelcontextprotocol.io/specification/2025-03-26">modelcontextprotocol.io</a>, <a href="https://github.com/modelcontextprotocol">GitHub organization</a>.<a href="#section-3.1.14-1.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-3.2.1-2.1">
+              <p id="section-3.2.1-2.1.1"><strong>On‑device Model (Edge).</strong>
+A compact LLM or task‑specific model (a few billion parameters) running on user hardware (e.g., phone, laptop). Advantages include: low latency for interactive turns, reduced cost, offline operation, and improved privacy by default (data locality). Typical functions: intent parsing, entity extraction, local retrieval, preliminary analysis, redaction/summarization prior to escalation.<a href="#section-3.2.1-2.1.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="section-3.1.14-1.2">
-              <p id="section-3.1.14-1.2.1">Agent2Agent Protocol (A2A): <a href="https://a2a-protocol.org/latest/">a2a‑protocol.org</a>, <a href="https://a2a-protocol.org/latest/specification/">spec</a>, <a href="https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/">Google Developers announcement</a>, <a href="https://developers.googleblog.com/en/google-cloud-donates-a2a-to-linux-foundation/">Linux Foundation news</a>.<a href="#section-3.1.14-1.2.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="section-3.2.1-2.2">
+              <p id="section-3.2.1-2.2.1"><strong>Cloud Model (Hosted).</strong>
+A large, higher‑capability LLM (hundreds of billions to ~trillion parameters) with stronger reasoning, knowledge coverage, tool‑use proficiency, and longer context windows. Typical functions: complex synthesis, multi‑step reasoning, broad web/KG retrieval, code execution, and advanced evaluation.<a href="#section-3.2.1-2.2.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="section-3.1.14-1.3">
-              <p id="section-3.1.14-1.3.1">IETF “agent2agent” list (standardization discussion): <a href="https://mailarchive.ietf.org/arch/msg/agent2agent/a6ORMj_pMlYZI_KU3gPMhB-K9Ng/">mailarchive.ietf.org</a>.<a href="#section-3.1.14-1.3.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="section-3.2.1-2.3">
+              <p id="section-3.2.1-2.3.1"><strong>A2A Inter‑Model Coordination.</strong>
+The edge and cloud models communicate via an <strong>Agent‑to‑Agent</strong> channel to exchange <strong>capabilities</strong>, <strong>cost/latency budgets</strong>, <strong>privacy constraints</strong>, <strong>task state</strong>, and <strong>partial artifacts</strong>. Common patterns include <em>negotiate‑and‑delegate</em>, <em>ask‑for‑help with evidence</em>, <em>propose/accept plan updates</em>, and <em>critique‑revise</em> cycles <span>[<a href="#A2A" class="cite xref">A2A</a>]</span>.<a href="#section-3.2.1-2.3.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="section-3.1.14-1.4">
-              <p id="section-3.1.14-1.4.1">Open Deep Search (ODS): <a href="https://arxiv.org/abs/2503.20201">arXiv:2503.20201</a>, <a href="https://github.com/sentient-agi/OpenDeepSearch">GitHub repository</a>.<a href="#section-3.1.14-1.4.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="section-3.2.1-2.4">
+              <p id="section-3.2.1-2.4.1"><strong>MCP Tooling (Edge and Cloud).</strong>
+Both models use the <strong>Model Context Protocol</strong> to discover and invoke tools with consistent schemas (e.g., local sensors/files, calculators, vector indexes on edge; search/crawling, KB/RAG, Python/services in cloud). MCP enables capability discovery, streaming/progress, cancellation, and explicit consent prompts across transports <span>[<a href="#MCP" class="cite xref">MCP</a>]</span>.<a href="#section-3.2.1-2.4.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="section-3.1.14-1.5">
-              <p id="section-3.1.14-1.5.1">LangChain Open Deep Research: <a href="https://www.blog.langchain.com/open-deep-research/">project blog</a>, <a href="https://github.com/langchain-ai/open_deep_research">GitHub</a>.
-``<a href="#section-3.1.14-1.5.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="section-3.2.1-2.5">
+              <p id="section-3.2.1-2.5.1"><strong>Policy, Budget, and Privacy Controls.</strong>
+Guardrails and policies that encode user/enterprise constraints (e.g., do not send raw PII to cloud; enforce token/time budgets; require consent for specific tools). The edge model may redact or summarize data before escalation; both sides log provenance and decisions for auditability.<a href="#section-3.2.1-2.5.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-3.2.1-2.6">
+              <p id="section-3.2.1-2.6.1"><strong>Shared Task State and Provenance.</strong>
+A compact state (goals, sub‑tasks, citations, hashes, timestamps) that both models can read/update to enable reproducibility, debugging, and verifiable traces.<a href="#section-3.2.1-2.6.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+<div class="alignLeft art-ascii-art art-text artwork" id="section-3.2.1-3">
+<pre>
++--------------------------------------------------------------+
+|                        User / Client                         |
+|              (Goal, Query, Constraints)                      |
++--------------------------------------------------------------+
+                             |
+                             v
++--------------------------------------------------------------+
+|                 On-Device Model (Edge)                       |
+|  - few-B params; low latency, privacy by default             |
+|  - local reasoning, redaction/summarization                  |
+|  - local tools via MCP (sensors, files, crypto)              |
++--------------------------------------------------------------+
+         |                           \
+         | local MCP tools            \ when escalation is needed
+         v                             \
++----------------------+                \
+| Edge MCP Tools       |                 \
++----------------------+                  v
+                                   +----------------------------------+
+                                   |   A2A Session (Edge &lt;-&gt; Cloud)   |
+                                   |   - capability/budget exchange   |
+                                   |   - task handoff &amp; updates       |
+                                   +----------------------------------+
+                                                |
+                                                v
++--------------------------------------------------------------+
+|                    Cloud Model (Hosted)                      |
+|  - 100B–1T+ params; higher capability &amp; breadth              |
+|  - complex synthesis, long-context reasoning                 |
+|  - cloud tools via MCP (search, KB/RAG, Python)              |
++--------------------------------------------------------------+
+                             |
+                     cloud MCP tool calls
+                             v
++----------------------+   +------------------+   +------------------+
+| Web Search &amp; Crawl   |--&gt;| KB / RAG Index   |--&gt;| Python / Services|
++----------------------+   +------------------+   +------------------+
+                             ^
+                             |
+                 results/evidence via A2A to edge/cloud
+                             |
+                             v
++--------------------------------------------------------------+
+|                 Final Answer / Output                        |
+|   (synthesis + citations + privacy/consent notes)            |
++--------------------------------------------------------------+
+</pre><a href="#section-3.2.1-3" class="pilcrow">¶</a>
+</div>
+<p id="section-3.2.1-4">Each building block in the Hybrid AI architecture represents a logical function rather than a specific implementation, and components may be co‑located or distributed in practice.<a href="#section-3.2.1-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="interaction-model">
+<section id="section-3.2.2">
+          <h4 id="name-interaction-model">
+<a href="#section-3.2.2" class="section-number selfRef">3.2.2. </a><a href="#name-interaction-model" class="section-name selfRef">Interaction Model</a>
+          </h4>
+<p id="section-3.2.2-1">A typical Hybrid AI session proceeds as follows:<a href="#section-3.2.2-1" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-3.2.2-2">
+<li id="section-3.2.2-2.1">
+              <p id="section-3.2.2-2.1.1"><strong>Local First.</strong> The on‑device model interprets the user goal, applies local tools (e.g., retrieve snippets, parse files), and attempts a low‑cost solution within configured budgets.<a href="#section-3.2.2-2.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li id="section-3.2.2-2.2">
+              <p id="section-3.2.2-2.2.1"><strong>Escalate with Minimization.</strong> If the local model estimates insufficient capability (e.g., confidence below threshold, missing evidence), it <strong>redacts/summarizes</strong> sensitive data and <strong>escalates</strong> the task—along with compact evidence and constraints—over <strong><span>[<a href="#A2A" class="cite xref">A2A</a>]</span></strong>.<a href="#section-3.2.2-2.2.1" class="pilcrow">¶</a></p>
+</li>
+            <li id="section-3.2.2-2.3">
+              <p id="section-3.2.2-2.3.1"><strong>Cloud Reasoning + Tools.</strong> The cloud model performs deeper reasoning and may invoke <strong><span>[<a href="#MCP" class="cite xref">MCP</a>]</span></strong> tools (web search/crawl, KB/RAG, Python) to gather evidence and compute results.<a href="#section-3.2.2-2.3.1" class="pilcrow">¶</a></p>
+</li>
+            <li id="section-3.2.2-2.4">
+              <p id="section-3.2.2-2.4.1"><strong>Refine &amp; Return.</strong> Intermediate artifacts and rationales flow back over <strong><span>[<a href="#A2A" class="cite xref">A2A</a>]</span></strong>. The edge model may integrate results, perform final checks, and produce the user‑facing output.<a href="#section-3.2.2-2.4.1" class="pilcrow">¶</a></p>
+</li>
+            <li id="section-3.2.2-2.5">
+              <p id="section-3.2.2-2.5.1"><strong>Iterate as Needed.</strong> The models repeat plan‑act‑observe‑refine until success criteria (quality, coverage, cost/time budget) are met.<a href="#section-3.2.2-2.5.1" class="pilcrow">¶</a></p>
+</li>
+          </ol>
+</section>
+</div>
+<div id="why-this-use-case-matters-in-the-context-of-protocol-standards-1">
+<section id="section-3.2.3">
+          <h4 id="name-why-this-use-case-matters-in">
+<a href="#section-3.2.3" class="section-number selfRef">3.2.3. </a><a href="#name-why-this-use-case-matters-in" class="section-name selfRef">Why this use case matters in the context of protocol standards</a>
+          </h4>
+<p id="section-3.2.3-1">Hybrid AI is inherently <em>trade‑off aware</em>: it balances <strong>privacy</strong>, <strong>latency</strong>, and <strong>cost</strong> at the edge with <strong>capability</strong> and <strong>breadth</strong> in the cloud. Without standard protocols, inter‑model negotiations and tool interactions become bespoke and hard to audit. Two complementary interoperability layers are especially relevant:<a href="#section-3.2.3-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.2.3-2.1">
+              <p id="section-3.2.3-2.1.1"><strong>Inter‑Model Coordination (A2A).</strong>
+A2A provides a structured channel for <strong>capability advertisement</strong>, <strong>budget negotiation</strong>, <strong>task handoffs</strong>, <strong>progress updates</strong>, and <strong>critique/revision</strong> between edge and cloud models. This enables portable escalation policies (e.g., “do not send raw PII”, “cap tokens/time per turn”, “require human consent for external web calls”) and consistent recovery behaviors across vendors <span>[<a href="#A2A" class="cite xref">A2A</a>]</span>.<a href="#section-3.2.3-2.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-3.2.3-2.2">
+              <p id="section-3.2.3-2.2.1"><strong>Tool Invocation (MCP).</strong>
+MCP standardizes tool discovery and invocation across both environments (edge and cloud), supporting consistent schemas, streaming/progress, cancellation, and explicit consent prompts. This allows implementers to swap local or remote tools—search, crawling, KB/RAG, Python/services—without rewriting agent logic or weakening privacy controls <span>[<a href="#MCP" class="cite xref">MCP</a>]</span>.<a href="#section-3.2.3-2.2.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+<p id="section-3.2.3-3"><strong>Implications for Hybrid AI.</strong> Using standardized protocols lets implementers compose portable edge–cloud stacks:<a href="#section-3.2.3-3" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.2.3-4.1">
+              <p id="section-3.2.3-4.1.1">Edge‑first operation with <strong>escalation</strong> only when needed, guided by budgets and confidence.<a href="#section-3.2.3-4.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-3.2.3-4.2">
+              <p id="section-3.2.3-4.2.1"><strong>Data minimization</strong> (local redaction/summarization) and <strong>consent</strong> workflows at protocol boundaries.<a href="#section-3.2.3-4.2.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-3.2.3-4.3">
+              <p id="section-3.2.3-4.3.1">Consistent <strong>provenance</strong> (URIs, hashes, timestamps) and <strong>observability</strong> across edge and cloud for verifiable traces.<a href="#section-3.2.3-4.3.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-3.2.3-4.4">
+              <p id="section-3.2.3-4.4.1">Seamless <strong>tool portability</strong> (local/remote) and <strong>policy enforcement</strong> that travel with the task rather than the deployment.<a href="#section-3.2.3-4.4.1" class="pilcrow">¶</a></p>
 </li>
           </ul>
 </section>
@@ -1646,8 +1783,8 @@ The <em>Agent2Agent (A2A)</em> protocol focuses on standardized inter-agent coll
 </div>
 <div id="sec-informative-references">
 <section id="section-6.2">
-        <h3 id="name-informative-references-2">
-<a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-informative-references-2" class="section-name selfRef">Informative References</a>
+        <h3 id="name-informative-references">
+<a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
         </h3>
 <dl class="references">
 <dt id="A2A">[A2A]</dt>

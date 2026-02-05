@@ -83,7 +83,11 @@ Table of Contents
        3.1.12. Why this use case matters in the context of protocol
                standards
        3.1.13. Example: Open Deep Search (ODS)
-       3.1.14. Informative References
+     3.2.  Hybrid AI
+       3.2.1.  Building Blocks
+       3.2.2.  Interaction Model
+       3.2.3.  Why this use case matters in the context of protocol
+               standards
    4.  Security Considerations
    5.  IANA Considerations
    6.  References
@@ -400,32 +404,184 @@ Table of Contents
    and agent-centric coordination to manage planning, execution, and
    refinement.
 
-3.1.14.  Informative References
+3.2.  Hybrid AI
 
-   *  Model Context Protocol (spec & docs): modelcontextprotocol.io
-      (https://modelcontextprotocol.io/specification/2025-03-26), GitHub
-      organization (https://github.com/modelcontextprotocol).
+   Hybrid AI generally refers to an _edge–cloud cooperative_ inference
+   workflow in which two or more models collaborate to solve a task: (1)
+   a *smaller on-device model* (typically a few billion parameters) that
+   prioritizes low latency, lower cost, and privacy; and (2) a *larger
+   cloud model* (hundreds of billions to trillion-scale parameters) that
+   offers higher capability and broader knowledge.  The two models
+   coordinate over an agent-to-agent channel and may invoke tools
+   locally or remotely as needed.  Unlike single-endpoint inference,
+   Hybrid AI is _adaptive and budget-aware_: the on-device model handles
+   as much work as possible locally (classification, summarization,
+   intent detection, light reasoning), and escalates to the cloud model
+   when additional capability is required (multi-hop reasoning,
+   long-context synthesis, domain expertise).  The models can exchange
+   plans, partial results, and constraints over [A2A], and both sides
+   can discover and invoke tools via [MCP].
 
-   *  Agent2Agent Protocol (A2A): a2a-protocol.org (https://a2a-
-      protocol.org/latest/), spec (https://a2a-protocol.org/latest/
-      specification/), Google Developers announcement
-      (https://developers.googleblog.com/en/a2a-a-new-era-of-agent-
-      interoperability/), Linux Foundation news
-      (https://developers.googleblog.com/en/google-cloud-donates-a2a-to-
-      linux-foundation/).
+3.2.1.  Building Blocks
 
-   *  IETF “agent2agent” list (standardization discussion):
-      mailarchive.ietf.org
-      (https://mailarchive.ietf.org/arch/msg/agent2agent/
-      a6ORMj_pMlYZI_KU3gPMhB-K9Ng/).
+   A Hybrid AI workflow may generally comprise the components shown in
+   the next Figure:
 
-   *  Open Deep Search (ODS): arXiv:2503.20201 (https://arxiv.org/
-      abs/2503.20201), GitHub repository (https://github.com/sentient-
-      agi/OpenDeepSearch).
+   *  *On-device Model (Edge).* A compact LLM or task-specific model (a
+      few billion parameters) running on user hardware (e.g., phone,
+      laptop).  Advantages include: low latency for interactive turns,
+      reduced cost, offline operation, and improved privacy by default
+      (data locality).  Typical functions: intent parsing, entity
+      extraction, local retrieval, preliminary analysis, redaction/
+      summarization prior to escalation.
 
-   *  LangChain Open Deep Research: project blog
-      (https://www.blog.langchain.com/open-deep-research/), GitHub
-      (https://github.com/langchain-ai/open_deep_research). ``
+   *  *Cloud Model (Hosted).* A large, higher-capability LLM (hundreds
+      of billions to ~trillion parameters) with stronger reasoning,
+      knowledge coverage, tool-use proficiency, and longer context
+      windows.  Typical functions: complex synthesis, multi-step
+      reasoning, broad web/KG retrieval, code execution, and advanced
+      evaluation.
+
+   *  *A2A Inter-Model Coordination.* The edge and cloud models
+      communicate via an *Agent-to-Agent* channel to exchange
+      *capabilities*, *cost/latency budgets*, *privacy constraints*,
+      *task state*, and *partial artifacts*. Common patterns include
+      _negotiate-and-delegate_, _ask-for-help with evidence_, _propose/
+      accept plan updates_, and _critique-revise_ cycles [A2A].
+
+   *  *MCP Tooling (Edge and Cloud).* Both models use the *Model Context
+      Protocol* to discover and invoke tools with consistent schemas
+      (e.g., local sensors/files, calculators, vector indexes on edge;
+      search/crawling, KB/RAG, Python/services in cloud).  MCP enables
+      capability discovery, streaming/progress, cancellation, and
+      explicit consent prompts across transports [MCP].
+
+   *  *Policy, Budget, and Privacy Controls.* Guardrails and policies
+      that encode user/enterprise constraints (e.g., do not send raw PII
+      to cloud; enforce token/time budgets; require consent for specific
+      tools).  The edge model may redact or summarize data before
+      escalation; both sides log provenance and decisions for
+      auditability.
+
+   *  *Shared Task State and Provenance.* A compact state (goals,
+      sub-tasks, citations, hashes, timestamps) that both models can
+      read/update to enable reproducibility, debugging, and verifiable
+      traces.
+
+ +--------------------------------------------------------------+
+ |                        User / Client                         |
+ |              (Goal, Query, Constraints)                      |
+ +--------------------------------------------------------------+
+                              |
+                              v
+ +--------------------------------------------------------------+
+ |                 On-Device Model (Edge)                       |
+ |  - few-B params; low latency, privacy by default             |
+ |  - local reasoning, redaction/summarization                  |
+ |  - local tools via MCP (sensors, files, crypto)              |
+ +--------------------------------------------------------------+
+          |                           \
+          | local MCP tools            \ when escalation is needed
+          v                             \
+ +----------------------+                \
+ | Edge MCP Tools       |                 \
+ +----------------------+                  v
+                                    +----------------------------------+
+                                    |   A2A Session (Edge <-> Cloud)   |
+                                    |   - capability/budget exchange   |
+                                    |   - task handoff & updates       |
+                                    +----------------------------------+
+                                                 |
+                                                 v
+ +--------------------------------------------------------------+
+ |                    Cloud Model (Hosted)                      |
+ |  - 100B–1T+ params; higher capability & breadth              |
+ |  - complex synthesis, long-context reasoning                 |
+ |  - cloud tools via MCP (search, KB/RAG, Python)              |
+ +--------------------------------------------------------------+
+                              |
+                      cloud MCP tool calls
+                              v
+ +----------------------+   +------------------+   +------------------+
+ | Web Search & Crawl   |-->| KB / RAG Index   |-->| Python / Services|
+ +----------------------+   +------------------+   +------------------+
+                              ^
+                              |
+                  results/evidence via A2A to edge/cloud
+                              |
+                              v
+ +--------------------------------------------------------------+
+ |                 Final Answer / Output                        |
+ |   (synthesis + citations + privacy/consent notes)            |
+ +--------------------------------------------------------------+
+
+   Each building block in the Hybrid AI architecture represents a
+   logical function rather than a specific implementation, and
+   components may be co-located or distributed in practice.
+
+3.2.2.  Interaction Model
+
+   A typical Hybrid AI session proceeds as follows:
+
+   1.  *Local First.* The on-device model interprets the user goal,
+       applies local tools (e.g., retrieve snippets, parse files), and
+       attempts a low-cost solution within configured budgets.
+
+   2.  *Escalate with Minimization.* If the local model estimates
+       insufficient capability (e.g., confidence below threshold,
+       missing evidence), it *redacts/summarizes* sensitive data and
+       *escalates* the task—along with compact evidence and
+       constraints—over *[A2A]*.
+
+   3.  *Cloud Reasoning + Tools.* The cloud model performs deeper
+       reasoning and may invoke *[MCP]* tools (web search/crawl, KB/RAG,
+       Python) to gather evidence and compute results.
+
+   4.  *Refine & Return.* Intermediate artifacts and rationales flow
+       back over *[A2A]*. The edge model may integrate results, perform
+       final checks, and produce the user-facing output.
+
+   5.  *Iterate as Needed.* The models repeat plan-act-observe-refine
+       until success criteria (quality, coverage, cost/time budget) are
+       met.
+
+3.2.3.  Why this use case matters in the context of protocol standards
+
+   Hybrid AI is inherently _trade-off aware_: it balances *privacy*,
+   *latency*, and *cost* at the edge with *capability* and *breadth* in
+   the cloud.  Without standard protocols, inter-model negotiations and
+   tool interactions become bespoke and hard to audit.  Two
+   complementary interoperability layers are especially relevant:
+
+   *  *Inter-Model Coordination (A2A).* A2A provides a structured
+      channel for *capability advertisement*, *budget negotiation*,
+      *task handoffs*, *progress updates*, and *critique/revision*
+      between edge and cloud models.  This enables portable escalation
+      policies (e.g., “do not send raw PII”, “cap tokens/time per turn”,
+      “require human consent for external web calls”) and consistent
+      recovery behaviors across vendors [A2A].
+
+   *  *Tool Invocation (MCP).* MCP standardizes tool discovery and
+      invocation across both environments (edge and cloud), supporting
+      consistent schemas, streaming/progress, cancellation, and explicit
+      consent prompts.  This allows implementers to swap local or remote
+      tools—search, crawling, KB/RAG, Python/services—without rewriting
+      agent logic or weakening privacy controls [MCP].
+
+   *Implications for Hybrid AI.* Using standardized protocols lets
+   implementers compose portable edge–cloud stacks:
+
+   *  Edge-first operation with *escalation* only when needed, guided by
+      budgets and confidence.
+
+   *  *Data minimization* (local redaction/summarization) and *consent*
+      workflows at protocol boundaries.
+
+   *  Consistent *provenance* (URIs, hashes, timestamps) and
+      *observability* across edge and cloud for verifiable traces.
+
+   *  Seamless *tool portability* (local/remote) and *policy
+      enforcement* that travel with the task rather than the deployment.
 
 4.  Security Considerations
 
