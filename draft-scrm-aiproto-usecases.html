@@ -1204,7 +1204,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
                     <p id="section-toc.1-1.3.2.1.2.12.1"><a href="#section-3.1.12" class="auto internal xref">3.1.12</a>. <a href="#name-why-this-use-case-matters-i" class="internal xref">Why this use case matters in the context of protocol standards</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1.2.13">
-                    <p id="section-toc.1-1.3.2.1.2.13.1"><a href="#section-3.1.13" class="auto internal xref">3.1.13</a>. <a href="#name-example-open-deep-search-pr" class="internal xref">Example: Open Deep Search project</a></p>
+                    <p id="section-toc.1-1.3.2.1.2.13.1"><a href="#section-3.1.13" class="auto internal xref">3.1.13</a>. <a href="#name-example-open-deep-search-od" class="internal xref">Example: Open Deep Search (ODS)</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1.2.14">
                     <p id="section-toc.1-1.3.2.1.2.14.1"><a href="#section-3.1.14" class="auto internal xref">3.1.14</a>. <a href="#name-informative-references" class="internal xref">Informative References</a></p>
@@ -1220,7 +1220,15 @@ svg :is([fill="white"], [fill^="#fff"]) {
             <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
-            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-references" class="internal xref">References</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1">
+                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="auto internal xref">6.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2">
+                <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="auto internal xref">6.2</a>.  <a href="#name-informative-references-2" class="internal xref">Informative References</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
             <p id="section-toc.1-1.7.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
@@ -1535,11 +1543,11 @@ Plan -&gt; Act -&gt; Observe -&gt; Refine -&gt; Re-plan
 <ul class="normal">
 <li class="normal" id="section-3.1.12-2.1">
               <p id="section-3.1.12-2.1.1"><strong>Agent‑to‑Tool standardization.</strong>
-The <em>Model Context Protocol (MCP)</em> defines a common way for agents/hosts to discover, describe, and invoke tools, resources, and prompts over JSON‑RPC across transports (stdio, HTTP/SSE, WebSocket). MCP enables portable tool catalogs (search, crawler, RAG, Python) with consistent schemas, capability negotiation, progress/cancellation, and security prompts/consent. <a href="https://modelcontextprotocol.io/specification/2025-03-26">Model Context Protocol specification</a> • <a href="https://github.com/modelcontextprotocol">MCP GitHub org</a>.<a href="#section-3.1.12-2.1.1" class="pilcrow">¶</a></p>
+The <em>Model Context Protocol (MCP)</em> defines a standardized mechanism by which agents and hosts can discover, describe, and invoke tools, resources, and prompts using JSON-RPC over multiple transports (e.g., stdio, HTTP with Server-Sent Events, and WebSocket). MCP enables portable and reusable tool catalogs (including search, crawling, retrieval-augmented generation (RAG), and general-purpose computation) with consistent schemas, capability negotiation, progress reporting, cancellation semantics, and explicit security prompts and user consent. Further details are specified in the MCP specification and related project documentation <span>[<a href="#MCP" class="cite xref">MCP</a>]</span><span>[<a href="#MCP-GITHUB" class="cite xref">MCP-GITHUB</a>]</span>.<a href="#section-3.1.12-2.1.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-3.1.12-2.2">
               <p id="section-3.1.12-2.2.1"><strong>A2A Agent Communication Bus.</strong>
-The <em>Agent2Agent (A2A)</em> protocol focuses on inter‑agent collaboration—capability discovery (Agent Cards), task lifecycle (create/cancel/status), streaming updates for long‑running jobs, and opaque collaboration without sharing proprietary internals. See the overview/spec and announcement: <a href="https://a2a-protocol.org/latest/">A2A protocol site/spec</a> • <a href="https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/">Google Developers announcement</a> • <a href="https://github.com/a2aproject/A2A">A2A GitHub</a>.<a href="#section-3.1.12-2.2.1" class="pilcrow">¶</a></p>
+The <em>Agent2Agent (A2A)</em> protocol focuses on standardized inter-agent collaboration. It defines mechanisms for agent capability discovery (e.g., Agent Cards), task lifecycle management (creation, cancellation, and status reporting), and streaming updates for long-running operations. A2A is designed to support opaque collaboration among agents while avoiding the need to disclose proprietary internal implementations. An overview of the protocol, along with its specification and design rationale, is available from the A2A project documentation <span>[<a href="#A2A" class="cite xref">A2A</a>]</span><span>[<a href="#A2A-GITHUB" class="cite xref">A2A-GITHUB</a>]</span>.<a href="#section-3.1.12-2.2.1" class="pilcrow">¶</a></p>
 </li>
           </ul>
 <p id="section-3.1.12-3"><strong>Implications for Deep Search.</strong> Using A2A and MCP together lets implementers compose portable Deep Search stacks:<a href="#section-3.1.12-3" class="pilcrow">¶</a></p>
@@ -1559,21 +1567,14 @@ The <em>Agent2Agent (A2A)</em> protocol focuses on inter‑agent collaboration�
           </ul>
 </section>
 </div>
-<div id="example-open-deep-search-project">
+<div id="example-open-deep-search-ods">
 <section id="section-3.1.13">
-          <h4 id="name-example-open-deep-search-pr">
-<a href="#section-3.1.13" class="section-number selfRef">3.1.13. </a><a href="#name-example-open-deep-search-pr" class="section-name selfRef">Example: Open Deep Search project</a>
+          <h4 id="name-example-open-deep-search-od">
+<a href="#section-3.1.13" class="section-number selfRef">3.1.13. </a><a href="#name-example-open-deep-search-od" class="section-name selfRef">Example: Open Deep Search (ODS)</a>
           </h4>
-<p id="section-3.1.13-1">Open implementations illustrate agentic architectures for Deep Search:<a href="#section-3.1.13-1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-3.1.13-2.1">
-              <p id="section-3.1.13-2.1.1"><strong>Open Deep Search (ODS).</strong> A modular open‑source framework that augments a base LLM with a <em>Reasoning Agent</em> and an <em>Open Search Tool</em>, reporting state‑of‑the‑art results on benchmarks like SimpleQA and FRAMES. <a href="https://arxiv.org/abs/2503.20201">Alzubi et al., 2025 (arXiv)</a> • <a href="https://github.com/sentient-agi/OpenDeepSearch">sentient‑agi/OpenDeepSearch (GitHub)</a>.<a href="#section-3.1.13-2.1.1" class="pilcrow">¶</a></p>
-</li>
-            <li class="normal" id="section-3.1.13-2.2">
-              <p id="section-3.1.13-2.2.1"><strong>Open Deep Research (LangChain).</strong> An agentic “deep research” reference built on LangGraph that works across model providers, search tools, and <em>MCP servers</em>; includes supervisor/sub‑agent patterns and evaluation harnesses. <a href="https://www.blog.langchain.com/open-deep-research/">Project blog</a> • <a href="https://github.com/langchain-ai/open_deep_research">langchain‑ai/open_deep_research (GitHub)</a>.<a href="#section-3.1.13-2.2.1" class="pilcrow">¶</a></p>
-</li>
-          </ul>
-<p id="section-3.1.13-3">These systems exemplify the building blocks described earlier and are consistent with the interoperability layering (MCP for tools; A2A for inter‑agent collaboration).<a href="#section-3.1.13-3" class="pilcrow">¶</a></p>
+<p id="section-3.1.13-1">Open implementations illustrate agentic architectures for Deep Search.<a href="#section-3.1.13-1" class="pilcrow">¶</a></p>
+<p id="section-3.1.13-2"><strong>Open Deep Search (ODS)</strong> is a modular, open-source framework developed by Sentient that augments a base large language model with a dedicated Reasoning Agent and an Open Search tool. The framework is designed to support extensible, agentic search workflows in which an agent iteratively plans, invokes search tools, and synthesizes results to answer complex queries. Further details are available in the ODS publication and accompanying reference implementation <span>[<a href="#ODS" class="cite xref">ODS</a>]</span><span>[<a href="#ODS-GITHUB" class="cite xref">ODS-GITHUB</a>]</span>.<a href="#section-3.1.13-2" class="pilcrow">¶</a></p>
+<p id="section-3.1.13-3">ODS exemplifies the building blocks described earlier in this document and is consistent with the proposed interoperability layering, using standardized tool invocation for search and retrieval and agent-centric coordination to manage planning, execution, and refinement.<a href="#section-3.1.13-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="informative-references">
@@ -1621,21 +1622,61 @@ The <em>Agent2Agent (A2A)</em> protocol focuses on inter‑agent collaboration�
 <p id="section-5-1">This document has no IANA actions.<a href="#section-5-1" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="sec-normative-references">
+<div id="sec-combined-references">
 <section id="section-6">
-      <h2 id="name-normative-references">
-<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+      <h2 id="name-references">
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-references" class="section-name selfRef">References</a>
       </h2>
+<div id="sec-normative-references">
+<section id="section-6.1">
+        <h3 id="name-normative-references">
+<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+        </h3>
 <dl class="references">
 <dt id="RFC2119">[RFC2119]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2119">https://www.rfc-editor.org/rfc/rfc2119</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8174">[RFC8174]</dt>
-    <dd>
+      <dd>
 <span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8174">https://www.rfc-editor.org/rfc/rfc8174</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
+</section>
+</div>
+<div id="sec-informative-references">
+<section id="section-6.2">
+        <h3 id="name-informative-references-2">
+<a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-informative-references-2" class="section-name selfRef">Informative References</a>
+        </h3>
+<dl class="references">
+<dt id="A2A">[A2A]</dt>
+        <dd>
+<span class="refTitle">"Agent2Agent (A2A) Protocol Specification"</span>, <span>n.d.</span>, <span>&lt;<a href="https://a2a-protocol.org/latest/">https://a2a-protocol.org/latest/</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="A2A-GITHUB">[A2A-GITHUB]</dt>
+        <dd>
+<span class="refTitle">"Agent2Agent Protocol – GitHub Repository"</span>, <span>n.d.</span>, <span>&lt;<a href="https://github.com/a2aproject/A2A">https://github.com/a2aproject/A2A</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="MCP">[MCP]</dt>
+        <dd>
+<span class="refTitle">"Model Context Protocol (MCP) Specification"</span>, <time datetime="2025-03" class="refDate">March 2025</time>, <span>&lt;<a href="https://modelcontextprotocol.io/specification/2025-03-26">https://modelcontextprotocol.io/specification/2025-03-26</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="MCP-GITHUB">[MCP-GITHUB]</dt>
+        <dd>
+<span class="refTitle">"Model Context Protocol – GitHub Organization"</span>, <span>n.d.</span>, <span>&lt;<a href="https://github.com/modelcontextprotocol">https://github.com/modelcontextprotocol</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="ODS">[ODS]</dt>
+        <dd>
+<span class="refTitle">"Open Deep Search"</span>, <time datetime="2025" class="refDate">2025</time>, <span>&lt;<a href="https://arxiv.org/abs/2503.20201">https://arxiv.org/abs/2503.20201</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="ODS-GITHUB">[ODS-GITHUB]</dt>
+      <dd>
+<span class="refTitle">"OpenDeepSearch"</span>, <span>n.d.</span>, <span>&lt;<a href="https://github.com/sentient-agi/OpenDeepSearch">https://github.com/sentient-agi/OpenDeepSearch</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+</dl>
+</section>
+</div>
 </section>
 </div>
 <div id="acknowledgments">
