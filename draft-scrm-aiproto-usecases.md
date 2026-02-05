@@ -26,22 +26,22 @@ venue:
 author:
  -
     fullname: "Roland Schott"
-    organization: Deutsche Telekom
+    org: Deutsche Telekom
     email: "Roland.Schott@telekom.de"
 
  -
     fullname: "Julien Maisonneuve"
-    organization: Nokia Bell Labs
+    org: Nokia Bell Labs
     email: "julien.maisonneuve@nokia.com"
 
  -
     fullname: "L. M. Contreras"
-    organization: Telefonica
+    org: Telefonica
     email: "luismiguel.contrerasmurillo@telefonica.com"
 
  -
     fullname: "Jordi Ros-Giralt"
-    organization: Qualcomm Europe, Inc.
+    org: Qualcomm Europe, Inc.
     email: "jros@qti.qualcomm.com"
 
 
@@ -49,7 +49,33 @@ normative:
 
 informative:
 
-...
+## Informative References
+
+  MCP:
+    title:  "Model Context Protocol (MCP) Specification"
+    date: 26 March 2025
+    target: https://modelcontextprotocol.io/specification/2025-03-26
+
+  MCP-GITHUB:
+    title:  "Model Context Protocol – GitHub Organization"
+    target: https://github.com/modelcontextprotocol
+
+  A2A:
+    title:  "Agent2Agent (A2A) Protocol Specification"
+    target: https://a2a-protocol.org/latest/
+
+  A2A-GITHUB:
+    title:  "Agent2Agent Protocol – GitHub Repository"
+    target: https://github.com/a2aproject/A2A
+
+  ODS:
+    title:  "Open Deep Search"
+    date: 2025
+    target: https://arxiv.org/abs/2503.20201
+
+  ODS-GITHUB:
+    title:  "OpenDeepSearch"
+    target: https://github.com/sentient-agi/OpenDeepSearch
 
 --- abstract
 
@@ -271,10 +297,10 @@ This output reflects the outcome of one or more iterative refinement cycles.
 Deep Search is inherently *compositional*: it coordinates *multiple* agents and *many* tools over extended time. Without standard protocols, systems devolve into brittle, one‑off integrations that are hard to test, secure, or reuse. Two complementary interoperability layers in the DeepSearch are especially relevant:
 
 - **Agent‑to‑Tool standardization.**
-  The *Model Context Protocol (MCP)* defines a common way for agents/hosts to discover, describe, and invoke tools, resources, and prompts over JSON‑RPC across transports (stdio, HTTP/SSE, WebSocket). MCP enables portable tool catalogs (search, crawler, RAG, Python) with consistent schemas, capability negotiation, progress/cancellation, and security prompts/consent. [Model Context Protocol specification](https://modelcontextprotocol.io/specification/2025-03-26) • [MCP GitHub org](https://github.com/modelcontextprotocol).
+  The *Model Context Protocol (MCP)* defines a standardized mechanism by which agents and hosts can discover, describe, and invoke tools, resources, and prompts using JSON-RPC over multiple transports (e.g., stdio, HTTP with Server-Sent Events, and WebSocket). MCP enables portable and reusable tool catalogs (including search, crawling, retrieval-augmented generation (RAG), and general-purpose computation) with consistent schemas, capability negotiation, progress reporting, cancellation semantics, and explicit security prompts and user consent. Further details are specified in the MCP specification and related project documentation {{MCP}}{{MCP-GITHUB}}.
 
 - **A2A Agent Communication Bus.**
-  The *Agent2Agent (A2A)* protocol focuses on inter‑agent collaboration—capability discovery (Agent Cards), task lifecycle (create/cancel/status), streaming updates for long‑running jobs, and opaque collaboration without sharing proprietary internals. See the overview/spec and announcement: [A2A protocol site/spec](https://a2a-protocol.org/latest/) • [Google Developers announcement](https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/) • [A2A GitHub](https://github.com/a2aproject/A2A).
+  The *Agent2Agent (A2A)* protocol focuses on standardized inter-agent collaboration. It defines mechanisms for agent capability discovery (e.g., Agent Cards), task lifecycle management (creation, cancellation, and status reporting), and streaming updates for long-running operations. A2A is designed to support opaque collaboration among agents while avoiding the need to disclose proprietary internal implementations. An overview of the protocol, along with its specification and design rationale, is available from the A2A project documentation {{A2A}}{{A2A-GITHUB}}.
 
 **Implications for Deep Search.** Using A2A and MCP together lets implementers compose portable Deep Search stacks:
 
@@ -283,15 +309,14 @@ Deep Search is inherently *compositional*: it coordinates *multiple* agents and 
 - Provenance (URIs, hashes, timestamps) and citation schemas can also be standardized at the protocol boundary to enable verifiable research traces across vendors.
 - Enterprise requirements (authn/z), quotas, observability/tracing, policy enforcement (robots/copyright), and safety reviews—become portable rather than per‑integration glue.
 
-### Example: Open Deep Search project
 
-Open implementations illustrate agentic architectures for Deep Search:
+### Example: Open Deep Search (ODS)
 
-- **Open Deep Search (ODS).** A modular open‑source framework that augments a base LLM with a *Reasoning Agent* and an *Open Search Tool*, reporting state‑of‑the‑art results on benchmarks like SimpleQA and FRAMES. [Alzubi et al., 2025 (arXiv)](https://arxiv.org/abs/2503.20201) • [sentient‑agi/OpenDeepSearch (GitHub)](https://github.com/sentient-agi/OpenDeepSearch).
+Open implementations illustrate agentic architectures for Deep Search.
 
-- **Open Deep Research (LangChain).** An agentic “deep research” reference built on LangGraph that works across model providers, search tools, and *MCP servers*; includes supervisor/sub‑agent patterns and evaluation harnesses. [Project blog](https://www.blog.langchain.com/open-deep-research/) • [langchain‑ai/open_deep_research (GitHub)](https://github.com/langchain-ai/open_deep_research).
+**Open Deep Search (ODS)** is a modular, open-source framework developed by Sentient that augments a base large language model with a dedicated Reasoning Agent and an Open Search tool. The framework is designed to support extensible, agentic search workflows in which an agent iteratively plans, invokes search tools, and synthesizes results to answer complex queries. Further details are available in the ODS publication and accompanying reference implementation {{ODS}}{{ODS-GITHUB}}.
 
-These systems exemplify the building blocks described earlier and are consistent with the interoperability layering (MCP for tools; A2A for inter‑agent collaboration).
+ODS exemplifies the building blocks described earlier in this document and is consistent with the proposed interoperability layering, using standardized tool invocation for search and retrieval and agent-centric coordination to manage planning, execution, and refinement.
 
 ### Informative References
 
