@@ -199,11 +199,11 @@ A Deep Search workflow may generally comprise the components shown in the next F
 
 Each building block in the DeepSearch architecture represents a logical function rather than a specific implementation, and multiple components may be co-located or distributed in practice.
 
-### User / Client
+#### User / Client
 
 The *User / Client* is the entry point to the system. It provides the initial goal or query, along with optional constraints (e.g., scope, freshness, format). The user does not interact directly with tools or agents; all interactions are mediated by the DeepSearch Orchestrator.
 
-### DeepSearch Orchestrator
+#### DeepSearch Orchestrator
 
 The *DeepSearch Orchestrator* acts as the control plane of the system. Its responsibilities include:
 
@@ -214,7 +214,7 @@ The *DeepSearch Orchestrator* acts as the control plane of the system. Its respo
 
 The orchestrator does not perform retrieval or computation directly; instead, it delegates work to agents and manages the overall execution flow.
 
-### A2A Agent Communication Bus
+#### A2A Agent Communication Bus
 
 The *A2A Agent Communication Bus* provides a standardized messaging layer that enables agent-to-agent coordination. It supports:
 
@@ -224,7 +224,7 @@ The *A2A Agent Communication Bus* provides a standardized messaging layer that e
 
 This bus allows agents to operate independently while still contributing to a coherent end-to-end workflow.
 
-### Agents Mesh
+#### Agents Mesh
 
 The *Agents Mesh* block represents a set of specialized, cooperative agents operating over the A2A bus. Typical agent roles include:
 
@@ -235,7 +235,7 @@ The *Agents Mesh* block represents a set of specialized, cooperative agents oper
 
 Agents are responsible for invoking tools, interpreting results, and returning structured observations to the orchestrator.
 
-### MCP Tooling Layer
+#### MCP Tooling Layer
 
 The *MCP Tooling Layer* provides a standardized interface between agents and external tools. It enables:
 
@@ -245,7 +245,7 @@ The *MCP Tooling Layer* provides a standardized interface between agents and ext
 
 MCP acts as an abstraction boundary that simplifies integration and evolution of external capabilities.
 
-### Web Search & Crawling
+#### Web Search & Crawling
 
 The *Web Search & Crawling* component combines content discovery and acquisition. It typically includes:
 
@@ -254,7 +254,7 @@ The *Web Search & Crawling* component combines content discovery and acquisition
 
 This component supplies raw external data that can be further processed and indexed.
 
-### Knowledge Base (KB) / Retrieval Augmented Generation (RAG) Index
+#### Knowledge Base (KB) / Retrieval Augmented Generation (RAG) Index
 
 The *KB / RAG Index* component manages knowledge representation and retrieval. Its responsibilities include:
 
@@ -264,7 +264,7 @@ The *KB / RAG Index* component manages knowledge representation and retrieval. I
 
 This block provides structured, queryable knowledge derived from external sources.
 
-### Python / Tools
+#### Python / Tools
 
 The *Python / Tools* component represents general-purpose computation and evaluation capabilities. Examples include:
 
@@ -274,7 +274,7 @@ The *Python / Tools* component represents general-purpose computation and evalua
 
 These tools are typically invoked by analysis-oriented agents via the MCP layer.
 
-### Iterative Improvement Loop
+#### Iterative Improvement Loop
 
 The *Iterative Improvement Loop* captures the system’s ability to refine results over multiple passes and is also implemeted by the DeepSearch Orchestrator. Conceptually, it follows a cycle of:
 
@@ -282,7 +282,7 @@ The *Iterative Improvement Loop* captures the system’s ability to refine resul
 
 Observations and intermediate results are fed back into the orchestrator, which may adjust plans, agent assignments, or tool usage before producing the final output.
 
-### Final Answer / Output
+#### Final Answer / Output
 
 The *Final Answer / Output* is the synthesized result returned to the user. It may include:
 
@@ -292,7 +292,7 @@ The *Final Answer / Output* is the synthesized result returned to the user. It m
 
 This output reflects the outcome of one or more iterative refinement cycles.
 
-### Why this use case matters in the context of protocol standards
+### Why This Use Case Matters
 
 Deep Search is inherently *compositional*: it coordinates *multiple* agents and *many* tools over extended time. Without standard protocols, systems devolve into brittle, one‑off integrations that are hard to test, secure, or reuse. Two complementary interoperability layers in the DeepSearch are especially relevant:
 
@@ -405,7 +405,7 @@ A typical Hybrid AI session proceeds as follows:
 4. **Refine & Return.** Intermediate artifacts and rationales flow back over **{{A2A}}**. The edge model may integrate results, perform final checks, and produce the user‑facing output.
 5. **Iterate as Needed.** The models repeat plan‑act‑observe‑refine until success criteria (quality, coverage, cost/time budget) are met.
 
-### Why this use case matters in the context of protocol standards
+### Why This Use Case Matters
 
 Hybrid AI is inherently *trade‑off aware*: it balances **privacy**, **latency**, and **cost** at the edge with **capability** and **breadth** in the cloud. Without standard protocols, inter‑model negotiations and tool interactions become bespoke and hard to audit. Two complementary interoperability layers are especially relevant:
 
