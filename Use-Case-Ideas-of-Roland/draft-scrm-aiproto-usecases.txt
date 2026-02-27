@@ -5,12 +5,12 @@
 WG Working Group                                               R. Schott
 Internet-Draft                                          Deutsche Telekom
 Intended status: Informational                            J. Maisonneuve
-Expires: 27 July 2026                                    Nokia Bell Labs
+Expires: 31 August 2026                                  Nokia Bell Labs
                                                          L. M. Contreras
                                                               Telefonica
                                                            J. Ros-Giralt
                                                    Qualcomm Europe, Inc.
-                                                         23 January 2026
+                                                        27 February 2026
 
 
                           Agentic AI Use Cases
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 27 July 2026.
+   This Internet-Draft will expire on 31 August 2026.
 
 Copyright Notice
 
@@ -92,7 +92,7 @@ Table of Contents
 
 3.  Use Cases
 
-   Roland use case test edition
+   Roland use case test edition ...
 
 3.1.  Deep Search
 
