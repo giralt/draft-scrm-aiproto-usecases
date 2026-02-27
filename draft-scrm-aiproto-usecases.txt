@@ -86,7 +86,27 @@ Table of Contents
 
 1.  Introduction
 
-   TODO Introduction
+   Agentic AI systems—software agents that use large language models to
+   reason, plan, and take actions by interacting with tools and with
+   other agents—are seeing rapid adoption across multiple domains.  The
+   ecosystem is also evolving quickly through open-source
+   implementations and emerging protocol proposals; however, open source
+   alone does not guarantee interoperability, since rapid iteration and
+   fragmentation can make stable interoperation difficult when long-term
+   compatibility is required.  Several protocols have been proposed to
+   support agentic systems (e.g., [A2A], [MCP], ANP, Agntcy), each with
+   different design choices and strengths, targeting different
+   functions, properties, and operating assumptions.
+
+   This document inventories a set of representative Agentic AI use
+   cases to help the IETF derive protocol requirements and perform gap
+   analysis across existing proposals, with a focus on Internet-scale
+   interoperability.  The use cases are intended to highlight protocol
+   properties that matter in practice—such as long-lived interactions,
+   multi-modal context exchange, progress reporting and cancellation,
+   and safety-relevant security and privacy hooks—and to help the IETF
+   determine appropriate scope as well as how related work should be
+   organized across existing working groups or, if needed, a new effort.
 
 2.  Conventions and Definitions
 
