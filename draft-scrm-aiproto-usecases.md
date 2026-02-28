@@ -447,6 +447,21 @@ Hybrid AI is inherently *trade‑off aware*: it balances **privacy**, **latency*
 
 
 
+# Use Cases
+
+## AI based operation models
+
+### AI-based improvement of Operation Models and increase of Customer Experience
+AI agents are seen as potential to improve customer experience in future. The idea is that AI agents or multiple AI agents are integrated into the telecom networks offering services to the user. These services could, for example, be that AI agents are able to perform multi-level of Internet or Intranet search independently, are coordinating calendar entries and emails or multi-step workflows with multiple AI agents and offer pre-built domain agents for areas such as HR, procurement, finance. This will lead to a fundamental change in operating models of companies. The agents are going to help with decision making or have the ability to act on behalf of employees or of the company itself. In a multi-agent scenario various agents of various vendors are communication over the networks and need to interact. The communication flows need to be coordinated and require a standardized AI agent communication protocol and AI framework. Since it is very likely that regulatory aspects – not only network regulatory - need to be obeyed, a standardized and open solution is beneficial compared to proprietary implementations. Multiple AI agents of different vendors need to communicate with each other over different operators and it is required that this eco system is open. Therefore, a standardized AI agent protocol is mandatory.
+
+### Voice comes back from the Ashes
+It is very likely that with the integration of AI and AI agents into the network the voice services are going to see a revival. Human voice communication with AI agents is simple and a fast way of interaction. ChatBots might give telephone communication a push. By taking this into account a voice human-to-AI agent communication is an additional use case. Regarding this, additional issues need to be considered e.g., security, permission or charging aspects. Since voice is a regulated service the need for a standardized framework and a standardized AI protocol is obvious. AI agents as part of the network communication being integrated in the networks are going to assist the user and will increase its user experience.
+
+### AI for Network Management and autonomous Networks
+AI agents will also change the network operation model of operators. AI agents are going to analyze network behavior, detect performance issues and implement network reliability by themselves and have the ability to act autonomously. The vision is to have an autonomous and automated Root Cause Analysis and that the network is operated by itself. This can be achieved by using agents that interwork together and are orchestrated by the network operator by an AI agent orchestrator.
+AI-powered network agents are detecting network anomalies in real time and are making corrections on their own. An example of the RAN (Radio Access Network) where AI agents are monitoring the network behavior during major events and load peaks to ensure high network quality. Agentic AI in this scenario is beneficial because not for every event the required capacity is predictable and acting in real-time by changing RAN or network configuration is helping to ensure the QoE (Qualitiy of Experience) for the customers.
+
+
 # Security Considerations
 
 TODO Security
