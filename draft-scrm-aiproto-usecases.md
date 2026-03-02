@@ -117,6 +117,7 @@ The use cases in this document are intended to inform IETF standardization work 
 
 # Use Cases
 
+This section inventories representative Agentic AI use cases to make their protocol-relevant requirements explicit and comparable. The use cases are written to expose concrete needs such as multi-step delegation, agent-to-agent coordination, agent-to-tool interactions, and long-lived and multi-modal exchanges that must operate safely and reliably across administrative domains.  By grounding the discussion in specific scenarios, the document supports gap analysis against emerging agent protocols (e.g., agent-to-agent and agent-to-tool approaches such as A2A and MCP) and clarifies how candidate solutions could be layered over existing IETF protocol substrates and mapped to appropriate IETF working groups, including the necessary security and privacy hooks.
 
 ## Deep Search
 
@@ -336,7 +337,7 @@ Deep Search is inherently *compositional*: it coordinates *multiple* agents and 
 
 Open implementations illustrate agentic architectures for Deep Search.
 
-**Open Deep Search (ODS)** is a modular, open-source framework developed by Sentient that augments a base large language model with a dedicated Reasoning Agent and an Open Search tool. The framework is designed to support extensible, agentic search workflows in which an agent iteratively plans, invokes search tools, and synthesizes results to answer complex queries. Further details are available in the ODS publication and accompanying reference implementation {{ODS}}{{ODS-GITHUB}}.
+**Open Deep Search (ODS)** is a modular, open-source framework that augments a base large language model with a dedicated Reasoning Agent and an Open Search tool. The framework is designed to support extensible, agentic search workflows in which an agent iteratively plans, invokes search tools, and synthesizes results to answer complex queries. Further details are available in the ODS publication and accompanying reference implementation {{ODS}}{{ODS-GITHUB}}.
 
 ODS exemplifies the building blocks described earlier in this document and is consistent with the proposed interoperability layering, using standardized tool invocation for search and retrieval and agent-centric coordination to manage planning, execution, and refinement.
 
@@ -478,11 +479,11 @@ AI agents have the potential to enhance future user experience by being integrat
 
 #### Building Blocks
 
-WIP
+TODO
 
 #### Why this Use Case Matters
 
-WIP
+TODO
 
 ### Voice-Based Human-to-Agent Communication
 
@@ -490,11 +491,11 @@ With the integration of AI and AI agents into networks, voice services may see r
 
 #### Building Blocks
 
-WIP
+TODO
 
 #### Why this Use Case Matters
 
-WIP
+TODO
 
 # Security Considerations
 
