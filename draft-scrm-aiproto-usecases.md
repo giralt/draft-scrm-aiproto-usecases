@@ -444,7 +444,7 @@ Hybrid AI is inherently *trade‑off aware*: it balances **privacy**, **latency*
 - Consistent **provenance** (URIs, hashes, timestamps) and **observability** across edge and cloud for verifiable traces.
 - Seamless **tool portability** (local/remote) and **policy enforcement** that travel with the task rather than the deployment.
 
-## AI-based troubleshooting and automation
+## AI-based Troubleshooting and Automation
 
 Telecom networks have significantly increased in scale, complexity, and heterogeneity. The interplay of technologies such as Software-Defined Networking (SDN), virtualization, cloud-native architectures, network slicing, and 5G/6G systems has made infrastructures highly dynamic. While these innovations provide flexibility and service agility, they also introduce substantial operational challenges, particularly in fault detection, diagnosis, and resolution.
 
@@ -462,7 +462,7 @@ AI agents form a distributed and scalable ecosystem leveraging advanced AI/ML, i
 
 The use case relies on decentralized multi-agent coordination, where agents exchange structured, context-enriched information to enable dynamic activation and collaborative troubleshooting workflows. A resource-aware orchestration layer manages agent deployment, scaling, and optimization across the network–cloud continuum. Policy frameworks ensure security, compliance, trustworthiness, and explainability, supporting resilient AI-driven network operations.
 
-### Why this use case matters
+### Why This Use Case Matters
 
 This use case highlights the need for interoperable, protocol-based integration of AI-driven troubleshooting and automation components within heterogeneous, multi-vendor environments. Telecom networks are inherently composed of equipment and control systems from different providers, spanning multiple administrative and technological domains. A multi-agent AI framework operating across such environments requires standardized mechanisms for data modeling, telemetry export, capability advertisement, and control interfaces. In particular, consistent information models (e.g., YANG-based models), secure transport protocols, and well-defined APIs are needed to ensure that AI agents can reliably discover, interpret, and act upon network state information across vendor boundaries.
 
@@ -470,20 +470,31 @@ Service discovery and capability negotiation are also critical. AI agents must b
 
 Furthermore, governance, security, and trust frameworks are fundamental considerations. AI-driven agents capable of recommending or executing remediation actions introduce new requirements for authentication, authorization, accountability, and auditability. Secure communication channels, role-based access control, policy enforcement, and explainability mechanisms are necessary to prevent misuse, contain faults, and ensure compliance with operational and regulatory constraints.
 
-# Use Cases
+## AI-Based Operation Models
 
-## AI based operation models
+### Agentic AI for Improved User Experience
 
-### AI-based improvement of Operation Models and increase of Customer Experience
-AI agents are seen as potential to improve customer experience in future. The idea is that AI agents or multiple AI agents are integrated into the telecom networks offering services to the user. These services could, for example, be that AI agents are able to perform multi-level of Internet or Intranet search independently, are coordinating calendar entries and emails or multi-step workflows with multiple AI agents and offer pre-built domain agents for areas such as HR, procurement, finance. This will lead to a fundamental change in operating models of companies. The agents are going to help with decision making or have the ability to act on behalf of employees or of the company itself. In a multi-agent scenario various agents of various vendors are communication over the networks and need to interact. The communication flows need to be coordinated and require a standardized AI agent communication protocol and AI framework. Since it is very likely that regulatory aspects – not only network regulatory - need to be obeyed, a standardized and open solution is beneficial compared to proprietary implementations. Multiple AI agents of different vendors need to communicate with each other over different operators and it is required that this eco system is open. Therefore, a standardized AI agent protocol is mandatory.
+AI agents have the potential to enhance future user experience by being integrated—individually or as collaborating groups—into telecom networks to deliver user-facing services. Such services may include autonomous multi-level Internet/Intranet search, coordination of calendar and email tasks, and execution of multi-step workflows involving multiple agents, as well as pre-built domain agents (e.g., HR, procurement, finance). This shift can fundamentally change enterprise operating models: agents can support decision-making and, where authorized, act on behalf of employees or the organization. In multi-agent scenarios, agents from different vendors communicate over networks and must interoperate. These interactions require coordinated communication flows and motivate a standardized agent communication protocol and framework. Given the need to comply with regulatory requirements (beyond network regulation), an open, standardized approach is preferable to proprietary implementations. Interoperability across operators and vendors implies an open ecosystem; therefore, a standardized AI agent protocol is required.
 
-### Voice comes back from the Ashes
-It is very likely that with the integration of AI and AI agents into the network the voice services are going to see a revival. Human voice communication with AI agents is simple and a fast way of interaction. ChatBots might give telephone communication a push. By taking this into account a voice human-to-AI agent communication is an additional use case. Regarding this, additional issues need to be considered e.g., security, permission or charging aspects. Since voice is a regulated service the need for a standardized framework and a standardized AI protocol is obvious. AI agents as part of the network communication being integrated in the networks are going to assist the user and will increase its user experience.
+#### Building Blocks
 
-### AI for Network Management and autonomous Networks
-AI agents will also change the network operation model of operators. AI agents are going to analyze network behavior, detect performance issues and implement network reliability by themselves and have the ability to act autonomously. The vision is to have an autonomous and automated Root Cause Analysis and that the network is operated by itself. This can be achieved by using agents that interwork together and are orchestrated by the network operator by an AI agent orchestrator.
-AI-powered network agents are detecting network anomalies in real time and are making corrections on their own. An example of the RAN (Radio Access Network) where AI agents are monitoring the network behavior during major events and load peaks to ensure high network quality. Agentic AI in this scenario is beneficial because not for every event the required capacity is predictable and acting in real-time by changing RAN or network configuration is helping to ensure the QoE (Qualitiy of Experience) for the customers.
+WIP
 
+#### Why this Use Case Matters
+
+WIP
+
+### Voice-Based Human-to-Agent Communication
+
+With the integration of AI and AI agents into networks, voice services may see renewed importance as a natural, low-friction interface for interacting with agents. Voice-based human-to-agent communication can complement text-based chat interfaces and enable rapid task initiation and conversational control. This use case introduces additional considerations, including security, authorization/permissions, and charging/accounting. Because voice services are regulated in many jurisdictions, this further motivates a standardized framework and standardized AI agent protocol. Network-integrated AI agents can assist users through voice interaction and improve overall user experience.
+
+#### Building Blocks
+
+WIP
+
+#### Why this Use Case Matters
+
+WIP
 
 # Security Considerations
 
