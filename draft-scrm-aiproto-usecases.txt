@@ -227,6 +227,19 @@ Table of Contents
 
 4.  Use Cases
 
+   This section inventories representative Agentic AI use cases to make
+   their protocol-relevant requirements explicit and comparable.  The
+   use cases are written to expose concrete needs such as multi-step
+   delegation, agent-to-agent coordination, agent-to-tool interactions,
+   and long-lived and multi-modal exchanges that must operate safely and
+   reliably across administrative domains.  By grounding the discussion
+   in specific scenarios, the document supports gap analysis against
+   emerging agent protocols (e.g., agent-to-agent and agent-to-tool
+   approaches such as A2A and MCP) and clarifies how candidate solutions
+   could be layered over existing IETF protocol substrates and mapped to
+   appropriate IETF working groups, including the necessary security and
+   privacy hooks.
+
 4.1.  Deep Search
 
    Deep Search refers to an _agentic_ information-seeking workflow in
@@ -507,13 +520,13 @@ Table of Contents
    Open implementations illustrate agentic architectures for Deep
    Search.
 
-   *Open Deep Search (ODS)* is a modular, open-source framework
-   developed by Sentient that augments a base large language model with
-   a dedicated Reasoning Agent and an Open Search tool.  The framework
-   is designed to support extensible, agentic search workflows in which
-   an agent iteratively plans, invokes search tools, and synthesizes
-   results to answer complex queries.  Further details are available in
-   the ODS publication and accompanying reference implementation
+   *Open Deep Search (ODS)* is a modular, open-source framework that
+   augments a base large language model with a dedicated Reasoning Agent
+   and an Open Search tool.  The framework is designed to support
+   extensible, agentic search workflows in which an agent iteratively
+   plans, invokes search tools, and synthesizes results to answer
+   complex queries.  Further details are available in the ODS
+   publication and accompanying reference implementation
    [ODS][ODS-GITHUB].
 
    ODS exemplifies the building blocks described earlier in this
@@ -822,11 +835,11 @@ Table of Contents
 
 4.4.1.1.  Building Blocks
 
-   WIP
+   TODO
 
 4.4.1.2.  Why this Use Case Matters
 
-   WIP
+   TODO
 
 4.4.2.  Voice-Based Human-to-Agent Communication
 
@@ -844,11 +857,11 @@ Table of Contents
 
 4.4.2.1.  Building Blocks
 
-   WIP
+   TODO
 
 4.4.2.2.  Why this Use Case Matters
 
-   WIP
+   TODO
 
 5.  Security Considerations
 
