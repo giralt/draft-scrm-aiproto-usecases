@@ -83,6 +83,7 @@ Agentic AI systems rely on large language models to plan and execute multi-step 
 
 --- middle
 
+
 # Introduction
 
 Agentic AI systems—software agents that use large language models to reason, plan, and take actions by interacting with tools and with other agents—are seeing rapid adoption across multiple domains. The ecosystem is also evolving quickly through open-source implementations and emerging protocol proposals; however, open source alone does not guarantee interoperability, since rapid iteration and fragmentation can make stable interoperation difficult when long-term compatibility is required. Several protocols have been proposed to support agentic systems (e.g., {{A2A}}, {{MCP}}, ANP, Agntcy), each with different design choices and strengths, targeting different functions, properties, and operating assumptions.
