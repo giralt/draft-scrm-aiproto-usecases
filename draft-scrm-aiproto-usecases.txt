@@ -5,12 +5,12 @@
 WG Working Group                                               R. Schott
 Internet-Draft                                          Deutsche Telekom
 Intended status: Informational                            J. Maisonneuve
-Expires: 31 August 2026                                  Nokia Bell Labs
+Expires: 3 September 2026                                Nokia Bell Labs
                                                          L. M. Contreras
                                                               Telefonica
                                                            J. Ros-Giralt
                                                    Qualcomm Europe, Inc.
-                                                        27 February 2026
+                                                            2 March 2026
 
 
                           Agentic AI Use Cases
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 31 August 2026.
+   This Internet-Draft will expire on 3 September 2026.
 
 Copyright Notice
 
@@ -76,6 +76,9 @@ Table of Contents
        4.2.1.  Building Blocks
        4.2.2.  Interaction Model
        4.2.3.  Why This Use Case Matters
+     4.3.  AI-based troubleshooting and automation
+       4.3.1.  Building Blocks
+       4.3.2.  Why this use case matters
    5.  Security Considerations
    6.  IANA Considerations
    7.  References
@@ -678,6 +681,103 @@ Table of Contents
 
    *  Seamless *tool portability* (local/remote) and *policy
       enforcement* that travel with the task rather than the deployment.
+
+4.3.  AI-based troubleshooting and automation
+
+   Telecom networks have significantly increased in scale, complexity,
+   and heterogeneity.  The interplay of technologies such as Software-
+   Defined Networking (SDN), virtualization, cloud-native architectures,
+   network slicing, and 5G/6G systems has made infrastructures highly
+   dynamic.  While these innovations provide flexibility and service
+   agility, they also introduce substantial operational challenges,
+   particularly in fault detection, diagnosis, and resolution.
+
+   Traditional troubleshooting methods, based on rule engines, static
+   thresholds, correlation mechanisms, and manual expertise, struggle to
+   process high-dimensional telemetry, multi-layer dependencies, and
+   rapidly evolving conditions.  Consequently, mean time to detect
+   (MTTD) and mean time to repair (MTTR) may increase, impacting service
+   reliability and user experience.
+
+   Artificial Intelligence (AI) and Machine Learning (ML) offer new
+   capabilities to enhance troubleshooting.  AI-driven approaches apply
+   data-driven models and automated reasoning to detect anomalies,
+   determine root causes, predict failures, and recommend or execute
+   corrective actions, leveraging telemetry, logs, configuration,
+   topology, and historical data.
+
+   Beyond troubleshooting, it is essential to further exploit network
+   and service automation to enable coordinated, policy-based actions
+   across multi-technology (e.g., RAN, IP, optical, virtualized), multi-
+   layer, and dynamic environments.  As degradations and faults often
+   span multiple devices, domains, and layers, effective handling
+   requires intelligent and increasingly autonomous mechanisms, ranging
+   from proactive service assurance to automated fault-triggered
+   workflows.
+
+   This use case envisions a multi-agent AI framework that enhances
+   network and service automation.  Agents perform diagnosis and root
+   cause analysis (RCA), while also supporting anomaly prediction,
+   intent-based protection, and policy-driven remediation.  The proposed
+   multi-agent interworking autonomously maintains the network in an
+   optimal operational state by correlating heterogeneous data sources,
+   performing collaborative reasoning, and interacting with network
+   elements and operators through standardized protocols, APIs, and
+   natural language interfaces.
+
+   AI agents form a distributed and scalable ecosystem leveraging
+   advanced AI/ML, including generative AI (Gen-AI), combined with
+   domain expertise to accelerate RCA, assess impact, and propose
+   corrective actions.  Each agent encapsulates capabilities such as
+   data retrieval, hypothesis generation, validation, causal analysis,
+   and action recommendation.  Designed as composable and interoperable
+   building blocks, agents operate across diverse domains (e.g., RAN,
+   Core, IP, Optical, and virtualized infrastructures), while supporting
+   lifecycle management, knowledge bases, and standardized interfaces.
+
+4.3.1.  Building Blocks
+
+   The use case relies on decentralized multi-agent coordination, where
+   agents exchange structured, context-enriched information to enable
+   dynamic activation and collaborative troubleshooting workflows.  A
+   resource-aware orchestration layer manages agent deployment, scaling,
+   and optimization across the network–cloud continuum.  Policy
+   frameworks ensure security, compliance, trustworthiness, and
+   explainability, supporting resilient AI-driven network operations.
+
+4.3.2.  Why this use case matters
+
+   This use case highlights the need for interoperable, protocol-based
+   integration of AI-driven troubleshooting and automation components
+   within heterogeneous, multi-vendor environments.  Telecom networks
+   are inherently composed of equipment and control systems from
+   different providers, spanning multiple administrative and
+   technological domains.  A multi-agent AI framework operating across
+   such environments requires standardized mechanisms for data modeling,
+   telemetry export, capability advertisement, and control interfaces.
+   In particular, consistent information models (e.g., YANG-based
+   models), secure transport protocols, and well-defined APIs are needed
+   to ensure that AI agents can reliably discover, interpret, and act
+   upon network state information across vendor boundaries.
+
+   Service discovery and capability negotiation are also critical.  AI
+   agents must be able to dynamically identify available data sources,
+   peer agents, orchestration functions, and control points, as well as
+   understand their supported features and policy constraints.  This
+   implies the need for standardized discovery procedures, metadata
+   descriptions, and context exchange formats that enable composability
+   and coordinated workflows in decentralized environments.  Without
+   such interoperability mechanisms, multi-agent troubleshooting systems
+   risk becoming vertically integrated and operationally siloed.
+
+   Furthermore, governance, security, and trust frameworks are
+   fundamental considerations.  AI-driven agents capable of recommending
+   or executing remediation actions introduce new requirements for
+   authentication, authorization, accountability, and auditability.
+   Secure communication channels, role-based access control, policy
+   enforcement, and explainability mechanisms are necessary to prevent
+   misuse, contain faults, and ensure compliance with operational and
+   regulatory constraints.
 
 5.  Security Considerations
 
