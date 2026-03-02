@@ -31,7 +31,7 @@ author:
 
  -
     fullname: "Julien Maisonneuve"
-    org: Nokia Bell Labs
+    org: Nokia
     email: "julien.maisonneuve@nokia.com"
 
  -
