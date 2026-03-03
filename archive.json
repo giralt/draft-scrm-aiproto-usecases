@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-03-01T01:27:46.141795+00:00",
+  "timestamp": "2026-03-03T01:22:28.605538+00:00",
   "repo": "giralt/draft-scrm-aiproto-usecases",
   "labels": [
     {
@@ -56,21 +56,21 @@
       "id": "PR_kwDOQ7GYI87AYYbh",
       "title": "Update draft-scrm-aiproto-usecases.md",
       "url": "https://github.com/giralt/draft-scrm-aiproto-usecases/pull/1",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "giralt",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2026-01-30T12:13:57Z",
-      "updatedAt": "2026-02-27T20:58:10Z",
+      "updatedAt": "2026-03-02T22:09:03Z",
       "baseRepository": "giralt/draft-scrm-aiproto-usecases",
       "baseRefName": "main",
       "baseRefOid": "d7079cf89fa3b5f584eca621d2d87d6719d67111",
       "headRepository": "giralt/draft-scrm-aiproto-usecases",
       "headRefName": "Use-Case-Ideas-of-Roland",
       "headRefOid": "d0b27bd2b63c9bf801e95586dfdb8498734fa846",
-      "closedAt": null,
+      "closedAt": "2026-03-02T22:09:03Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
@@ -82,26 +82,42 @@
       "id": "PR_kwDOQ7GYI87Gy916",
       "title": "Introduce AI-based troubleshooting and automation use case",
       "url": "https://github.com/giralt/draft-scrm-aiproto-usecases/pull/2",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "luismcontreras",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Added a section on AI-based troubleshooting and automation, detailing the challenges in telecom networks and the proposed multi-agent AI framework for enhanced network management.",
       "createdAt": "2026-02-27T11:06:43Z",
-      "updatedAt": "2026-02-27T11:06:43Z",
+      "updatedAt": "2026-03-02T10:07:08Z",
       "baseRepository": "giralt/draft-scrm-aiproto-usecases",
       "baseRefName": "main",
       "baseRefOid": "f8a586d16f5bafb80e0de5898bd403f888ca8ab1",
       "headRepository": "giralt/draft-scrm-aiproto-usecases",
       "headRefName": "luismcontreras-patch-1",
       "headRefOid": "8a7b9b123b2ce352af1edde5b14a7bd59fb3bc8d",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2026-03-02T10:07:07Z",
+      "mergedAt": "2026-03-02T10:07:07Z",
+      "mergedBy": "giralt",
+      "mergeCommit": {
+        "oid": "2e77eb0f512e0edbbdf7430f6c994a285b32cca5"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOQ7GYI87m-ouG",
+          "commit": {
+            "abbreviatedOid": "8a7b9b1"
+          },
+          "author": "giralt",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "@luismcontreras this use case looks good to me.",
+          "createdAt": "2026-03-02T10:06:53Z",
+          "updatedAt": "2026-03-02T10:06:53Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 3,
@@ -115,13 +131,13 @@
       "labels": [],
       "body": "Want to merge main into my feature branch.\r\nWant to check how this works.",
       "createdAt": "2026-02-27T21:37:09Z",
-      "updatedAt": "2026-02-27T21:51:23Z",
+      "updatedAt": "2026-03-02T22:21:52Z",
       "baseRepository": "giralt/draft-scrm-aiproto-usecases",
       "baseRefName": "Use-Case-Ideas-of-Roland",
       "baseRefOid": "d0b27bd2b63c9bf801e95586dfdb8498734fa846",
       "headRepository": "giralt/draft-scrm-aiproto-usecases",
       "headRefName": "main",
-      "headRefOid": "11f50f622895b8ff048c9d690af85115a958e68f",
+      "headRefOid": "5bd9e01a0ccb9d9c5da670c50a8961ac5f85c9c8",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -160,25 +176,49 @@
       "id": "PR_kwDOQ7GYI87G_9Ku",
       "title": "Update draft-scrm-aiproto-usecases.md",
       "url": "https://github.com/giralt/draft-scrm-aiproto-usecases/pull/5",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "Roland-Schott",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Hi,\r\n\r\nI have created a branch \"Even-More-Use-Cases\". In this branch I have added my use cases. \r\nIf approved by you, it can be merged to the main branch.\r\nThis branch includes a copy of Jordi's main branch enriched with my uses case but not including Luis ones.\r\nIn case of an agreement, in case we merke Luis' and my use cases into the main branch, all text should be included and no conflicts should occur.\r\n\r\nThe other pull-request do not include my \"new\" use cases, but I am interested to see what happens, if merged.\r\n\r\nBest Regards\r\n\r\nRoland",
       "createdAt": "2026-02-28T11:09:56Z",
-      "updatedAt": "2026-02-28T11:09:57Z",
+      "updatedAt": "2026-03-02T21:32:55Z",
       "baseRepository": "giralt/draft-scrm-aiproto-usecases",
       "baseRefName": "main",
       "baseRefOid": "11f50f622895b8ff048c9d690af85115a958e68f",
       "headRepository": "giralt/draft-scrm-aiproto-usecases",
       "headRefName": "Even-More-Use-Case-Ideas-of-Roland",
       "headRefOid": "9dccbf3c14a312eeb8a7217184721e8d61d9a158",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
-      "comments": [],
+      "closedAt": "2026-03-02T21:32:55Z",
+      "mergedAt": "2026-03-02T21:32:55Z",
+      "mergedBy": "giralt",
+      "mergeCommit": {
+        "oid": "b228e89f11aa5690b797a09582f31c25a857f282"
+      },
+      "comments": [
+        {
+          "author": "giralt",
+          "authorAssociation": "OWNER",
+          "body": "Hi @Roland-Schott , I wonder how this use case is different from Luis' use case on telecom operations/automation/troubleshooting? https://giralt.github.io/draft-scrm-aiproto-usecases/draft-scrm-aiproto-usecases.html#name-ai-based-troubleshooting-an\r\n\r\nPerhaps you could add some of your text into his use case? or you think they are significantly different that can be separate?",
+          "createdAt": "2026-03-02T10:36:31Z",
+          "updatedAt": "2026-03-02T10:36:31Z"
+        },
+        {
+          "author": "Roland-Schott",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> Hi @Roland-Schott , I wonder how this use case is different from Luis' use case on telecom operations/automation/troubleshooting? https://giralt.github.io/draft-scrm-aiproto-usecases/draft-scrm-aiproto-usecases.html#name-ai-based-troubleshooting-an\r\n> \r\n> Perhaps you could add some of your text into his use case? or you think they are significantly different that can be separate?\r\n\r\nHi, which one do you mean concrete? I see some difference but also some overlapp. \r\n\r\nBR \r\n\r\nRoland",
+          "createdAt": "2026-03-02T10:47:29Z",
+          "updatedAt": "2026-03-02T10:47:29Z"
+        },
+        {
+          "author": "Roland-Schott",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Hi Jordi,\n\nI see the customer expericence and the voice use case is different.\nRegarding the autonomous network and AI for network management, I see some similarities to Luis' ones.\n\nWe can decide in our call later.\n\nBR\n\nRoland",
+          "createdAt": "2026-03-02T12:05:16Z",
+          "updatedAt": "2026-03-02T12:05:16Z"
+        }
+      ],
       "reviews": []
     }
   ]
