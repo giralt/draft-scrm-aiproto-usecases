@@ -5,12 +5,12 @@
 WG Working Group                                               R. Schott
 Internet-Draft                                          Deutsche Telekom
 Intended status: Informational                            J. Maisonneuve
-Expires: 3 September 2026                                          Nokia
+Expires: 22 November 2026                                          Nokia
                                                          L. M. Contreras
                                                               Telefonica
                                                            J. Ros-Giralt
                                                    Qualcomm Europe, Inc.
-                                                            2 March 2026
+                                                             21 May 2026
 
 
                           Agentic AI Use Cases
@@ -62,7 +62,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 3 September 2026.
+   This Internet-Draft will expire on 22 November 2026.
 
 Copyright Notice
 
@@ -83,26 +83,65 @@ Table of Contents
    1.  Introduction
    2.  Conventions and Definitions
    3.  Use Cases Requirements
-   4.  Use Cases
-     4.1.  Deep Search
-       4.1.1.  Building Blocks
-       4.1.2.  Why This Use Case Matters
-       4.1.3.  Example: Open Deep Search (ODS)
-     4.2.  Hybrid AI
-       4.2.1.  Building Blocks
-       4.2.2.  Interaction Model
-       4.2.3.  Why This Use Case Matters
-     4.3.  AI-based Troubleshooting and Automation
-       4.3.1.  Building Blocks
-       4.3.2.  Why This Use Case Matters
-     4.4.  AI-Based Operation Models
-       4.4.1.  Agentic AI for Improved User Experience
-       4.4.2.  Voice-Based Human-to-Agent Communication
-   5.  Security Considerations
-   6.  IANA Considerations
-   7.  References
-     7.1.  Normative References
-     7.2.  Informative References
+   4.  Use Cases Taxonomy
+     4.1.  Transport
+       4.1.1.  Session Management
+       4.1.2.  Communication Modes
+       4.1.3.  Content Multimodality
+       4.1.4.  Performance
+     4.2.  Security and Trust
+       4.2.1.  Authentication
+       4.2.2.  Authorization
+       4.2.3.  Accountability
+       4.2.4.  Integrity
+       4.2.5.  Confidentiality
+       4.2.6.  Safety
+     4.3.  Discovery
+       4.3.1.  Agent Discovery
+       4.3.2.  Capability Advertisement
+       4.3.3.  Tool Discovery
+       4.3.4.  Service Negotiation
+     4.4.  Identity
+       4.4.1.  Agent Naming and Addressing
+       4.4.2.  Credential Management
+       4.4.3.  Delegation Chains
+       4.4.4.  Selective Disclosure
+     4.5.  Coordination and Orchestration
+       4.5.1.  Task Lifecycle Management
+       4.5.2.  Agent-to-Agent Interaction
+       4.5.3.  Agent-to-Tool Interaction
+       4.5.4.  Multi-Agent Workflow Orchestration
+       4.5.5.  Cross-Domain Coordination
+     4.6.  Data and Context Management
+       4.6.1.  Context Exchange
+       4.6.2.  Provenance and Citations
+       4.6.3.  Knowledge Representation
+       4.6.4.  Data Minimization
+     4.7.  Operations and Management
+       4.7.1.  Observability
+       4.7.2.  Policy Enforcement
+       4.7.3.  Lifecycle Management
+       4.7.4.  Human-in-the-Loop
+   5.  Use Cases
+     5.1.  Deep Search
+       5.1.1.  Building Blocks
+       5.1.2.  Why This Use Case Matters
+       5.1.3.  Example: Open Deep Search (ODS)
+     5.2.  Hybrid AI
+       5.2.1.  Building Blocks
+       5.2.2.  Interaction Model
+       5.2.3.  Why This Use Case Matters
+     5.3.  AI-based Troubleshooting and Automation
+       5.3.1.  Building Blocks
+       5.3.2.  Why This Use Case Matters
+     5.4.  AI-Based Operation Models
+       5.4.1.  Agentic AI for Improved User Experience
+       5.4.2.  Voice-Based Human-to-Agent Communication
+   6.  Security Considerations
+   7.  IANA Considerations
+   8.  References
+     8.1.  Normative References
+     8.2.  Informative References
    Acknowledgments
    Authors' Addresses
 
@@ -225,7 +264,601 @@ Table of Contents
       not miss protocol hooks needed to safely operate agentic systems
       across domains.
 
-4.  Use Cases
+4.  Use Cases Taxonomy
+
+   This section defines a taxonomy for classifying Agentic AI use cases
+   according to the functional protocol domains they exercise.  The
+   taxonomy serves three purposes: (1) it provides a structured
+   vocabulary for describing and comparing use cases, (2) it helps
+   identify the protocol areas that require IETF standardization
+   attention, and (3) it helps map use cases and their requirements to
+   relevant IETF working groups or areas.
+
+   The taxonomy is organized into seven top-level functional domains,
+   derived from analysis of the use cases identified in ongoing IETF
+   standardization discussions in the agent protocol space.  The domains
+   correspond to distinct clusters of protocol-level concerns.  They are
+   not mutually exclusive; most realistic agentic deployments span
+   multiple domains simultaneously, and protocol work in one domain
+   frequently depends on mechanisms defined in another.
+
+   The following figure presents the taxonomy in overview:
+
+   Agentic AI Use Cases Taxonomy
+   |
+   |-- 1. Transport
+   |   |-- 1.1. Session Management
+   |   |-- 1.2. Communication Modes
+   |   |-- 1.3. Content Multimodality
+   |   |-- 1.4. Performance
+   |
+   |-- 2. Security and Trust
+   |   |-- 2.1. Authentication
+   |   |-- 2.2. Authorization
+   |   |-- 2.3. Accountability
+   |   |-- 2.4. Integrity
+   |   |-- 2.5. Confidentiality
+   |   |-- 2.6. Safety
+   |
+   |-- 3. Discovery
+   |   |-- 3.1. Agent Discovery
+   |   |-- 3.2. Capability Advertisement
+   |   |-- 3.3. Tool Discovery
+   |   |-- 3.4. Service Negotiation
+   |
+   |-- 4. Identity
+   |   |-- 4.1. Agent Naming and Addressing
+   |   |-- 4.2. Credential Management
+   |   |-- 4.3. Delegation Chains
+   |   |-- 4.4. Selective Disclosure
+   |
+   |-- 5. Coordination and Orchestration
+   |   |-- 5.1. Task Lifecycle Management
+   |   |-- 5.2. Agent-to-Agent Interaction
+   |   |-- 5.3. Agent-to-Tool Interaction
+   |   |-- 5.4. Multi-Agent Workflow Orchestration
+   |   |-- 5.5. Cross-Domain Coordination
+   |
+   |-- 6. Data and Context Management
+   |   |-- 6.1. Context Exchange
+   |   |-- 6.2. Provenance and Citations
+   |   |-- 6.3. Knowledge Representation
+   |   |-- 6.4. Data Minimization
+   |
+   |-- 7. Operations and Management
+       |-- 7.1. Observability
+       |-- 7.2. Policy Enforcement
+       |-- 7.3. Lifecycle Management
+       |-- 7.4. Human-in-the-Loop
+
+                  Figure 1: Agentic AI Use Cases Taxonomy
+
+   The subsections below describe each domain and its constituent
+   categories in detail.
+
+4.1.  Transport
+
+   The _Transport_ domain encompasses the protocol mechanisms required
+   to carry agent communications reliably, efficiently, and with
+   appropriate quality-of-service characteristics over Internet paths.
+   Agent interactions introduce transport requirements that are more
+   demanding than those of classical client-server applications:
+   sessions may persist for minutes or hours, exchanges may involve
+   heterogeneous data types, and the failure modes of multi-step
+   workflows differ fundamentally from those of single-request
+   transactions.
+
+4.1.1.  Session Management
+
+   _Session Management_ covers the establishment, maintenance, and
+   termination of communication sessions between agents and between
+   agents and tools.  Agentic workflows are frequently long-lived,
+   spanning multiple request-response cycles and potentially crossing
+   network interruptions or endpoint restarts.  Protocol mechanisms in
+   this category include session establishment and capability
+   negotiation, keep-alive and heartbeat signaling, graceful
+   cancellation with defined cleanup semantics, progress reporting to
+   prevent spurious timeouts at intermediaries, and state recovery after
+   transient failures.  Without robust session management, long-running
+   agent tasks are vulnerable to silent failure, resource leakage, and
+   loss of partial results that may be expensive to recompute.
+
+4.1.2.  Communication Modes
+
+   _Communication Modes_ covers the diversity of interaction patterns
+   that agents and tools must support.  Unlike classical RPC-style
+   interfaces, agentic systems require a range of modes depending on the
+   nature of the task: synchronous request/response for low-latency
+   exchanges, asynchronous task submission and status polling for long-
+   running work, incremental streaming for partial results (e.g., token-
+   by-token generation or iterative search updates), server-initiated
+   notifications for event-driven workflows, and bulk data transfer for
+   large artifacts.  Different protocols serve different modes — for
+   example, HTTP/REST for request/response, Server-Sent Events or
+   WebSocket for streaming, and Media over QUIC Transport (MOQT) for
+   low-latency bidirectional flows — and a given use case may require
+   multiple modes within a single session.
+
+4.1.3.  Content Multimodality
+
+   _Content Multimodality_ covers the protocol implications of
+   exchanging heterogeneous content types within a single agentic
+   interaction.  Agents may need to process and transmit plain text,
+   structured data (e.g., JSON), binary files, audio streams, video
+   streams, images, and computation artifacts within the same session
+   and sometimes within the same message.  Protocol design must account
+   for content negotiation, MIME type handling, framing, and ordering of
+   heterogeneous payloads, particularly when modality switches occur
+   mid-session or when different modalities carry conflicting quality-
+   of-service requirements (e.g., low-latency audio alongside bulk file
+   transfer).
+
+4.1.4.  Performance
+
+   _Performance_ covers the quantitative operating requirements that
+   agentic use cases impose on transport protocols.  Relevant dimensions
+   include end-to-end latency (particularly for interactive agent
+   sessions where user-facing response times matter), bandwidth
+   requirements for multi-modal exchanges, jitter tolerance for real-
+   time audio/video modalities, session scalability (the number of
+   concurrent agent sessions a deployment must support), and cost or
+   resource budget constraints that may govern escalation decisions
+   (e.g., in edge-cloud hybrid architectures).  Performance requirements
+   vary widely across use cases and must be made explicit so that
+   protocol designers can assess the fitness of candidate transport
+   mechanisms.
+
+4.2.  Security and Trust
+
+   The _Security and Trust_ domain covers the protocol mechanisms needed
+   to ensure that agentic interactions are conducted by verified
+   entities, operate within authorized boundaries, produce auditable
+   records, and preserve the integrity and confidentiality of exchanged
+   data.  Agentic systems introduce qualitatively new challenges
+   compared to classical service architectures: agents act autonomously
+   on behalf of users or other agents, authority is routinely delegated
+   across multiple hops and organizational boundaries, and the
+   consequences of unauthorized or erroneous actions can propagate and
+   amplify through complex multi-agent pipelines.
+
+4.2.1.  Authentication
+
+   _Authentication_ covers the verification of the identity of agents,
+   users, and tools prior to substantive interaction.  In agentic
+   systems, the principals that require authentication include not only
+   human users but also software agents themselves — which may be
+   ephemeral, dynamically spawned, or operated by third parties.
+   Authentication mechanisms must therefore be applicable to workload
+   identities (e.g., service accounts, container identities, or
+   platform-attested credentials) as well as to individual agent
+   instances.  Cross-domain authentication is particularly challenging
+   when agents operate across administrative boundaries that lack pre-
+   established trust relationships.
+
+4.2.2.  Authorization
+
+   _Authorization_ covers the mechanisms by which an authenticated agent
+   is permitted to perform specific operations on behalf of a principal.
+   Agentic use cases typically involve multi-step delegation: a user
+   authorizes an orchestrator agent, which in turn delegates authority
+   to sub-agents, which invoke tools.  Each link in this chain requires
+   that the scope of authority be bounded and that delegation not
+   introduce privilege escalation beyond what the delegating principal
+   possessed.  Relevant mechanisms include OAuth 2.0-based delegation
+   flows, structured operation proposals subject to explicit
+   authorization grants, user consent gates before sensitive operations
+   are executed, and token formats that carry verifiable delegation
+   chains.
+
+4.2.3.  Accountability
+
+   _Accountability_ covers the protocol mechanisms needed to produce
+   auditable records of agent actions, traceable from a user's original
+   intent to each action taken by an agent on that user's behalf.  In
+   regulated environments — and increasingly in general deployments — it
+   is necessary to establish a reliable evidence chain that can be
+   inspected after the fact.  Relevant mechanisms include structured
+   audit logs with cryptographic integrity guarantees, verifiable
+   conversation records, proof-of-process tokens that attest to the
+   sequence of steps executed, and non-repudiation properties that
+   prevent an agent from disavowing actions it performed.
+   Accountability is closely coupled with authentication and
+   authorization, since the evidentiary value of an audit record depends
+   on the strength of the identity and authorization evidence it
+   references.
+
+4.2.4.  Integrity
+
+   _Integrity_ covers the protocol mechanisms that ensure agent messages
+   and artifacts have not been modified in transit or at rest.  Agentic
+   pipelines can involve many hops across untrusted intermediaries, and
+   the consequences of undetected tampering — incorrect tool
+   invocations, falsified search results, corrupted planning state — can
+   compound through the pipeline.  Relevant mechanisms include end-to-
+   end message authentication codes or digital signatures, replay
+   protection (to prevent an attacker from re-injecting previously valid
+   messages into a new context), and content-addressing schemes (e.g.,
+   hash-based artifact references) that allow recipients to verify data
+   provenance independently of the transport channel.
+
+4.2.5.  Confidentiality
+
+   _Confidentiality_ covers the mechanisms that protect agent
+   communications and data from unauthorized disclosure.  Agentic
+   workflows may involve sensitive user data, proprietary model outputs,
+   or business-critical information that must not be exposed to
+   intermediaries, peer agents, or tool providers outside their
+   authorized scope.  Protocol mechanisms include transport-layer
+   encryption (e.g., TLS), end-to-end encryption for multi-hop
+   exchanges, and data-minimization protocols by which an agent redacts
+   or summarizes sensitive information before forwarding it to a less-
+   trusted tier (for example, before escalating from an on-device edge
+   model to a cloud model).
+
+4.2.6.  Safety
+
+   _Safety_ covers the protocol-level mechanisms that constrain agent
+   behavior to prevent harmful, unintended, or policy-violating actions.
+   While model-level safety measures are outside the IETF's scope,
+   protocols can provide safety hooks that bound what agents are
+   permitted to do: isolation boundaries around tool invocations that
+   prevent access to resources outside an agent's authorized scope,
+   explicit human-in-the-loop consent gates before high-impact or
+   irreversible operations, and rate or quota enforcement mechanisms
+   that limit the blast radius of malfunctioning or compromised agents.
+   Safety mechanisms often interact with authorization mechanisms but
+   are distinguished by their focus on operational constraints rather
+   than identity-based access control.
+
+4.3.  Discovery
+
+   The _Discovery_ domain covers the protocol mechanisms by which
+   agents, tools, and services locate and learn about one another at
+   runtime.  Effective discovery is a prerequisite for interoperability
+   in open, decentralized agentic ecosystems where agents from different
+   providers must collaborate without prior bilateral configuration.
+   Discovery encompasses both the retrieval of existence information
+   (where is a given agent or tool reachable?) and the retrieval of
+   capability information (what can it do, and under what constraints?).
+
+4.3.1.  Agent Discovery
+
+   _Agent Discovery_ covers the mechanisms by which a client or
+   orchestrator locates agents that can fulfill a given role.  Discovery
+   may operate via well-known URI conventions (analogous to /.well-
+   known/ resources in HTTP), DNS-based service discovery (extending
+   established patterns such as DNS-SD to the agent domain), or
+   registry-based approaches in which agents register with and are
+   queried through centralized or federated directories.  Discovery
+   mechanisms must be scalable, resilient to partial failures, and
+   designed to avoid creating single points of control or failure in
+   open deployments.
+
+4.3.2.  Capability Advertisement
+
+   _Capability Advertisement_ covers the mechanisms by which an agent
+   communicates its available skills, accepted input formats, produced
+   output types, supported interaction modes, and applicable security
+   constraints to potential callers.  Standardized capability descriptor
+   formats (such as Agent Cards in the A2A protocol) enable automated
+   capability matching — allowing orchestrators to select appropriate
+   agents dynamically — and eliminate the need for bespoke, bilateral
+   configuration between agents.  Capability descriptors must be
+   versioned to support evolution and must be structured to allow
+   partial matching when a caller requires only a subset of an agent's
+   capabilities.
+
+4.3.3.  Tool Discovery
+
+   _Tool Discovery_ covers the mechanisms by which agents locate and
+   enumerate tools available for invocation.  The Model Context Protocol
+   (MCP) provides a concrete example: agents query an MCP server for its
+   list of available tools, each described with a typed schema, before
+   deciding which tool to invoke for a given sub-task.  Tool discovery
+   must support dynamic registration and de-registration of tools,
+   capability versioning, and schema negotiation to accommodate
+   heterogeneous tool ecosystems that evolve independently of the agents
+   that use them.
+
+4.3.4.  Service Negotiation
+
+   _Service Negotiation_ covers the protocol exchanges by which an agent
+   and a peer (another agent or a tool) agree on interaction parameters
+   before substantive communication begins.  Negotiation may cover
+   supported protocol versions, content types, authentication and
+   authorization mechanisms, quality-of-service parameters, resource
+   quotas, and privacy constraints.  Explicit service negotiation
+   reduces the frequency of mid-session failures caused by incompatible
+   assumptions and provides a natural point at which policies can be
+   enforced at capability boundaries before potentially expensive work
+   is initiated.
+
+4.4.  Identity
+
+   The _Identity_ domain covers the mechanisms that establish and manage
+   the stable, verifiable identities of agents throughout their
+   operational lifecycle.  Identity is a prerequisite for
+   authentication, authorization, and accountability, but it raises
+   distinct protocol concerns: agents may be spawned and decommissioned
+   dynamically, may migrate across infrastructure, and may delegate
+   their authority to other agents in ways that must remain traceable.
+   The Identity domain is closely related to the Security and Trust
+   domain but focuses specifically on the naming, addressing, and
+   credential infrastructure that underpins identity-based security
+   mechanisms.
+
+4.4.1.  Agent Naming and Addressing
+
+   _Agent Naming and Addressing_ covers the syntactic and semantic
+   conventions used to identify agents in protocol messages.  A naming
+   scheme must be unambiguous within its intended scope, stable enough
+   to support persistent references and audit records, and structured to
+   enable efficient lookup or routing.  Names and addresses may be
+   decoupled — an agent may carry a stable logical name (identifier) and
+   a separately resolved network address (locator) — analogous to the
+   distinction between domain names and IP addresses in the Internet
+   architecture.  Standardized naming conventions are a prerequisite for
+   interoperable discovery, delegation, and accountability.
+
+4.4.2.  Credential Management
+
+   _Credential Management_ covers the mechanisms by which agents are
+   provisioned with credentials (e.g., private keys, tokens, or
+   certificates) and by which those credentials are rotated, revoked,
+   and verified.  In agentic deployments, credentials must be
+   deliverable to dynamically created agent instances without manual
+   pre-configuration, and must be scoped to the specific agent, task, or
+   deployment context in order to limit the impact of credential
+   compromise.  Relevant mechanisms include platform-attested identity
+   (e.g., SPIFFE/SPIRE), short-lived token issuance by trusted
+   authorities, and automated rotation procedures that operate without
+   disrupting in-flight agent sessions.
+
+4.4.3.  Delegation Chains
+
+   _Delegation Chains_ covers the protocol representations of transitive
+   authority: the sequence of principals through which a user's original
+   authorization has been conveyed to a given agent.  In multi-agent
+   pipelines, an action by a leaf agent may reflect authority delegated
+   through several intermediate agents, each of which may have further
+   constrained the delegated scope.  Delegation chain representations
+   must be compact, cryptographically verifiable, and structured to
+   enforce monotonic scope narrowing — i.e., a delegate cannot acquire
+   authority beyond what its delegator possessed.  Cross-domain
+   delegation is particularly challenging when the delegating and
+   receiving agents are operated by different organizations under
+   different identity management systems.
+
+4.4.4.  Selective Disclosure
+
+   _Selective Disclosure_ covers mechanisms that allow an agent to
+   reveal only the subset of its identity and capability attributes that
+   are relevant and appropriate for a given interaction.  Full
+   disclosure of an agent's capabilities during discovery can create
+   information-leakage risks (revealing proprietary service details) and
+   linkability risks (enabling cross-context tracking of agent
+   identity).  Selective disclosure mechanisms — such as those based on
+   SD-JWT — allow agents to present minimal, context-appropriate
+   credential subsets while maintaining cryptographic verifiability of
+   the disclosed attributes.
+
+4.5.  Coordination and Orchestration
+
+   The _Coordination and Orchestration_ domain covers the protocol
+   mechanisms that govern how agents and tools are composed into
+   coherent multi-step workflows.  Agentic systems are inherently
+   distributed: a user request is decomposed into sub-tasks, assigned to
+   specialized agents, executed — potentially in parallel and across
+   administrative domains — and the results are synthesized into a final
+   response.  Coordination protocols must support the full lifecycle of
+   this process reliably and in a manner that is interoperable across
+   agents from different providers.
+
+4.5.1.  Task Lifecycle Management
+
+   _Task Lifecycle Management_ covers the protocol operations that
+   govern a delegated task from its creation to its completion or
+   cancellation.  A well-specified task lifecycle includes: task
+   creation with a structured description of the work to be performed;
+   acknowledgment and queuing semantics; status inquiry and progress
+   reporting; mid-execution cancellation with defined cleanup
+   guarantees; and delivery of the final result or a structured error
+   response.  The lifecycle must be robust to partial failures, network
+   interruptions, and agent restarts, and must provide sufficient
+   progress visibility to allow orchestrators to make informed re-
+   planning decisions without relying on timeouts alone.
+
+4.5.2.  Agent-to-Agent Interaction
+
+   _Agent-to-Agent Interaction_ covers the protocol patterns by which
+   peer agents exchange messages, negotiate task assignments, and share
+   partial results.  The Agent2Agent (A2A) protocol is an example of a
+   specification targeting this category.  Key interaction patterns
+   include synchronous request/response for sub-task delegation,
+   streaming for incremental result delivery, asynchronous task handoff
+   for long-running work, and critique/revision cycles in which one
+   agent reviews and refines the output of another.  Agent-to-agent
+   protocols must accommodate opaque agent implementations — neither
+   agent need expose its internal model or reasoning process — and must
+   support collaboration across organizational boundaries where one
+   agent's internals are proprietary.
+
+4.5.3.  Agent-to-Tool Interaction
+
+   _Agent-to-Tool Interaction_ covers the protocol patterns by which
+   agents invoke external capabilities exposed as tools.  The Model
+   Context Protocol (MCP) is an example of a specification targeting
+   this category.  Tools differ from agents in that they are typically
+   stateless (or near-stateless), do not reason autonomously, and expose
+   well-defined, typed input/output interfaces.  Agent-to-tool protocols
+   must support capability schema description, consistent error
+   reporting, streaming of partial outputs, and cancellation of in-
+   progress invocations.  Isolation semantics — ensuring that a tool
+   invocation cannot access resources beyond its declared scope — are
+   also a concern in this category.
+
+4.5.4.  Multi-Agent Workflow Orchestration
+
+   _Multi-Agent Workflow Orchestration_ covers the higher-level
+   coordination mechanisms needed to manage complex workflows involving
+   multiple cooperating agents.  Orchestration concerns include task
+   decomposition strategies (sequential, parallel, or conditional
+   branching), shared working memory accessible to all agents in a
+   workflow, synchronization primitives (fan-out, fan-in, barrier
+   synchronization), and iterative refinement loops in which agents re-
+   plan and re-execute based on intermediate results.  Orchestration
+   protocols must be composable — allowing sub-workflows to be embedded
+   within larger workflows — and must expose sufficient visibility and
+   control hooks for human operators to monitor and intervene in
+   executing workflows.
+
+4.5.5.  Cross-Domain Coordination
+
+   _Cross-Domain Coordination_ covers the additional protocol mechanisms
+   required when agent workflows span multiple administrative domains.
+   Cross-domain coordination introduces challenges absent in single-
+   domain deployments: heterogeneous trust models must be reconciled,
+   authorization scopes must be negotiated across domain boundaries, and
+   attribution or billing mechanisms may be required.  Protocols in this
+   category must support federation — allowing domains to recognize and
+   honor each other's identity and authorization assertions without
+   requiring pre-established bilateral relationships — while preserving
+   each domain's ability to enforce its own local policies.
+
+4.6.  Data and Context Management
+
+   The _Data and Context Management_ domain covers the protocol
+   mechanisms governing how agents represent, exchange, persist, and
+   protect the information they operate on.  Agentic workflows generate
+   and consume substantial intermediate state: partial results,
+   retrieved artifacts, reasoning traces, and provenance records.
+   Protocol-level conventions for managing this data are essential for
+   reproducibility, auditability, and interoperability across agents
+   from different providers.
+
+4.6.1.  Context Exchange
+
+   _Context Exchange_ covers the mechanisms by which agents share the
+   task-relevant state needed for coherent collaboration.  Context may
+   include the original user request, accumulated intermediate results,
+   agent-specific observations, constraints, and shared working memory.
+   Protocol mechanisms must define efficient representations for context
+   (to avoid overwhelming bandwidth or model context window limits),
+   versioning and conflict resolution for concurrently updated shared
+   state, and access controls that limit each agent's visibility into
+   context to what is necessary for its assigned sub-task.
+
+4.6.2.  Provenance and Citations
+
+   _Provenance and Citations_ covers the protocol mechanisms that link
+   agent-produced outputs to the source materials from which they were
+   derived.  In research, regulatory, and high-stakes decision-making
+   contexts, it is essential that the claims made by an agent can be
+   traced to verifiable sources.  Relevant protocol mechanisms include
+   structured citation formats that capture source URI, retrieval
+   timestamp, content hash, and the relevant excerpt; provenance chains
+   that attribute composite outputs to their constituent sources; and
+   integrity checks that allow a third party to independently verify
+   that cited content has not been altered since retrieval.
+
+4.6.3.  Knowledge Representation
+
+   _Knowledge Representation_ covers the data formats and schemas used
+   by agents to represent structured domain knowledge in a form that
+   peer agents can interpret consistently.  Standardized information
+   models are particularly important in multi-agent systems where
+   different agents must share and act upon the same domain-specific
+   data — such as network topology models in AIOps deployments (e.g.,
+   YANG-based models in the IETF operations area) or structured
+   bibliographic records in research workflows.  Consistent knowledge
+   representations reduce the need for per-agent data translation and
+   enable semantic interoperability across agents from different
+   providers.
+
+4.6.4.  Data Minimization
+
+   _Data Minimization_ covers the protocol mechanisms that limit the
+   exposure of sensitive data as it flows through multi-agent pipelines.
+   In workflows spanning administrative domains or involving untrusted
+   intermediaries, agents should transmit only the minimum information
+   necessary for a peer to perform its sub-task.  Relevant mechanisms
+   include structured redaction (replacing sensitive fields with
+   anonymized tokens), summarization-before-escalation (e.g., in hybrid
+   edge-cloud architectures where a local model redacts data before
+   forwarding to a cloud model), and privacy-preserving context
+   encoding.  Data minimization is simultaneously a privacy mechanism
+   and a safety mechanism, as limiting information exposure also bounds
+   the consequences of a compromised intermediary.
+
+4.7.  Operations and Management
+
+   The _Operations and Management_ domain covers the protocol mechanisms
+   that support the operational lifecycle of agentic systems: monitoring
+   their behavior, enforcing policies at runtime, managing agent
+   lifecycles, and enabling human oversight.  These mechanisms are
+   essential for deploying agentic systems safely and reliably in
+   production environments, and they are particularly prominent in
+   network management use cases (such as AI-based troubleshooting) where
+   agents must operate across multi-vendor, multi-domain infrastructure.
+
+4.7.1.  Observability
+
+   _Observability_ covers the protocol mechanisms that expose the
+   runtime behavior of agentic systems to operators and auditors.
+   Relevant mechanisms include distributed tracing (propagating trace
+   context across agent hops to reconstruct end-to-end execution
+   traces), structured logging of agent decisions and tool invocations,
+   and telemetry export for performance monitoring and anomaly
+   detection.  Observability mechanisms must be designed to operate
+   across administrative domain boundaries, enabling an operator to
+   trace a workflow that spans agents from multiple providers, while
+   respecting each provider's data governance and confidentiality
+   constraints.
+
+4.7.2.  Policy Enforcement
+
+   _Policy Enforcement_ covers the protocol mechanisms that ensure
+   agents operate within defined behavioral and resource boundaries.
+   Policies may govern resource consumption (e.g., rate limits, quota
+   caps, cost budgets), data handling (e.g., prohibition on forwarding
+   certain data categories to external providers), and operational scope
+   (e.g., restricting an agent to read-only access to a particular
+   system).  Policy enforcement mechanisms must be expressible in
+   standard formats, enforceable at protocol boundaries (e.g., at agent
+   gateways or authorization servers), and auditable so that violations
+   can be detected, attributed, and remediated.
+
+4.7.3.  Lifecycle Management
+
+   _Lifecycle Management_ covers the protocol mechanisms for deploying,
+   registering, updating, and decommissioning agents in dynamic
+   environments.  In practice, agents may be instantiated on demand,
+   scaled horizontally to handle concurrent tasks, updated to new model
+   or capability versions, and eventually decommissioned — ideally
+   without disrupting in-flight workflows.  Relevant protocol mechanisms
+   include agent registration and capability publication, health
+   checking and readiness signaling, graceful drain and shutdown
+   procedures, and version negotiation to ensure that newly deployed
+   agents can interoperate with peers running earlier versions of the
+   same protocol.
+
+4.7.4.  Human-in-the-Loop
+
+   _Human-in-the-Loop_ covers the protocol mechanisms that insert human
+   oversight and decision-making into agentic workflows at appropriate
+   points.  Not all agent decisions can or should be made autonomously:
+   high-impact, irreversible, or ambiguous actions may require explicit
+   human approval before execution.  Relevant protocol mechanisms
+   include structured approval request formats that surface proposed
+   actions and their anticipated consequences to a human operator,
+   consent flows with well-defined timeout and default-action semantics
+   for unanswered requests, and escalation paths that route exceptional
+   cases to human reviewers.  Human-in-the-loop mechanisms are closely
+   related to both authorization (which governs what requires approval)
+   and safety (which enforces that unapproved high-risk actions are
+   blocked at the protocol level).
+
+5.  Use Cases
 
    This section inventories representative Agentic AI use cases to make
    their protocol-relevant requirements explicit and comparable.  The
@@ -240,7 +873,7 @@ Table of Contents
    appropriate IETF working groups, including the necessary security and
    privacy hooks.
 
-4.1.  Deep Search
+5.1.  Deep Search
 
    Deep Search refers to an _agentic_ information-seeking workflow in
    which an AI agent plans, executes, and iteratively refines multi-step
@@ -256,7 +889,7 @@ Table of Contents
    -> refine plan_ until success criteria (e.g., coverage, confidence,
    cost/time budgets) are met.
 
-4.1.1.  Building Blocks
+5.1.1.  Building Blocks
 
    A Deep Search workflow may generally comprise the components shown in
    the next Figure:
@@ -322,13 +955,13 @@ Table of Contents
  |          (synthesis + citations + confidence)                |
  +--------------------------------------------------------------+
 
-                 Figure 1: Deep Search agentic workflow
+                 Figure 2: Deep Search agentic workflow
 
    Each building block in the DeepSearch architecture represents a
    logical function rather than a specific implementation, and multiple
    components may be co-located or distributed in practice.
 
-4.1.1.1.  User / Client
+5.1.1.1.  User / Client
 
    The _User / Client_ is the entry point to the system.  It provides
    the initial goal or query, along with optional constraints (e.g.,
@@ -336,7 +969,7 @@ Table of Contents
    tools or agents; all interactions are mediated by the DeepSearch
    Orchestrator.
 
-4.1.1.2.  DeepSearch Orchestrator
+5.1.1.2.  DeepSearch Orchestrator
 
    The _DeepSearch Orchestrator_ acts as the control plane of the
    system.  Its responsibilities include:
@@ -354,7 +987,7 @@ Table of Contents
    instead, it delegates work to agents and manages the overall
    execution flow.
 
-4.1.1.3.  A2A Agent Communication Bus
+5.1.1.3.  A2A Agent Communication Bus
 
    The _A2A Agent Communication Bus_ provides a standardized messaging
    layer that enables agent-to-agent coordination.  It supports:
@@ -368,7 +1001,7 @@ Table of Contents
    This bus allows agents to operate independently while still
    contributing to a coherent end-to-end workflow.
 
-4.1.1.4.  Agents Mesh
+5.1.1.4.  Agents Mesh
 
    The _Agents Mesh_ block represents a set of specialized, cooperative
    agents operating over the A2A bus.  Typical agent roles include:
@@ -384,7 +1017,7 @@ Table of Contents
    Agents are responsible for invoking tools, interpreting results, and
    returning structured observations to the orchestrator.
 
-4.1.1.5.  MCP Tooling Layer
+5.1.1.5.  MCP Tooling Layer
 
    The _MCP Tooling Layer_ provides a standardized interface between
    agents and external tools.  It enables:
@@ -398,7 +1031,7 @@ Table of Contents
    MCP acts as an abstraction boundary that simplifies integration and
    evolution of external capabilities.
 
-4.1.1.6.  Web Search & Crawling
+5.1.1.6.  Web Search & Crawling
 
    The _Web Search & Crawling_ component combines content discovery and
    acquisition.  It typically includes:
@@ -410,7 +1043,7 @@ Table of Contents
    This component supplies raw external data that can be further
    processed and indexed.
 
-4.1.1.7.  Knowledge Base (KB) / Retrieval Augmented Generation (RAG)
+5.1.1.7.  Knowledge Base (KB) / Retrieval Augmented Generation (RAG)
           Index
 
    The _KB / RAG Index_ component manages knowledge representation and
@@ -426,7 +1059,7 @@ Table of Contents
    This block provides structured, queryable knowledge derived from
    external sources.
 
-4.1.1.8.  Python / Tools
+5.1.1.8.  Python / Tools
 
    The _Python / Tools_ component represents general-purpose computation
    and evaluation capabilities.  Examples include:
@@ -440,7 +1073,7 @@ Table of Contents
    These tools are typically invoked by analysis-oriented agents via the
    MCP layer.
 
-4.1.1.9.  Iterative Improvement Loop
+5.1.1.9.  Iterative Improvement Loop
 
    The _Iterative Improvement Loop_ captures the system’s ability to
    refine results over multiple passes and is also implemeted by the
@@ -452,7 +1085,7 @@ Table of Contents
    orchestrator, which may adjust plans, agent assignments, or tool
    usage before producing the final output.
 
-4.1.1.10.  Final Answer / Output
+5.1.1.10.  Final Answer / Output
 
    The _Final Answer / Output_ is the synthesized result returned to the
    user.  It may include:
@@ -466,7 +1099,7 @@ Table of Contents
    This output reflects the outcome of one or more iterative refinement
    cycles.
 
-4.1.2.  Why This Use Case Matters
+5.1.2.  Why This Use Case Matters
 
    Deep Search is inherently _compositional_: it coordinates _multiple_
    agents and _many_ tools over extended time.  Without standard
@@ -515,7 +1148,7 @@ Table of Contents
       policy enforcement (robots/copyright), and safety reviews—become
       portable rather than per-integration glue.
 
-4.1.3.  Example: Open Deep Search (ODS)
+5.1.3.  Example: Open Deep Search (ODS)
 
    Open implementations illustrate agentic architectures for Deep
    Search.
@@ -535,7 +1168,7 @@ Table of Contents
    and agent-centric coordination to manage planning, execution, and
    refinement.
 
-4.2.  Hybrid AI
+5.2.  Hybrid AI
 
    Hybrid AI generally refers to an _edge–cloud cooperative_ inference
    workflow in which two or more models collaborate to solve a task: (1)
@@ -553,7 +1186,7 @@ Table of Contents
    plans, partial results, and constraints over [A2A], and both sides
    can discover and invoke tools via [MCP].
 
-4.2.1.  Building Blocks
+5.2.1.  Building Blocks
 
    A Hybrid AI workflow may generally comprise the components shown in
    the next Figure:
@@ -650,7 +1283,7 @@ Table of Contents
    logical function rather than a specific implementation, and
    components may be co-located or distributed in practice.
 
-4.2.2.  Interaction Model
+5.2.2.  Interaction Model
 
    A typical Hybrid AI session proceeds as follows:
 
@@ -676,7 +1309,7 @@ Table of Contents
        until success criteria (quality, coverage, cost/time budget) are
        met.
 
-4.2.3.  Why This Use Case Matters
+5.2.3.  Why This Use Case Matters
 
    Hybrid AI is inherently _trade-off aware_: it balances *privacy*,
    *latency*, and *cost* at the edge with *capability* and *breadth* in
@@ -714,7 +1347,7 @@ Table of Contents
    *  Seamless *tool portability* (local/remote) and *policy
       enforcement* that travel with the task rather than the deployment.
 
-4.3.  AI-based Troubleshooting and Automation
+5.3.  AI-based Troubleshooting and Automation
 
    Telecom networks have significantly increased in scale, complexity,
    and heterogeneity.  The interplay of technologies such as Software-
@@ -767,7 +1400,7 @@ Table of Contents
    Core, IP, Optical, and virtualized infrastructures), while supporting
    lifecycle management, knowledge bases, and standardized interfaces.
 
-4.3.1.  Building Blocks
+5.3.1.  Building Blocks
 
    The use case relies on decentralized multi-agent coordination, where
    agents exchange structured, context-enriched information to enable
@@ -777,7 +1410,7 @@ Table of Contents
    frameworks ensure security, compliance, trustworthiness, and
    explainability, supporting resilient AI-driven network operations.
 
-4.3.2.  Why This Use Case Matters
+5.3.2.  Why This Use Case Matters
 
    This use case highlights the need for interoperable, protocol-based
    integration of AI-driven troubleshooting and automation components
@@ -811,9 +1444,9 @@ Table of Contents
    misuse, contain faults, and ensure compliance with operational and
    regulatory constraints.
 
-4.4.  AI-Based Operation Models
+5.4.  AI-Based Operation Models
 
-4.4.1.  Agentic AI for Improved User Experience
+5.4.1.  Agentic AI for Improved User Experience
 
    AI agents have the potential to enhance future user experience by
    being integrated—individually or as collaborating groups—into telecom
@@ -833,15 +1466,15 @@ Table of Contents
    Interoperability across operators and vendors implies an open
    ecosystem; therefore, a standardized AI agent protocol is required.
 
-4.4.1.1.  Building Blocks
+5.4.1.1.  Building Blocks
 
    TODO
 
-4.4.1.2.  Why this Use Case Matters
+5.4.1.2.  Why this Use Case Matters
 
    TODO
 
-4.4.2.  Voice-Based Human-to-Agent Communication
+5.4.2.  Voice-Based Human-to-Agent Communication
 
    With the integration of AI and AI agents into networks, voice
    services may see renewed importance as a natural, low-friction
@@ -855,25 +1488,25 @@ Table of Contents
    Network-integrated AI agents can assist users through voice
    interaction and improve overall user experience.
 
-4.4.2.1.  Building Blocks
+5.4.2.1.  Building Blocks
 
    TODO
 
-4.4.2.2.  Why this Use Case Matters
+5.4.2.2.  Why this Use Case Matters
 
    TODO
 
-5.  Security Considerations
+6.  Security Considerations
 
    TODO Security
 
-6.  IANA Considerations
+7.  IANA Considerations
 
    This document has no IANA actions.
 
-7.  References
+8.  References
 
-7.1.  Normative References
+8.1.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -884,7 +1517,7 @@ Table of Contents
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
 
-7.2.  Informative References
+8.2.  Informative References
 
    [A2A]      "Agent2Agent (A2A) Protocol Specification", n.d.,
               <https://a2a-protocol.org/latest/>.
