@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-05-21T02:34:52.161825+00:00",
+  "timestamp": "2026-05-24T02:31:28.170179+00:00",
   "repo": "giralt/draft-scrm-aiproto-usecases",
   "labels": [
     {
@@ -131,13 +131,13 @@
       "labels": [],
       "body": "Want to merge main into my feature branch.\r\nWant to check how this works.",
       "createdAt": "2026-02-27T21:37:09Z",
-      "updatedAt": "2026-03-02T22:21:52Z",
+      "updatedAt": "2026-05-22T08:36:57Z",
       "baseRepository": "giralt/draft-scrm-aiproto-usecases",
       "baseRefName": "Use-Case-Ideas-of-Roland",
       "baseRefOid": "d0b27bd2b63c9bf801e95586dfdb8498734fa846",
       "headRepository": "giralt/draft-scrm-aiproto-usecases",
       "headRefName": "main",
-      "headRefOid": "5bd9e01a0ccb9d9c5da670c50a8961ac5f85c9c8",
+      "headRefOid": "81d0775b829349add68629addbf648c4fca3c8ef",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
