@@ -77,6 +77,14 @@ informative:
     title:  "OpenDeepSearch"
     target: https://github.com/sentient-agi/OpenDeepSearch
 
+  ACM-CCS:
+    title:  "ACM Computing Classification System"
+    target: https://dl.acm.org/ccs
+
+  DAWN-USE-CASES:
+    title:  "Use Cases for the Discovery of Agents, Workloads, and Named Entities"
+    target: https://datatracker.ietf.org/doc/draft-kay-dawn-use-cases/
+
 --- abstract
 
 Agentic AI systems rely on large language models to plan and execute multi-step tasks by interacting with tools and collaborating with other agents, creating new demands on Internet protocols for interoperability, scalability, and safe operation across administrative domains. This document inventories representative Agentic AI use cases and captures the protocol-relevant requirements they imply, with the goal of helping the IETF determine appropriate standardization scope and perform gap analysis against emerging proposals. The use cases are written to expose concrete needs such as long-lived and multi-modal interactions, delegation and coordination patterns, and security/privacy hooks that have protocol implications. Through use case analysis, the document also aims to help readers understand how agent-to-agent and agent-to-tool protocols (e.g., {{A2A}} and {{MCP}}), and potential IETF-standardized evolutions thereof, could be layered over existing IETF protocol substrates and how the resulting work could be mapped to appropriate IETF working groups.
@@ -116,7 +124,7 @@ The use cases in this document are intended to inform IETF standardization work 
 
 - **Trust boundaries explicit**: Use cases MUST identify administrative domains and trust boundaries (e.g., user device, enterprise perimeter, third-party tool providers, external agent providers) and SHOULD summarize the expected security posture at those boundaries (authentication, authorization, confidentiality, and auditability expectations). This helps ensure the IETF does not miss protocol hooks needed to safely operate agentic systems across domains.
 
-# Use Cases Taxonomy
+# Use Cases Taxonomy {#sec-taxonomy}
 
 This section defines a taxonomy for classifying Agentic AI use cases according to the functional protocol domains they exercise. The taxonomy serves three purposes: (1) it provides a structured vocabulary for describing and comparing use cases, (2) it helps identify the protocol areas that require IETF standardization attention, and (3) it helps map use cases and their requirements to relevant IETF working groups or areas.
 
@@ -328,387 +336,97 @@ The *Operations and Management* domain covers the protocol mechanisms that suppo
 
 *Human-in-the-Loop* covers the protocol mechanisms that insert human oversight and decision-making into agentic workflows at appropriate points. Not all agent decisions can or should be made autonomously: high-impact, irreversible, or ambiguous actions may require explicit human approval before execution. Relevant protocol mechanisms include structured approval request formats that surface proposed actions and their anticipated consequences to a human operator, consent flows with well-defined timeout and default-action semantics for unanswered requests, and escalation paths that route exceptional cases to human reviewers. Human-in-the-loop mechanisms are closely related to both authorization (which governs what requires approval) and safety (which enforces that unapproved high-risk actions are blocked at the protocol level).
 
-# Use Cases
+# Applying the Taxonomy: A Worked Example
 
-This section inventories representative Agentic AI use cases to make their protocol-relevant requirements explicit and comparable. The use cases are written to expose concrete needs such as multi-step delegation, agent-to-agent coordination, agent-to-tool interactions, and long-lived and multi-modal exchanges that must operate safely and reliably across administrative domains.  By grounding the discussion in specific scenarios, the document supports gap analysis against emerging agent protocols (e.g., agent-to-agent and agent-to-tool approaches such as A2A and MCP) and clarifies how candidate solutions could be layered over existing IETF protocol substrates and mapped to appropriate IETF working groups, including the necessary security and privacy hooks.
+## Overview
 
-## Deep Search
+The taxonomy defined in {{sec-taxonomy}} is intended to be used as a classification instrument for individual Agentic AI use case documents. Its role is analogous to the ACM Computing Classification System (CCS), which authors use to attach a structured set of descriptors to a research paper so that readers and indexing systems can quickly understand its scope and locate related work {{ACM-CCS}}.
 
-Deep Search refers to an *agentic* information‑seeking workflow in which an AI agent plans, executes, and iteratively refines multi‑step research across heterogeneous sources such as open web, enterprise knowledge bases, APIs, files, and computational tools, among others. Unlike one‑shot retrieval or a single RAG call, Deep Search is *long‑horizon* and *goal‑directed*: the agent decomposes a task into sub‑goals, issues searches and crawls, reads and filters evidence, runs auxiliary computations (e.g., code or math), verifies claims, tracks provenance/citations, and synthesizes a final answer---often over minutes or hours rather than milliseconds. This loop is typically implemented as *think -> act (tool) -> observe -> reflect -> refine plan* until success criteria (e.g., coverage, confidence, cost/time budgets) are met.
+The taxonomy can be visualized as a tree: each top-level domain (e.g., Transport, Security and Trust, Discovery) is a primary branch, and each subcategory (e.g., Session Management, Authentication, Agent Discovery) is a leaf. Given an Agentic AI use case, its *taxonomy profile* is the set of root-to-leaf paths that apply to it. For example, a use case that focuses exclusively on session management and mutual authentication between agents would carry the profile:
 
-
-### Building Blocks
-
-A Deep Search workflow may generally comprise the components shown in the next Figure:
-
-<!-- - **Base LLM (reasoning + tool use).**
-  A model capable of multi‑step reasoning (e.g., chain‑of‑thought/verification, self‑reflection) *and* structured tool invocation (function/tool calling) to plan, call tools, parse results, and revise plans.
-
-- **Planner/Orchestrator.**
-  A lightweight controller (can be the LLM itself or a graph/agent runtime) that maintains task state, goals, and budgets (tokens, latency, rate limits), and schedules steps (parallel vs. sequential).
-
-- **Tooling layer (invoked by the agent):**
-  The tooling layer includes:
-  - **Web search & crawling** such SERP APIs, focused crawlers, HTML/PDF parsers, robots.txt compliance.
-  - **Knowledge access** such as knowledge bases (KB), document stores, wikis, code repos.
-  - **Retrieval‑Augmented Generation (RAG)** such as indexing, re‑ranking, query rewriting, dedup, chunking.
-  - **Computation tools** such as a **Python interpreter** for factual checks, data wrangling, statistics/plots.
-  - **Specialized services** such as scholarly search, calculators, geocoders, optical character recognition, table extraction, etc.
-  - **Verification/critique** such as fact‑checking, citation validation, deduplication, hallucination detection).
-  - **Provenance & citation store** such as source URIs, timestamps, quotes/snippets, hashes.
-
-- **Short‑term memory / working set.**
-  Scratchpad to hold the evolving evidence graph: normalized documents, extracted entities/claims, metadata, and confidence scores.
-
-- **Synthesis & reporting.**
-  Templates or renderers that compile the final artifact (report/brief/bibliography), with explicit citations to the evidence used.
-
-- **Observability & policy.**
-  Logging, traces, and red‑team hooks for auditability; safety filters (PII, ToS, copyright/robots policy), rate limiting, attribution. -->
-
-
-~~~ ascii-art
-+--------------------------------------------------------------+
-|                        User / Client                         |
-|              (Goal, Query, Constraints)                      |
-+--------------------------------------------------------------+
-                             |
-                             v
-+--------------------------------------------------------------+
-|                 DeepSearch Orchestrator                      |
-|                                                              |
-|  - planning & task decomposition                             |
-|  - agent coordination (A2A)                                  | <----+
-|  - iteration control (re-plan, retry, refine)                |      |
-|  - shared state & memory                                     |      |
-+--------------------------------------------------------------+      |
-                             |                                        |
-                    tasks / messages (A2A)                            |
-                             v                                        |
-+--------------------------------------------------------------+      |
-|  A2A Agent Communication (standardized agent communication)  |      |
-+--------------------------------------------------------------+      |
-                             |                                        |
-                             v                                        |
-+--------------------------------------------------------------+      |
-|                         Agents Mesh                          |      |
-|                                                              |      |
-|  - research / query expansion                                |      |
-|  - retrieval & summarization                                 |      |
-|  - analysis / computation                                    |      |
-|  - validation / fact-checking                                |      |
-|                                                              |      |
-+--------------------------------------------------------------+      |
-                             |                                        |
-                      tool calls (MCP)                                |
-                             v                                        |
-+--------------------------------------------------------------+      |
-|       MCP Tooling Layer (standardized tool interfaces)       |      |
-+--------------------------------------------------------------+      |
-                             |                                        |
-                             v                                        |
-+-----------------------+   +----------------+   +-----------------+  |
-| Web Search & Crawling |   | KB / RAG Index |   |  Python / Tools |  |
-|      (SERP APIs)      |-->| (embed/rerank) |-->| (compute, eval) |  |
-+-----------------------+   +----------------+   +-----------------+  |
-        |                                |                      |     |
-        |                                |                      |     |
-        +------------- evidence & results returned to agents ---+     |
-                             |                                        |
-                             v                                        |
-+--------------------------------------------------------------+      |
-|    DeepSearch Orchestrator: Iterative Improvement Loop       |      |
-|                                                              |      |
-|   Plan -> Act -> Observe -> Refine -> Re-plan                |------+
-|   (query tuning, crawl adjustment, re-ranking, re-eval)      |
-+--------------------------------------------------------------+
-                             |
-                             v
-+--------------------------------------------------------------+
-|                 Final Answer / Output                        |
-|          (synthesis + citations + confidence)                |
-+--------------------------------------------------------------+
 ~~~
-{: #fig-deep-search artwork-align="center" title="Deep Search agentic workflow"}
-
-<!-- The loop repeats until success criteria are met (coverage/quality thresholds, budget, or explicit user stop). -->
-
-Each building block in the DeepSearch architecture represents a logical function rather than a specific implementation, and multiple components may be co-located or distributed in practice.
-
-#### User / Client
-
-The *User / Client* is the entry point to the system. It provides the initial goal or query, along with optional constraints (e.g., scope, freshness, format). The user does not interact directly with tools or agents; all interactions are mediated by the DeepSearch Orchestrator.
-
-#### DeepSearch Orchestrator
-
-The *DeepSearch Orchestrator* acts as the control plane of the system. Its responsibilities include:
-
-- Planning and task decomposition of the user’s request.
-- Coordinating agents via Agent-to-Agent (A2A) communication.
-- Managing shared state and memory across iterations.
-- Controlling iterative execution, including retries and refinements.
-
-The orchestrator does not perform retrieval or computation directly; instead, it delegates work to agents and manages the overall execution flow.
-
-#### A2A Agent Communication Bus
-
-The *A2A Agent Communication Bus* provides a standardized messaging layer that enables agent-to-agent coordination. It supports:
-
-- Task dispatch and response exchange.
-- Collaboration among specialized agents.
-- Decoupling of agent implementations from orchestration logic.
-
-This bus allows agents to operate independently while still contributing to a coherent end-to-end workflow.
-
-#### Agents Mesh
-
-The *Agents Mesh* block represents a set of specialized, cooperative agents operating over the A2A bus. Typical agent roles include:
-
-- Research and query expansion.
-- Retrieval and summarization.
-- Analysis and computation.
-- Validation and fact-checking.
-
-Agents are responsible for invoking tools, interpreting results, and returning structured observations to the orchestrator.
-
-#### MCP Tooling Layer
-
-The *MCP Tooling Layer* provides a standardized interface between agents and external tools. It enables:
-
-- Discovery and invocation of tools using a common protocol.
-- Consistent input/output schemas across heterogeneous tools.
-- Isolation of agent logic from tool-specific details.
-
-MCP acts as an abstraction boundary that simplifies integration and evolution of external capabilities.
-
-#### Web Search & Crawling
-
-The *Web Search & Crawling* component combines content discovery and acquisition. It typically includes:
-
-- Search engine or SERP APIs for identifying relevant sources.
-- Focused crawling or fetching to retrieve selected content.
-
-This component supplies raw external data that can be further processed and indexed.
-
-#### Knowledge Base (KB) / Retrieval Augmented Generation (RAG) Index
-
-The *KB / RAG Index* component manages knowledge representation and retrieval. Its responsibilities include:
-
-- Embedding and indexing retrieved content.
-- Ranking or re-ranking results based on relevance.
-- Supplying context to agents for retrieval-augmented generation (RAG).
-
-This block provides structured, queryable knowledge derived from external sources.
-
-#### Python / Tools
-
-The *Python / Tools* component represents general-purpose computation and evaluation capabilities. Examples include:
-
-- Data processing and transformation.
-- Numerical analysis or simulations.
-- Quality evaluation, scoring, or consistency checks.
-
-These tools are typically invoked by analysis-oriented agents via the MCP layer.
-
-#### Iterative Improvement Loop
-
-The *Iterative Improvement Loop* captures the system’s ability to refine results over multiple passes and is also implemeted by the DeepSearch Orchestrator. Conceptually, it follows a cycle of:
-
-    Plan -> Act -> Observe -> Refine -> Re-plan
-
-Observations and intermediate results are fed back into the orchestrator, which may adjust plans, agent assignments, or tool usage before producing the final output.
-
-#### Final Answer / Output
-
-The *Final Answer / Output* is the synthesized result returned to the user. It may include:
-
-- A consolidated response or report.
-- References or citations to supporting evidence.
-- Confidence indicators or stated limitations.
-
-This output reflects the outcome of one or more iterative refinement cycles.
-
-### Why This Use Case Matters
-
-Deep Search is inherently *compositional*: it coordinates *multiple* agents and *many* tools over extended time. Without standard protocols, systems devolve into brittle, one‑off integrations that are hard to test, secure, or reuse. Two complementary interoperability layers in the DeepSearch are especially relevant:
-
-- **Agent‑to‑Tool standardization.**
-  The *Model Context Protocol (MCP)* defines a standardized mechanism by which agents and hosts can discover, describe, and invoke tools, resources, and prompts using JSON-RPC over multiple transports (e.g., stdio, HTTP with Server-Sent Events, and WebSocket). MCP enables portable and reusable tool catalogs (including search, crawling, retrieval-augmented generation (RAG), and general-purpose computation) with consistent schemas, capability negotiation, progress reporting, cancellation semantics, and explicit security prompts and user consent. Further details are specified in the MCP specification and related project documentation {{MCP}}{{MCP-GITHUB}}.
-
-- **A2A Agent Communication Bus.**
-  The *Agent2Agent (A2A)* protocol focuses on standardized inter-agent collaboration. It defines mechanisms for agent capability discovery (e.g., Agent Cards), task lifecycle management (creation, cancellation, and status reporting), and streaming updates for long-running operations. A2A is designed to support opaque collaboration among agents while avoiding the need to disclose proprietary internal implementations. An overview of the protocol, along with its specification and design rationale, is available from the A2A project documentation {{A2A}}{{A2A-GITHUB}}.
-
-**Implications for Deep Search.** Using A2A and MCP together lets implementers compose portable Deep Search stacks:
-
-- Tools like crawlers, scholarly search, RAG, and Python are exposed via **MCP** with typed inputs/outputs and consent flows.
-- Long‑running research tasks, delegation to specialized researcher/verifier agents, background execution, progress streaming, and result handoff occur via **A2A**.
-- Provenance (URIs, hashes, timestamps) and citation schemas can also be standardized at the protocol boundary to enable verifiable research traces across vendors.
-- Enterprise requirements (authn/z), quotas, observability/tracing, policy enforcement (robots/copyright), and safety reviews—become portable rather than per‑integration glue.
-
-
-### Example: Open Deep Search (ODS)
-
-Open implementations illustrate agentic architectures for Deep Search.
-
-**Open Deep Search (ODS)** is a modular, open-source framework that augments a base large language model with a dedicated Reasoning Agent and an Open Search tool. The framework is designed to support extensible, agentic search workflows in which an agent iteratively plans, invokes search tools, and synthesizes results to answer complex queries. Further details are available in the ODS publication and accompanying reference implementation {{ODS}}{{ODS-GITHUB}}.
-
-ODS exemplifies the building blocks described earlier in this document and is consistent with the proposed interoperability layering, using standardized tool invocation for search and retrieval and agent-centric coordination to manage planning, execution, and refinement.
-
-## Hybrid AI
-
-Hybrid AI generally refers to an *edge–cloud cooperative* inference workflow in which two or more models collaborate to solve a task: (1) a **smaller on‑device model** (typically a few billion parameters) that prioritizes low latency, lower cost, and privacy; and (2) a **larger cloud model** (hundreds of billions to trillion‑scale parameters) that offers higher capability and broader knowledge. The two models coordinate over an agent‑to‑agent channel and may invoke tools locally or remotely as needed. Unlike single‑endpoint inference, Hybrid AI is *adaptive and budget‑aware*: the on‑device model handles as much work as possible locally (classification, summarization, intent detection, light reasoning), and escalates to the cloud model when additional capability is required (multi‑hop reasoning, long‑context synthesis, domain expertise). The models can exchange plans, partial results, and constraints over {{A2A}}, and both sides can discover and invoke tools via {{MCP}}.
-
-### Building Blocks
-
-A Hybrid AI workflow may generally comprise the components shown in the next Figure:
-
-- **On‑device Model (Edge).**
-  A compact LLM or task‑specific model (a few billion parameters) running on user hardware (e.g., phone, laptop). Advantages include: low latency for interactive turns, reduced cost, offline operation, and improved privacy by default (data locality). Typical functions: intent parsing, entity extraction, local retrieval, preliminary analysis, redaction/summarization prior to escalation.
-
-- **Cloud Model (Hosted).**
-  A large, higher‑capability LLM (hundreds of billions to ~trillion parameters) with stronger reasoning, knowledge coverage, tool‑use proficiency, and longer context windows. Typical functions: complex synthesis, multi‑step reasoning, broad web/KG retrieval, code execution, and advanced evaluation.
-
-- **A2A Inter‑Model Coordination.**
-  The edge and cloud models communicate via an **Agent‑to‑Agent** channel to exchange **capabilities**, **cost/latency budgets**, **privacy constraints**, **task state**, and **partial artifacts**. Common patterns include *negotiate‑and‑delegate*, *ask‑for‑help with evidence*, *propose/accept plan updates*, and *critique‑revise* cycles {{A2A}}.
-
-- **MCP Tooling (Edge and Cloud).**
-  Both models use the **Model Context Protocol** to discover and invoke tools with consistent schemas (e.g., local sensors/files, calculators, vector indexes on edge; search/crawling, KB/RAG, Python/services in cloud). MCP enables capability discovery, streaming/progress, cancellation, and explicit consent prompts across transports {{MCP}}.
-
-- **Policy, Budget, and Privacy Controls.**
-  Guardrails and policies that encode user/enterprise constraints (e.g., do not send raw PII to cloud; enforce token/time budgets; require consent for specific tools). The edge model may redact or summarize data before escalation; both sides log provenance and decisions for auditability.
-
-- **Shared Task State and Provenance.**
-  A compact state (goals, sub‑tasks, citations, hashes, timestamps) that both models can read/update to enable reproducibility, debugging, and verifiable traces.
-
-~~~ ascii-art
-+--------------------------------------------------------------+
-|                        User / Client                         |
-|              (Goal, Query, Constraints)                      |
-+--------------------------------------------------------------+
-                             |
-                             v
-+--------------------------------------------------------------+
-|                 On-Device Model (Edge)                       |
-|  - few-B params; low latency, privacy by default             |
-|  - local reasoning, redaction/summarization                  |
-|  - local tools via MCP (sensors, files, crypto)              |
-+--------------------------------------------------------------+
-         |                           \
-         | local MCP tools            \ when escalation is needed
-         v                             \
-+----------------------+                \
-| Edge MCP Tools       |                 \
-+----------------------+                  v
-                                   +----------------------------------+
-                                   |   A2A Session (Edge <-> Cloud)   |
-                                   |   - capability/budget exchange   |
-                                   |   - task handoff & updates       |
-                                   +----------------------------------+
-                                                |
-                                                v
-+--------------------------------------------------------------+
-|                    Cloud Model (Hosted)                      |
-|  - 100B–1T+ params; higher capability & breadth              |
-|  - complex synthesis, long-context reasoning                 |
-|  - cloud tools via MCP (search, KB/RAG, Python)              |
-+--------------------------------------------------------------+
-                             |
-                     cloud MCP tool calls
-                             v
-+----------------------+   +------------------+   +------------------+
-| Web Search & Crawl   |-->| KB / RAG Index   |-->| Python / Services|
-+----------------------+   +------------------+   +------------------+
-                             ^
-                             |
-                 results/evidence via A2A to edge/cloud
-                             |
-                             v
-+--------------------------------------------------------------+
-|                 Final Answer / Output                        |
-|   (synthesis + citations + privacy/consent notes)            |
-+--------------------------------------------------------------+
+Transport => Session Management
+Security and Trust => Authentication
 ~~~
 
-Each building block in the Hybrid AI architecture represents a logical function rather than a specific implementation, and components may be co‑located or distributed in practice.
+Authors of individual use case Internet-Drafts are encouraged to include a dedicated taxonomy section that enumerates the applicable paths using this notation. Doing so serves three purposes. First, it makes the protocol scope of the use case explicit and comparable to other use cases in a machine-readable way. Second, it guides gap analysis by mapping each path to the protocol area where standardization work is needed. Third, it facilitates working group ownership decisions by surfacing cross-area dependencies — a use case with paths into both Transport and Security and Trust, for instance, signals that coordination between working groups in those areas will be required.
 
-### Interaction Model
+When constructing a taxonomy profile, authors should include all paths that represent substantive protocol-level requirements of the use case, and omit paths that are merely incidental or out of scope for IETF standardization. Authors should also note whether a given path represents a "gap" (no adequate existing IETF mechanism) or a "layering point" (an existing IETF protocol that the agentic use case builds upon).
 
-A typical Hybrid AI session proceeds as follows:
+## Example: Discovery of Agents, Workloads, and Named Entities
 
-1. **Local First.** The on‑device model interprets the user goal, applies local tools (e.g., retrieve snippets, parse files), and attempts a low‑cost solution within configured budgets.
-2. **Escalate with Minimization.** If the local model estimates insufficient capability (e.g., confidence below threshold, missing evidence), it **redacts/summarizes** sensitive data and **escalates** the task—along with compact evidence and constraints—over **{{A2A}}**.
-3. **Cloud Reasoning + Tools.** The cloud model performs deeper reasoning and may invoke **{{MCP}}** tools (web search/crawl, KB/RAG, Python) to gather evidence and compute results.
-4. **Refine & Return.** Intermediate artifacts and rationales flow back over **{{A2A}}**. The edge model may integrate results, perform final checks, and produce the user‑facing output.
-5. **Iterate as Needed.** The models repeat plan‑act‑observe‑refine until success criteria (quality, coverage, cost/time budget) are met.
+This section illustrates the taxonomy methodology by applying it to the Internet-Draft "Use Cases for the Discovery of Agents, Workloads, and Named Entities" {{DAWN-USE-CASES}}, which describes scenarios in which distributed entities — including AI agents, software services, compute workloads, network functions, and application endpoints — must locate and obtain minimum descriptive information about peer entities before communication or selection can begin.
 
-### Why This Use Case Matters
+The DAWN use cases span four discovery categories: capability-oriented discovery (locating entities that offer a needed function), resource-oriented discovery (locating data sources, compute pools, or inference services), administrative scope extensions (discovery across organizational or tenancy boundaries), and operational discovery (supporting human operators or management systems in locating entities across heterogeneous infrastructure). The draft explicitly excludes registration procedures, authentication, naming governance, candidate selection, and task orchestration from its scope; however, it identifies security and privacy considerations — including authenticity and integrity of discovery metadata, authorization controls on discovery queries, and privacy risks arising from the exposure of requester intent or deployment topology — as important constraints on any protocol that addresses the in-scope scenarios.
 
-Hybrid AI is inherently *trade‑off aware*: it balances **privacy**, **latency**, and **cost** at the edge with **capability** and **breadth** in the cloud. Without standard protocols, inter‑model negotiations and tool interactions become bespoke and hard to audit. Two complementary interoperability layers are especially relevant:
+The taxonomy profile for this use case is as follows.
 
-- **Inter‑Model Coordination (A2A).**
-  A2A provides a structured channel for **capability advertisement**, **budget negotiation**, **task handoffs**, **progress updates**, and **critique/revision** between edge and cloud models. This enables portable escalation policies (e.g., “do not send raw PII”, “cap tokens/time per turn”, “require human consent for external web calls”) and consistent recovery behaviors across vendors {{A2A}}.
+**Transport**
 
-- **Tool Invocation (MCP).**
-  MCP standardizes tool discovery and invocation across both environments (edge and cloud), supporting consistent schemas, streaming/progress, cancellation, and explicit consent prompts. This allows implementers to swap local or remote tools—search, crawling, KB/RAG, Python/services—without rewriting agent logic or weakening privacy controls {{MCP}}.
+: **Session Management.** Discovery interactions range from simple single-round-trip queries to multi-step lookups that cross administrative boundaries. The discovery protocol must define session semantics sufficient to support these patterns reliably, including error recovery and cancellation for multi-hop discovery flows.
 
-**Implications for Hybrid AI.** Using standardized protocols lets implementers compose portable edge–cloud stacks:
+: **Communication Modes.** The DAWN use cases require at minimum a synchronous request/response mode for point-in-time capability lookups. Operational discovery scenarios — where management systems monitor dynamic entity populations — additionally motivate asynchronous notification or subscription patterns so that observers receive timely updates when entity availability or metadata changes.
 
-- Edge‑first operation with **escalation** only when needed, guided by budgets and confidence.
-- **Data minimization** (local redaction/summarization) and **consent** workflows at protocol boundaries.
-- Consistent **provenance** (URIs, hashes, timestamps) and **observability** across edge and cloud for verifiable traces.
-- Seamless **tool portability** (local/remote) and **policy enforcement** that travel with the task rather than the deployment.
+**Discovery**
 
-## AI-based Troubleshooting and Automation
+: **Agent Discovery.** This is the primary focus of the DAWN document. All four discovery categories directly address the problem of locating agents or agent-equivalent entities (workloads, services, network functions) that satisfy a stated requirement. The use cases motivate standardized lookup mechanisms operating at multiple scopes: within an administrative domain, across organizational boundaries, and across heterogeneous multi-vendor infrastructure.
 
-Telecom networks have significantly increased in scale, complexity, and heterogeneity. The interplay of technologies such as Software-Defined Networking (SDN), virtualization, cloud-native architectures, network slicing, and 5G/6G systems has made infrastructures highly dynamic. While these innovations provide flexibility and service agility, they also introduce substantial operational challenges, particularly in fault detection, diagnosis, and resolution.
+: **Capability Advertisement.** Capability-oriented discovery presupposes that entities publish structured descriptions of their offered functions. The DAWN use cases identify the need for a "minimum discoverable information" set — a standardized baseline of metadata that any discoverable entity must expose — to enable consistent matching across heterogeneous registries or lookup services.
 
-Traditional troubleshooting methods, based on rule engines, static thresholds, correlation mechanisms, and manual expertise, struggle to process high-dimensional telemetry, multi-layer dependencies, and rapidly evolving conditions. Consequently, mean time to detect (MTTD) and mean time to repair (MTTR) may increase, impacting service reliability and user experience.
+: **Service Negotiation.** Administrative scope extension scenarios involve discovery queries that cross organizational or tenancy boundaries, which requires agreement on the scope, format, and authorization of discovery requests between domains. While the DAWN draft does not define a negotiation protocol, it motivates one by exposing the need for scoped discovery views and cross-domain metadata exchange.
 
-Artificial Intelligence (AI) and Machine Learning (ML) offer new capabilities to enhance troubleshooting. AI-driven approaches apply data-driven models and automated reasoning to detect anomalies, determine root causes, predict failures, and recommend or execute corrective actions, leveraging telemetry, logs, configuration, topology, and historical data.
+**Identity**
 
-Beyond troubleshooting, it is essential to further exploit network and service automation to enable coordinated, policy-based actions across multi-technology (e.g., RAN, IP, optical, virtualized), multi-layer, and dynamic environments. As degradations and faults often span multiple devices, domains, and layers, effective handling requires intelligent and increasingly autonomous mechanisms, ranging from proactive service assurance to automated fault-triggered workflows.
+: **Agent Naming and Addressing.** The DAWN document explicitly addresses named entities and identifies naming as a prerequisite for discovery. A discovery protocol must be able to resolve both human-readable names and machine-oriented identifiers to network-reachable endpoints. The use cases surface the need for naming conventions that are stable enough to support persistent references while remaining resolvable across administrative boundaries.
 
-This use case envisions a multi-agent AI framework that enhances network and service automation. Agents perform diagnosis and root cause analysis (RCA), while also supporting anomaly prediction, intent-based protection, and policy-driven remediation. The proposed multi-agent interworking autonomously maintains the network in an optimal operational state by correlating heterogeneous data sources, performing collaborative reasoning, and interacting with network elements and operators through standardized protocols, APIs, and natural language interfaces.
+**Security and Trust**
 
-AI agents form a distributed and scalable ecosystem leveraging advanced AI/ML, including generative AI (Gen-AI), combined with domain expertise to accelerate RCA, assess impact, and propose corrective actions. Each agent encapsulates capabilities such as data retrieval, hypothesis generation, validation, causal analysis, and action recommendation. Designed as composable and interoperable building blocks, agents operate across diverse domains (e.g., RAN, Core, IP, Optical, and virtualized infrastructures), while supporting lifecycle management, knowledge bases, and standardized interfaces.
+: **Authentication.** The DAWN draft identifies the authenticity and integrity of discovery metadata as a key security consideration: a requester must be able to verify that the metadata returned by a discovery lookup genuinely describes the entity it purports to describe, and has not been tampered with in transit or at the registry. This motivates cryptographic authentication of discovery responses, distinct from — but complementary to — the authentication of the discovered entity itself.
 
-### Building Blocks
+: **Authorization.** Discovery queries may themselves require authorization: not all requesters should be permitted to enumerate all entities within a registry, particularly across organizational boundaries. The DAWN use cases motivate authorization controls on discovery query scope, consistent with the principle that the ability to discover an entity should be governed by policy rather than assumed to be universally open.
 
-The use case relies on decentralized multi-agent coordination, where agents exchange structured, context-enriched information to enable dynamic activation and collaborative troubleshooting workflows. A resource-aware orchestration layer manages agent deployment, scaling, and optimization across the network–cloud continuum. Policy frameworks ensure security, compliance, trustworthiness, and explainability, supporting resilient AI-driven network operations.
+: **Accountability.** Operational discovery scenarios, in which management systems or AIOps agents enumerate and monitor entities across a production infrastructure, motivate audit logging of discovery queries and responses. Accountability mechanisms allow operators to reconstruct which systems queried which entities at what time, supporting both forensic analysis and compliance with data governance requirements.
 
-### Why This Use Case Matters
+**Data and Context Management**
 
-This use case highlights the need for interoperable, protocol-based integration of AI-driven troubleshooting and automation components within heterogeneous, multi-vendor environments. Telecom networks are inherently composed of equipment and control systems from different providers, spanning multiple administrative and technological domains. A multi-agent AI framework operating across such environments requires standardized mechanisms for data modeling, telemetry export, capability advertisement, and control interfaces. In particular, consistent information models (e.g., YANG-based models), secure transport protocols, and well-defined APIs are needed to ensure that AI agents can reliably discover, interpret, and act upon network state information across vendor boundaries.
+: **Provenance and Citations.** The DAWN draft notes that dynamic properties (such as load, price, and availability) change too rapidly to be reliably embedded in discovery records, and recommends that stable discovery metadata include a pointer to a separate service for current state. This architectural pattern motivates a provenance convention by which discovery responses carry verifiable references to the authoritative source of each metadata field, enabling requesters to distinguish stable identity attributes from volatile operational properties and to verify the freshness of each.
 
-Service discovery and capability negotiation are also critical. AI agents must be able to dynamically identify available data sources, peer agents, orchestration functions, and control points, as well as understand their supported features and policy constraints. This implies the need for standardized discovery procedures, metadata descriptions, and context exchange formats that enable composability and coordinated workflows in decentralized environments. Without such interoperability mechanisms, multi-agent troubleshooting systems risk becoming vertically integrated and operationally siloed.
+: **Data Minimization.** The DAWN draft identifies privacy risks arising from the exposure of requester intent through discovery queries and from the publication of deployment topology or model provenance through entity metadata. These considerations motivate data minimization at both ends: requesters should be able to issue queries without disclosing more about their intent than is necessary, and entities should be able to publish capability descriptors that reveal only the information required for matching without exposing proprietary implementation details. This overlaps with the Selective Disclosure subcategory of the Identity domain.
 
-Furthermore, governance, security, and trust frameworks are fundamental considerations. AI-driven agents capable of recommending or executing remediation actions introduce new requirements for authentication, authorization, accountability, and auditability. Secure communication channels, role-based access control, policy enforcement, and explainability mechanisms are necessary to prevent misuse, contain faults, and ensure compliance with operational and regulatory constraints.
+**Identity**
 
-## AI-Based Operation Models
+: **Selective Disclosure.** As noted in the Data and Context Management domain above, the DAWN privacy considerations motivate mechanisms by which discoverable entities can reveal capability attributes selectively — exposing different levels of detail to different requesters based on authorization context — without compromising the cryptographic verifiability of the disclosed information.
 
-### Agentic AI for Improved User Experience
+The following figure summarizes the taxonomy profile in compact notation:
 
-AI agents have the potential to enhance future user experience by being integrated—individually or as collaborating groups—into telecom networks to deliver user-facing services. Such services may include autonomous multi-level Internet/Intranet search, coordination of calendar and email tasks, and execution of multi-step workflows involving multiple agents, as well as pre-built domain agents (e.g., HR, procurement, finance). This shift can fundamentally change enterprise operating models: agents can support decision-making and, where authorized, act on behalf of employees or the organization. In multi-agent scenarios, agents from different vendors communicate over networks and must interoperate. These interactions require coordinated communication flows and motivate a standardized agent communication protocol and framework. Given the need to comply with regulatory requirements (beyond network regulation), an open, standardized approach is preferable to proprietary implementations. Interoperability across operators and vendors implies an open ecosystem; therefore, a standardized AI agent protocol is required.
+~~~ ascii-art
+DAWN Use Cases Taxonomy Profile
+|
+|-- Transport
+|   |-- Session Management
+|   |-- Communication Modes
+|
+|-- Discovery
+|   |-- Agent Discovery           [primary focus; gap]
+|   |-- Capability Advertisement  (gap)
+|   |-- Service Negotiation       (gap)
+|
+|-- Identity
+|   |-- Agent Naming and Addressing  (gap)
+|   |-- Selective Disclosure         (gap)
+|
+|-- Security and Trust
+|   |-- Authentication  (gap)
+|   |-- Authorization   (gap)
+|   |-- Accountability  (layering point: existing audit log conventions)
+|
+|-- Data and Context Management
+    |-- Provenance and Citations  (gap)
+    |-- Data Minimization         (gap)
+~~~
+{: #fig-dawn-taxonomy artwork-align="left" title="Taxonomy profile for draft-kay-dawn-use-cases"}
 
-#### Building Blocks
-
-TODO
-
-#### Why this Use Case Matters
-
-TODO
-
-### Voice-Based Human-to-Agent Communication
-
-With the integration of AI and AI agents into networks, voice services may see renewed importance as a natural, low-friction interface for interacting with agents. Voice-based human-to-agent communication can complement text-based chat interfaces and enable rapid task initiation and conversational control. This use case introduces additional considerations, including security, authorization/permissions, and charging/accounting. Because voice services are regulated in many jurisdictions, this further motivates a standardized framework and standardized AI agent protocol. Network-integrated AI agents can assist users through voice interaction and improve overall user experience.
-
-#### Building Blocks
-
-TODO
-
-#### Why this Use Case Matters
-
-TODO
+Paths annotated (gap) identify areas where no adequate existing IETF protocol mechanism covers the stated requirement. Paths annotated (layering point) identify areas where existing IETF mechanisms provide a foundation that the agentic use case extends or constrains.
 
 # Security Considerations
 
