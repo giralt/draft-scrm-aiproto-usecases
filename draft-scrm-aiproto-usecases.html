@@ -295,16 +295,19 @@ h1, h2, h3, h4, h5, h6 {
   font-size-adjust: 0.5;
   color: var(--title-color);
 }
-h1#title {
-  font-size: 32px;
-  line-height: 40px;
-  clear: both;
-}
-h1#title, h1#rfcnum {
-  margin: 1.5em 0 0.2em;
-}
-h1#rfcnum + h1#title {
-  margin: 0.2em 0;
+h1 {
+  &#title {
+    font-size: 32px;
+    line-height: 40px;
+    clear: both;
+    margin: 1.5em 0 0.2em;
+  }
+  &#rfcnum {
+    margin: 1.5em 0 0.2em;
+    & + h1#title {
+      margin: 0.2em 0;
+    }
+  }
 }
 
 h1, h2, h3 {
@@ -324,10 +327,10 @@ h4, h5, h6 {
 #abstract+p {
   font-size: 18px;
   line-height: 24px;
-}
-#abstract+p code, #abstract+p samp, #abstract+p tt {
-  font-size: 16px;
-  line-height: 0;
+  & code, & samp, & tt {
+    font-size: 16px;
+    line-height: 0;
+  }
 }
 
 p {
@@ -338,59 +341,59 @@ p {
 div {
   margin: 0;
 }
-.alignRight.art-text {
-  background-color: var(--highlight-color);
-  border: 1px solid var(--line-color);
-  border-radius: 3px;
-  padding: 0.5em 1em 0;
-  margin-bottom: 0.5em;
-}
-.alignRight.art-text pre {
-  padding: 0;
-  width: auto;
-}
 .alignRight {
   margin: 1em 0;
-}
-.alignRight > *:first-child {
-  border: none;
-  margin: 0;
-  float: right;
-  clear: both;
-}
-.alignRight > *:nth-child(2) {
-  clear: both;
-  display: block;
-  border: none;
+  &.art-text {
+    background-color: var(--highlight-color);
+    border: 1px solid var(--line-color);
+    border-radius: 3px;
+    padding: 0.5em 1em 0;
+    margin-bottom: 0.5em;
+    & pre {
+      padding: 0;
+      width: auto;
+    }
+  }
+  & > *:first-child {
+    border: none;
+    margin: 0;
+    float: right;
+    clear: both;
+  }
+  & > *:nth-child(2) {
+    clear: both;
+    display: block;
+    border: none;
+  }
 }
 svg {
   display: block;
-}
-/* font-family isn't space-separated, but =~ will have to do */
-svg[font-family~="monospace" i], svg [font-family~="monospace" i] {
-  font-family: var(--font-mono);
-}
-.alignCenter.art-text {
-  background-color: var(--highlight-color);
-  border: 1px solid var(--line-color);
-  border-radius: 3px;
-  padding: 0.5em 1em 0;
-  margin-bottom: 0.5em;
-}
-.alignCenter.art-text pre {
-  padding: 0;
-  width: auto;
+  /* font-family isn't space-separated, but =~ will have to do */
+  &[font-family~="monospace" i], & [font-family~="monospace" i] {
+    font-family: var(--font-mono);
+  }
 }
 .alignCenter {
   margin: 1em 0;
-}
-.alignCenter > *:first-child {
-  border: none;
-  /* this isn't optimal, but it's an existence proof.  PrinceXML doesn't
-     support flexbox yet.
-  */
-  display: table;
-  margin: 0 auto;
+  &.art-text {
+    background-color: var(--highlight-color);
+    border: 1px solid var(--line-color);
+    border-radius: 3px;
+    padding: 0.5em 1em 0;
+    margin-bottom: 0.5em;
+    & pre {
+      padding: 0;
+      width: auto;
+    }
+  }
+  & > *:first-child {
+    border: none;
+    /* this isn't optimal, but it's an existence proof.  PrinceXML doesn't
+       support flexbox yet.
+    */
+    display: table;
+    margin: 0 auto;
+  }
 }
 
 /* lists */
@@ -428,26 +431,25 @@ dl {
     --indent: 5ch;
     & > dt {
       min-width: calc(var(--indent) - 2ch);
+      float: none;
     }
-  }
-  &.olPercent > dt {
-    float: none;
   }
 
   dl > dd > & {
     margin-top: 0.5em;
     margin-bottom: 0;
   }
-}
-dl:not(.dlNewline) > dt {
-  float: left;
-  margin-right: 2ch;
-  min-width: 8ch;
-}
-dl > dd {
-  margin-bottom: .8em;
-  margin-left: var(--indent) !important; /* stupid element overrides */
-  min-height: 2ex;
+
+  &:not(.dlNewline) > dt {
+    float: left;
+    margin-right: 2ch;
+    min-width: 8ch;
+  }
+  & > dd {
+    margin-bottom: .8em;
+    margin-left: var(--indent) !important; /* stupid element overrides */
+    min-height: 2ex;
+  }
 }
 :is(dl.compact, .dlCompact) > dd {
   margin-bottom: 0;
@@ -463,20 +465,22 @@ dl > dd {
 }
 
 /* links */
-a, a[href].selfRef:hover {
+a {
   text-decoration: none;
+  &[href] {
+    color: var(--link-color);
+    &:hover { text-decoration: underline; }
+    &.selfRef {
+      color: var(--text-color);
+      &:hover {
+        text-decoration: none;
+        background-color: var(--highlight-color);
+      }
+    }
+  }
 }
-a[href] {
-  color: var(--link-color);
-}
-a[href].selfRef, .iref + a[href].internal {
+.iref + a[href].internal {
   color: var(--text-color);
-}
-a[href]:hover {
-  text-decoration: underline;
-}
-a[href].selfRef:hover {
-  background-color: var(--highlight-color);
 }
 a.xref:is(.cite, .auto), :is(#status-of-memo, #copyright) a {
   white-space: nowrap;
@@ -512,9 +516,9 @@ img {
 figure {
   margin: 0.5em 0;
   padding: 0;
-}
-figure blockquote {
-  margin: 0.8em 0.4em 0.4em;
+  & blockquote {
+    margin: 0.8em 0.4em 0.4em;
+  }
 }
 figcaption, caption {
   font-style: italic;
@@ -524,17 +528,19 @@ figcaption, caption {
 }
 @media screen {
   /* Auto-collapse boilerplate. */
-  :is(#status-of-memo, #copyright) p {
-    margin: -2px 0;
-    max-height: 0;
-    transition: max-height 2s ease, margin 0.5s ease 0.5s;
-    overflow: hidden;
-  }
-  :is(#status-of-memo, #copyright):hover p,
-  :is(#status-of-memo, #copyright) h2:target ~ p {
-    margin: 0.5em 0;
-    max-height: 500px;
-    overflow: auto;
+  :is(#status-of-memo, #copyright) {
+    & p {
+      margin: -2px 0;
+      max-height: 0;
+      transition: max-height 2s ease, margin 0.5s ease 0.5s;
+      overflow: hidden;
+    }
+    &:hover p,
+    & h2:target ~ p {
+      margin: 0.5em 0;
+      max-height: 500px;
+      overflow: auto;
+    }
   }
   pre, svg {
     display: inline-block;
@@ -584,25 +590,17 @@ table {
   max-width: 100%;
   margin: 0 0 1em;
   border-collapse: collapse;
-}
-table.right {
-  margin-left: auto;
-}
-table.center {
-  margin-left: auto;
-  margin-right: auto;
-}
-table.left {
-  margin-right: auto;
-}
-table .text-left {
-  text-align: left;
-}
-table .text-center {
-  text-align: center;
-}
-table .text-right {
-  text-align: right;
+  &.right { margin-left: auto; }
+  &.center { margin-left: auto; margin-right: auto; }
+  &.left { margin-right: auto; }
+  & .text-left { text-align: left; }
+  & .text-center { text-align: center; }
+  & .text-right { text-align: right; }
+  & caption {
+    margin: 0;
+    padding: 3px 0 3px 1em;
+  }
+  & p { margin: 0; }
 }
 
 thead, tbody {
@@ -622,13 +620,6 @@ th {
 :is(tr:nth-child(2n+1), thead+tbody > tr:nth-child(2n)) > td {
   background-color: var(--highlight-color);
 }
-table caption {
-  margin: 0;
-  padding: 3px 0 3px 1em;
-}
-table p {
-  margin: 0;
-}
 
 /* pilcrow */
 a.pilcrow {
@@ -639,18 +630,16 @@ a.pilcrow {
     color: var(--pilcrow-weak);
     &:hover { text-decoration: none; }
   }
-}
-@media not print {
-  :hover > a.pilcrow, a.pilcrow:focus {
-    opacity: 1;
+  @media not print {
+    :hover > &, &:focus {
+      opacity: 1;
+    }
+    &[href]:hover {
+      color: var(--pilcrow-strong);
+      background-color: transparent;
+    }
   }
-  a.pilcrow[href]:hover {
-    color: var(--pilcrow-strong);
-    background-color: transparent;
-  }
-}
-@media print {
-  a.pilcrow {
+  @media print {
     display: none;
   }
 }
@@ -709,9 +698,9 @@ sub, sup {
   font-size: 0.9em;
   font-style: italic;
   margin-top: 2em;
-}
-.docInfo .prepared {
-  float: right;
+  & .prepared {
+    float: right;
+  }
 }
 
 /* table of contents */
@@ -801,23 +790,27 @@ hr.addr {
   max-width: calc(100% - 16px);
 }
 @media (min-width: 500px) {
-  #authors-addresses > section {
-    column-count: 2;
-    column-gap: 20px;
-  }
-  #authors-addresses > section > h2 {
-    column-span: all;
-  }
-  /* hack for break-inside: avoid-column */
-  #authors-addresses address {
-    display: inline-block;
-    break-inside: avoid-column;
+  #authors-addresses {
+    & > section {
+      column-count: 2;
+      column-gap: 20px;
+    }
+    & > section > h2 {
+      column-span: all;
+    }
+    /* hack for break-inside: avoid-column */
+    & address {
+      display: inline-block;
+      break-inside: avoid-column;
+    }
   }
 }
 
 /* Comments */
-.rfcEditorRemove p:first-of-type {
-  font-style: italic;
+.rfcEditorRemove {
+  & p:first-of-type {
+    font-style: italic;
+  }
 }
 .cref {
   background-color: rgba(249, 232, 105, 0.3);
@@ -828,19 +821,21 @@ hr.addr {
 }
 
 @media screen {
-  #toc nav {
-    font-family: var(--font-title);
-    font-weight: 360;
-    & > ul { margin-bottom: 2em; }
-    & ul {
-      margin: 0 0 0 4px;
-      & :is(p, li) {
-        margin: 2px 0;
+  #toc {
+    & nav {
+      font-family: var(--font-title);
+      font-weight: 360;
+      & > ul { margin-bottom: 2em; }
+      & ul {
+        margin: 0 0 0 4px;
+        & :is(p, li) {
+          margin: 2px 0;
+        }
       }
     }
-  }
-  #toc a.toplink {
-    float: right;
+    & a.toplink {
+      float: right;
+    }
   }
 }
 @media not screen {
@@ -861,54 +856,54 @@ hr.addr {
     margin: 0;
     border-bottom: 1px solid #ccc;
     opacity: 0.6;
-  }
-  #toc h2 {
-    margin: 0;
-    padding: 2px 0 2px 6px;
-    padding-right: 1em;
-    font-size: 18px;
-    line-height: 24px;
-    min-width: 190px;
-    text-align: right;
-    background-color: #444;
-    color: white;
-    cursor: pointer;
-    &::before { /* css hamburger */
-      float: right;
-      position: relative;
-      width: 1em;
-      height: 1px;
-      left: -164px;
-      margin: 8px 0 0 0;
-      background: white none repeat scroll 0 0;
-      box-shadow: 0 4px 0 0 white, 0 8px 0 0 white;
-      content: "";
+    & h2 {
+      margin: 0;
+      padding: 2px 0 2px 6px;
+      padding-right: 1em;
+      font-size: 18px;
+      line-height: 24px;
+      min-width: 190px;
+      text-align: right;
+      background-color: #444;
+      color: white;
+      cursor: pointer;
+      &::before { /* css hamburger */
+        float: right;
+        position: relative;
+        width: 1em;
+        height: 1px;
+        left: -164px;
+        margin: 8px 0 0 0;
+        background: white none repeat scroll 0 0;
+        box-shadow: 0 4px 0 0 white, 0 8px 0 0 white;
+        content: "";
+      }
     }
-  }
-  #toc nav {
-    display: none;
-    background-color: var(--background-color);
-    padding: 0.5em 1em 1em;
-    overflow: auto;
-    overscroll-behavior: contain;
-    height: calc(100vh - 48px);
-    border-left: 1px solid #ddd;
-  }
-  #toc.active {
-    opacity: 1;
-    & nav { display: block; }
-  }
-  /* Make the collapsed ToC header render white on gray also when it's a link */
-  #toc h2 a,
-  #toc h2 a:is(:link, :focus, :hover),
-  #toc a.toplink,
-  #toc a.toplink:hover {
-    color: white;
-    background-color: #444;
-    text-decoration: none;
-  }
-  #toc a.toplink {
-    margin: 2px 0.5em 0;
+    & nav {
+      display: none;
+      background-color: var(--background-color);
+      padding: 0.5em 1em 1em;
+      overflow: auto;
+      overscroll-behavior: contain;
+      height: calc(100vh - 48px);
+      border-left: 1px solid #ddd;
+    }
+    &.active {
+      opacity: 1;
+      & nav { display: block; }
+    }
+    /* Make the collapsed ToC header render white on gray also when it's a link */
+    & h2 a,
+    & h2 a:is(:link, :focus, :hover),
+    & a.toplink,
+    & a.toplink:hover {
+      color: white;
+      background-color: #444;
+      text-decoration: none;
+    }
+    & a.toplink {
+      margin: 2px 0.5em 0;
+    }
   }
 }
 
@@ -927,26 +922,26 @@ hr.addr {
     margin: 0;
     padding: 0;
     z-index: 1;
-  }
-  #toc h2 {
-    margin: 0;
-    padding: 0.25em 1em 1em 0;
-  }
-  #toc nav {
-    display: block;
-    height: calc(90vh - 84px);
-    bottom: 0;
-    padding: 0.5em 0 2em;
-    overflow: auto;
-    overscroll-behavior: contain;
-    scrollbar-width: thin;
+    & h2 {
+      margin: 0;
+      padding: 0.25em 1em 1em 0;
+    }
+    & nav {
+      display: block;
+      height: calc(90vh - 84px);
+      bottom: 0;
+      padding: 0.5em 0 2em;
+      overflow: auto;
+      overscroll-behavior: contain;
+      scrollbar-width: thin;
+    }
+    & a.toplink {
+      margin: 8px 0.5em 0;
+    }
   }
   img { /* future proofing */
     max-width: 100%;
     height: auto;
-  }
-  #toc a.toplink {
-    margin: 8px 0.5em 0;
   }
 }
 
@@ -962,12 +957,13 @@ hr.addr {
   #n-copyright-notice {
     border-bottom: none;
   }
-  #toc, #n-introduction {
-    page-break-before: always;
-  }
   #toc {
+    page-break-before: always;
     border-top: none;
     padding-top: 0;
+  }
+  #n-introduction {
+    page-break-before: always;
   }
   figure, pre, .vcard {
     page-break-inside: avoid;
@@ -1029,17 +1025,19 @@ hr.addr {
 }
 
 /* SVG Trick: a prefix match works because only black and white are allowed */
-svg :is([stroke="black"], [stroke^="#000"]) {
-  stroke: var(--text-color);
-}
-svg :is([stroke="white"], [stroke^="#fff"]) {
-  stroke: var(--background-color);
-}
-svg :is([fill="black"], [fill^="#000"], :not([fill])) {
-  fill: var(--text-color);
-}
-svg :is([fill="white"], [fill^="#fff"]) {
-  fill: var(--background-color);
+svg {
+  & :is([stroke="black"], [stroke^="#000"]) {
+    stroke: var(--text-color);
+  }
+  & :is([stroke="white"], [stroke^="#fff"]) {
+    stroke: var(--background-color);
+  }
+  & :is([fill="black"], [fill^="#000"], :not([fill])) {
+    fill: var(--text-color);
+  }
+  & :is([fill="white"], [fill^="#fff"]) {
+    fill: var(--background-color);
+  }
 }
 </style>
 
@@ -1049,11 +1047,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">Agentic AI Use Cases</td>
-<td class="right">May 2026</td>
+<td class="right">June 2026</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Schott, et al.</td>
-<td class="center">Expires 22 November 2026</td>
+<td class="center">Expires 13 December 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1066,12 +1064,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-scrm-aiproto-usecases-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-05-21" class="published">21 May 2026</time>
+<time datetime="2026-06-11" class="published">11 June 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-11-22">22 November 2026</time></dd>
+<dd class="expires"><time datetime="2026-12-13">13 December 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1127,7 +1125,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 22 November 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 13 December 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1299,57 +1297,13 @@ svg :is([fill="white"], [fill^="#fff"]) {
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
-            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-use-cases" class="internal xref">Use Cases</a></p>
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-applying-the-taxonomy-a-wor" class="internal xref">Applying the Taxonomy: A Worked Example</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1">
-                <p id="section-toc.1-1.5.2.1.1"><a href="#section-5.1" class="auto internal xref">5.1</a>.  <a href="#name-deep-search" class="internal xref">Deep Search</a></p>
-<ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1.2.1">
-                    <p id="section-toc.1-1.5.2.1.2.1.1"><a href="#section-5.1.1" class="auto internal xref">5.1.1</a>.  <a href="#name-building-blocks" class="internal xref">Building Blocks</a></p>
-</li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1.2.2">
-                    <p id="section-toc.1-1.5.2.1.2.2.1"><a href="#section-5.1.2" class="auto internal xref">5.1.2</a>.  <a href="#name-why-this-use-case-matters" class="internal xref">Why This Use Case Matters</a></p>
-</li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1.2.3">
-                    <p id="section-toc.1-1.5.2.1.2.3.1"><a href="#section-5.1.3" class="auto internal xref">5.1.3</a>.  <a href="#name-example-open-deep-search-od" class="internal xref">Example: Open Deep Search (ODS)</a></p>
-</li>
-                </ul>
+                <p id="section-toc.1-1.5.2.1.1"><a href="#section-5.1" class="auto internal xref">5.1</a>.  <a href="#name-overview" class="internal xref">Overview</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2">
-                <p id="section-toc.1-1.5.2.2.1"><a href="#section-5.2" class="auto internal xref">5.2</a>.  <a href="#name-hybrid-ai" class="internal xref">Hybrid AI</a></p>
-<ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2.2.1">
-                    <p id="section-toc.1-1.5.2.2.2.1.1"><a href="#section-5.2.1" class="auto internal xref">5.2.1</a>.  <a href="#name-building-blocks-2" class="internal xref">Building Blocks</a></p>
-</li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2.2.2">
-                    <p id="section-toc.1-1.5.2.2.2.2.1"><a href="#section-5.2.2" class="auto internal xref">5.2.2</a>.  <a href="#name-interaction-model" class="internal xref">Interaction Model</a></p>
-</li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2.2.3">
-                    <p id="section-toc.1-1.5.2.2.2.3.1"><a href="#section-5.2.3" class="auto internal xref">5.2.3</a>.  <a href="#name-why-this-use-case-matters-2" class="internal xref">Why This Use Case Matters</a></p>
-</li>
-                </ul>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.3">
-                <p id="section-toc.1-1.5.2.3.1"><a href="#section-5.3" class="auto internal xref">5.3</a>.  <a href="#name-ai-based-troubleshooting-an" class="internal xref">AI-based Troubleshooting and Automation</a></p>
-<ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.3.2.1">
-                    <p id="section-toc.1-1.5.2.3.2.1.1"><a href="#section-5.3.1" class="auto internal xref">5.3.1</a>.  <a href="#name-building-blocks-3" class="internal xref">Building Blocks</a></p>
-</li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.3.2.2">
-                    <p id="section-toc.1-1.5.2.3.2.2.1"><a href="#section-5.3.2" class="auto internal xref">5.3.2</a>.  <a href="#name-why-this-use-case-matters-3" class="internal xref">Why This Use Case Matters</a></p>
-</li>
-                </ul>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.4">
-                <p id="section-toc.1-1.5.2.4.1"><a href="#section-5.4" class="auto internal xref">5.4</a>.  <a href="#name-ai-based-operation-models" class="internal xref">AI-Based Operation Models</a></p>
-<ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.4.2.1">
-                    <p id="section-toc.1-1.5.2.4.2.1.1"><a href="#section-5.4.1" class="auto internal xref">5.4.1</a>.  <a href="#name-agentic-ai-for-improved-use" class="internal xref">Agentic AI for Improved User Experience</a></p>
-</li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.4.2.2">
-                    <p id="section-toc.1-1.5.2.4.2.2.1"><a href="#section-5.4.2" class="auto internal xref">5.4.2</a>.  <a href="#name-voice-based-human-to-agent-" class="internal xref">Voice-Based Human-to-Agent Communication</a></p>
-</li>
-                </ul>
+                <p id="section-toc.1-1.5.2.2.1"><a href="#section-5.2" class="auto internal xref">5.2</a>.  <a href="#name-example-discovery-of-agents" class="internal xref">Example: Discovery of Agents, Workloads, and Named Entities</a></p>
 </li>
             </ul>
 </li>
@@ -1437,7 +1391,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
       </ul>
 </section>
 </div>
-<div id="use-cases-taxonomy">
+<div id="sec-taxonomy">
 <section id="section-4">
       <h2 id="name-use-cases-taxonomy">
 <a href="#section-4" class="section-number selfRef">4. </a><a href="#name-use-cases-taxonomy" class="section-name selfRef">Use Cases Taxonomy</a>
@@ -1808,562 +1762,133 @@ Agentic AI Use Cases Taxonomy
 </div>
 </section>
 </div>
-<div id="use-cases">
+<div id="applying-the-taxonomy-a-worked-example">
 <section id="section-5">
-      <h2 id="name-use-cases">
-<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-use-cases" class="section-name selfRef">Use Cases</a>
+      <h2 id="name-applying-the-taxonomy-a-wor">
+<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-applying-the-taxonomy-a-wor" class="section-name selfRef">Applying the Taxonomy: A Worked Example</a>
       </h2>
-<p id="section-5-1">This section inventories representative Agentic AI use cases to make their protocol-relevant requirements explicit and comparable. The use cases are written to expose concrete needs such as multi-step delegation, agent-to-agent coordination, agent-to-tool interactions, and long-lived and multi-modal exchanges that must operate safely and reliably across administrative domains.  By grounding the discussion in specific scenarios, the document supports gap analysis against emerging agent protocols (e.g., agent-to-agent and agent-to-tool approaches such as A2A and MCP) and clarifies how candidate solutions could be layered over existing IETF protocol substrates and mapped to appropriate IETF working groups, including the necessary security and privacy hooks.<a href="#section-5-1" class="pilcrow">¶</a></p>
-<div id="deep-search">
+<div id="overview">
 <section id="section-5.1">
-        <h3 id="name-deep-search">
-<a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-deep-search" class="section-name selfRef">Deep Search</a>
+        <h3 id="name-overview">
+<a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-overview" class="section-name selfRef">Overview</a>
         </h3>
-<p id="section-5.1-1">Deep Search refers to an <em>agentic</em> information‑seeking workflow in which an AI agent plans, executes, and iteratively refines multi‑step research across heterogeneous sources such as open web, enterprise knowledge bases, APIs, files, and computational tools, among others. Unlike one‑shot retrieval or a single RAG call, Deep Search is <em>long‑horizon</em> and <em>goal‑directed</em>: the agent decomposes a task into sub‑goals, issues searches and crawls, reads and filters evidence, runs auxiliary computations (e.g., code or math), verifies claims, tracks provenance/citations, and synthesizes a final answer---often over minutes or hours rather than milliseconds. This loop is typically implemented as <em>think -&gt; act (tool) -&gt; observe -&gt; reflect -&gt; refine plan</em> until success criteria (e.g., coverage, confidence, cost/time budgets) are met.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
-<div id="building-blocks">
-<section id="section-5.1.1">
-          <h4 id="name-building-blocks">
-<a href="#section-5.1.1" class="section-number selfRef">5.1.1. </a><a href="#name-building-blocks" class="section-name selfRef">Building Blocks</a>
-          </h4>
-<p id="section-5.1.1-1">A Deep Search workflow may generally comprise the components shown in the next Figure:<a href="#section-5.1.1-1" class="pilcrow">¶</a></p>
-<span id="name-deep-search-agentic-workflo"></span><div id="fig-deep-search">
-<figure id="figure-2">
-            <div class="alignCenter art-ascii-art art-text artwork" id="section-5.1.1-2.1">
+<p id="section-5.1-1">The taxonomy defined in <a href="#sec-taxonomy" class="auto internal xref">Section 4</a> is intended to be used as a classification instrument for individual Agentic AI use case documents. Its role is analogous to the ACM Computing Classification System (CCS), which authors use to attach a structured set of descriptors to a research paper so that readers and indexing systems can quickly understand its scope and locate related work <span>[<a href="#ACM-CCS" class="cite xref">ACM-CCS</a>]</span>.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
+<p id="section-5.1-2">The taxonomy can be visualized as a tree: each top-level domain (e.g., Transport, Security and Trust, Discovery) is a primary branch, and each subcategory (e.g., Session Management, Authentication, Agent Discovery) is a leaf. Given an Agentic AI use case, its <em>taxonomy profile</em> is the set of root-to-leaf paths that apply to it. For example, a use case that focuses exclusively on session management and mutual authentication between agents would carry the profile:<a href="#section-5.1-2" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-5.1-3">
 <pre>
-+--------------------------------------------------------------+
-|                        User / Client                         |
-|              (Goal, Query, Constraints)                      |
-+--------------------------------------------------------------+
-                             |
-                             v
-+--------------------------------------------------------------+
-|                 DeepSearch Orchestrator                      |
-|                                                              |
-|  - planning &amp; task decomposition                             |
-|  - agent coordination (A2A)                                  | &lt;----+
-|  - iteration control (re-plan, retry, refine)                |      |
-|  - shared state &amp; memory                                     |      |
-+--------------------------------------------------------------+      |
-                             |                                        |
-                    tasks / messages (A2A)                            |
-                             v                                        |
-+--------------------------------------------------------------+      |
-|  A2A Agent Communication (standardized agent communication)  |      |
-+--------------------------------------------------------------+      |
-                             |                                        |
-                             v                                        |
-+--------------------------------------------------------------+      |
-|                         Agents Mesh                          |      |
-|                                                              |      |
-|  - research / query expansion                                |      |
-|  - retrieval &amp; summarization                                 |      |
-|  - analysis / computation                                    |      |
-|  - validation / fact-checking                                |      |
-|                                                              |      |
-+--------------------------------------------------------------+      |
-                             |                                        |
-                      tool calls (MCP)                                |
-                             v                                        |
-+--------------------------------------------------------------+      |
-|       MCP Tooling Layer (standardized tool interfaces)       |      |
-+--------------------------------------------------------------+      |
-                             |                                        |
-                             v                                        |
-+-----------------------+   +----------------+   +-----------------+  |
-| Web Search &amp; Crawling |   | KB / RAG Index |   |  Python / Tools |  |
-|      (SERP APIs)      |--&gt;| (embed/rerank) |--&gt;| (compute, eval) |  |
-+-----------------------+   +----------------+   +-----------------+  |
-        |                                |                      |     |
-        |                                |                      |     |
-        +------------- evidence &amp; results returned to agents ---+     |
-                             |                                        |
-                             v                                        |
-+--------------------------------------------------------------+      |
-|    DeepSearch Orchestrator: Iterative Improvement Loop       |      |
-|                                                              |      |
-|   Plan -&gt; Act -&gt; Observe -&gt; Refine -&gt; Re-plan                |------+
-|   (query tuning, crawl adjustment, re-ranking, re-eval)      |
-+--------------------------------------------------------------+
-                             |
-                             v
-+--------------------------------------------------------------+
-|                 Final Answer / Output                        |
-|          (synthesis + citations + confidence)                |
-+--------------------------------------------------------------+
+Transport =&gt; Session Management
+Security and Trust =&gt; Authentication
+</pre><a href="#section-5.1-3" class="pilcrow">¶</a>
+</div>
+<p id="section-5.1-4">Authors of individual use case Internet-Drafts are encouraged to include a dedicated taxonomy section that enumerates the applicable paths using this notation. Doing so serves three purposes. First, it makes the protocol scope of the use case explicit and comparable to other use cases in a machine-readable way. Second, it guides gap analysis by mapping each path to the protocol area where standardization work is needed. Third, it facilitates working group ownership decisions by surfacing cross-area dependencies — a use case with paths into both Transport and Security and Trust, for instance, signals that coordination between working groups in those areas will be required.<a href="#section-5.1-4" class="pilcrow">¶</a></p>
+<p id="section-5.1-5">When constructing a taxonomy profile, authors should include all paths that represent substantive protocol-level requirements of the use case, and omit paths that are merely incidental or out of scope for IETF standardization. Authors should also note whether a given path represents a "gap" (no adequate existing IETF mechanism) or a "layering point" (an existing IETF protocol that the agentic use case builds upon).<a href="#section-5.1-5" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="example-discovery-of-agents-workloads-and-named-entities">
+<section id="section-5.2">
+        <h3 id="name-example-discovery-of-agents">
+<a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-example-discovery-of-agents" class="section-name selfRef">Example: Discovery of Agents, Workloads, and Named Entities</a>
+        </h3>
+<p id="section-5.2-1">This section illustrates the taxonomy methodology by applying it to the Internet-Draft "Use Cases for the Discovery of Agents, Workloads, and Named Entities" <span>[<a href="#DAWN-USE-CASES" class="cite xref">DAWN-USE-CASES</a>]</span>, which describes scenarios in which distributed entities — including AI agents, software services, compute workloads, network functions, and application endpoints — must locate and obtain minimum descriptive information about peer entities before communication or selection can begin.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
+<p id="section-5.2-2">The DAWN use cases span four discovery categories: capability-oriented discovery (locating entities that offer a needed function), resource-oriented discovery (locating data sources, compute pools, or inference services), administrative scope extensions (discovery across organizational or tenancy boundaries), and operational discovery (supporting human operators or management systems in locating entities across heterogeneous infrastructure). The draft explicitly excludes registration procedures, authentication, naming governance, candidate selection, and task orchestration from its scope; however, it identifies security and privacy considerations — including authenticity and integrity of discovery metadata, authorization controls on discovery queries, and privacy risks arising from the exposure of requester intent or deployment topology — as important constraints on any protocol that addresses the in-scope scenarios.<a href="#section-5.2-2" class="pilcrow">¶</a></p>
+<p id="section-5.2-3">The taxonomy profile for this use case is as follows.<a href="#section-5.2-3" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-5.2-4">
+          <dt id="section-5.2-4.1"><strong>Transport</strong></dt>
+          <dd style="margin-left: 1.5em" id="section-5.2-4.2">
+            <p id="section-5.2-4.2.1"><strong>Session Management.</strong> Discovery interactions range from simple single-round-trip queries to multi-step lookups that cross administrative boundaries. The discovery protocol must define session semantics sufficient to support these patterns reliably, including error recovery and cancellation for multi-hop discovery flows.<a href="#section-5.2-4.2.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-5.2-4.3"></dt>
+          <dd style="margin-left: 1.5em" id="section-5.2-4.4">
+            <p id="section-5.2-4.4.1"><strong>Communication Modes.</strong> The DAWN use cases require at minimum a synchronous request/response mode for point-in-time capability lookups. Operational discovery scenarios — where management systems monitor dynamic entity populations — additionally motivate asynchronous notification or subscription patterns so that observers receive timely updates when entity availability or metadata changes.<a href="#section-5.2-4.4.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-5.2-4.5"><strong>Discovery</strong></dt>
+          <dd style="margin-left: 1.5em" id="section-5.2-4.6">
+            <p id="section-5.2-4.6.1"><strong>Agent Discovery.</strong> This is the primary focus of the DAWN document. All four discovery categories directly address the problem of locating agents or agent-equivalent entities (workloads, services, network functions) that satisfy a stated requirement. The use cases motivate standardized lookup mechanisms operating at multiple scopes: within an administrative domain, across organizational boundaries, and across heterogeneous multi-vendor infrastructure.<a href="#section-5.2-4.6.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-5.2-4.7"></dt>
+          <dd style="margin-left: 1.5em" id="section-5.2-4.8">
+            <p id="section-5.2-4.8.1"><strong>Capability Advertisement.</strong> Capability-oriented discovery presupposes that entities publish structured descriptions of their offered functions. The DAWN use cases identify the need for a "minimum discoverable information" set — a standardized baseline of metadata that any discoverable entity must expose — to enable consistent matching across heterogeneous registries or lookup services.<a href="#section-5.2-4.8.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-5.2-4.9"></dt>
+          <dd style="margin-left: 1.5em" id="section-5.2-4.10">
+            <p id="section-5.2-4.10.1"><strong>Service Negotiation.</strong> Administrative scope extension scenarios involve discovery queries that cross organizational or tenancy boundaries, which requires agreement on the scope, format, and authorization of discovery requests between domains. While the DAWN draft does not define a negotiation protocol, it motivates one by exposing the need for scoped discovery views and cross-domain metadata exchange.<a href="#section-5.2-4.10.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-5.2-4.11"><strong>Identity</strong></dt>
+          <dd style="margin-left: 1.5em" id="section-5.2-4.12">
+            <p id="section-5.2-4.12.1"><strong>Agent Naming and Addressing.</strong> The DAWN document explicitly addresses named entities and identifies naming as a prerequisite for discovery. A discovery protocol must be able to resolve both human-readable names and machine-oriented identifiers to network-reachable endpoints. The use cases surface the need for naming conventions that are stable enough to support persistent references while remaining resolvable across administrative boundaries.<a href="#section-5.2-4.12.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-5.2-4.13"><strong>Security and Trust</strong></dt>
+          <dd style="margin-left: 1.5em" id="section-5.2-4.14">
+            <p id="section-5.2-4.14.1"><strong>Authentication.</strong> The DAWN draft identifies the authenticity and integrity of discovery metadata as a key security consideration: a requester must be able to verify that the metadata returned by a discovery lookup genuinely describes the entity it purports to describe, and has not been tampered with in transit or at the registry. This motivates cryptographic authentication of discovery responses, distinct from — but complementary to — the authentication of the discovered entity itself.<a href="#section-5.2-4.14.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-5.2-4.15"></dt>
+          <dd style="margin-left: 1.5em" id="section-5.2-4.16">
+            <p id="section-5.2-4.16.1"><strong>Authorization.</strong> Discovery queries may themselves require authorization: not all requesters should be permitted to enumerate all entities within a registry, particularly across organizational boundaries. The DAWN use cases motivate authorization controls on discovery query scope, consistent with the principle that the ability to discover an entity should be governed by policy rather than assumed to be universally open.<a href="#section-5.2-4.16.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-5.2-4.17"></dt>
+          <dd style="margin-left: 1.5em" id="section-5.2-4.18">
+            <p id="section-5.2-4.18.1"><strong>Accountability.</strong> Operational discovery scenarios, in which management systems or AIOps agents enumerate and monitor entities across a production infrastructure, motivate audit logging of discovery queries and responses. Accountability mechanisms allow operators to reconstruct which systems queried which entities at what time, supporting both forensic analysis and compliance with data governance requirements.<a href="#section-5.2-4.18.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-5.2-4.19"><strong>Data and Context Management</strong></dt>
+          <dd style="margin-left: 1.5em" id="section-5.2-4.20">
+            <p id="section-5.2-4.20.1"><strong>Provenance and Citations.</strong> The DAWN draft notes that dynamic properties (such as load, price, and availability) change too rapidly to be reliably embedded in discovery records, and recommends that stable discovery metadata include a pointer to a separate service for current state. This architectural pattern motivates a provenance convention by which discovery responses carry verifiable references to the authoritative source of each metadata field, enabling requesters to distinguish stable identity attributes from volatile operational properties and to verify the freshness of each.<a href="#section-5.2-4.20.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-5.2-4.21"></dt>
+          <dd style="margin-left: 1.5em" id="section-5.2-4.22">
+            <p id="section-5.2-4.22.1"><strong>Data Minimization.</strong> The DAWN draft identifies privacy risks arising from the exposure of requester intent through discovery queries and from the publication of deployment topology or model provenance through entity metadata. These considerations motivate data minimization at both ends: requesters should be able to issue queries without disclosing more about their intent than is necessary, and entities should be able to publish capability descriptors that reveal only the information required for matching without exposing proprietary implementation details. This overlaps with the Selective Disclosure subcategory of the Identity domain.<a href="#section-5.2-4.22.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-5.2-4.23"><strong>Identity</strong></dt>
+          <dd style="margin-left: 1.5em" id="section-5.2-4.24">
+            <p id="section-5.2-4.24.1"><strong>Selective Disclosure.</strong> As noted in the Data and Context Management domain above, the DAWN privacy considerations motivate mechanisms by which discoverable entities can reveal capability attributes selectively — exposing different levels of detail to different requesters based on authorization context — without compromising the cryptographic verifiability of the disclosed information.<a href="#section-5.2-4.24.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+</dl>
+<p id="section-5.2-5">The following figure summarizes the taxonomy profile in compact notation:<a href="#section-5.2-5" class="pilcrow">¶</a></p>
+<span id="name-taxonomy-profile-for-draft-"></span><div id="fig-dawn-taxonomy">
+<figure id="figure-2">
+          <div class="alignLeft art-ascii-art art-text artwork" id="section-5.2-6.1">
+<pre>
+DAWN Use Cases Taxonomy Profile
+|
+|-- Transport
+|   |-- Session Management
+|   |-- Communication Modes
+|
+|-- Discovery
+|   |-- Agent Discovery           [primary focus; gap]
+|   |-- Capability Advertisement  (gap)
+|   |-- Service Negotiation       (gap)
+|
+|-- Identity
+|   |-- Agent Naming and Addressing  (gap)
+|   |-- Selective Disclosure         (gap)
+|
+|-- Security and Trust
+|   |-- Authentication  (gap)
+|   |-- Authorization   (gap)
+|   |-- Accountability  (layering point: existing audit log conventions)
+|
+|-- Data and Context Management
+    |-- Provenance and Citations  (gap)
+    |-- Data Minimization         (gap)
 </pre>
 </div>
 <figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
-<a href="#name-deep-search-agentic-workflo" class="selfRef">Deep Search agentic workflow</a>
-            </figcaption></figure>
+<a href="#name-taxonomy-profile-for-draft-" class="selfRef">Taxonomy profile for draft-kay-dawn-use-cases</a>
+          </figcaption></figure>
 </div>
-<p id="section-5.1.1-3">Each building block in the DeepSearch architecture represents a logical function rather than a specific implementation, and multiple components may be co-located or distributed in practice.<a href="#section-5.1.1-3" class="pilcrow">¶</a></p>
-<div id="user-client">
-<section id="section-5.1.1.1">
-            <h5 id="name-user-client">
-<a href="#section-5.1.1.1" class="section-number selfRef">5.1.1.1. </a><a href="#name-user-client" class="section-name selfRef">User / Client</a>
-            </h5>
-<p id="section-5.1.1.1-1">The <em>User / Client</em> is the entry point to the system. It provides the initial goal or query, along with optional constraints (e.g., scope, freshness, format). The user does not interact directly with tools or agents; all interactions are mediated by the DeepSearch Orchestrator.<a href="#section-5.1.1.1-1" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="deepsearch-orchestrator">
-<section id="section-5.1.1.2">
-            <h5 id="name-deepsearch-orchestrator">
-<a href="#section-5.1.1.2" class="section-number selfRef">5.1.1.2. </a><a href="#name-deepsearch-orchestrator" class="section-name selfRef">DeepSearch Orchestrator</a>
-            </h5>
-<p id="section-5.1.1.2-1">The <em>DeepSearch Orchestrator</em> acts as the control plane of the system. Its responsibilities include:<a href="#section-5.1.1.2-1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-5.1.1.2-2.1">
-                <p id="section-5.1.1.2-2.1.1">Planning and task decomposition of the user’s request.<a href="#section-5.1.1.2-2.1.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="normal" id="section-5.1.1.2-2.2">
-                <p id="section-5.1.1.2-2.2.1">Coordinating agents via Agent-to-Agent (A2A) communication.<a href="#section-5.1.1.2-2.2.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="normal" id="section-5.1.1.2-2.3">
-                <p id="section-5.1.1.2-2.3.1">Managing shared state and memory across iterations.<a href="#section-5.1.1.2-2.3.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="normal" id="section-5.1.1.2-2.4">
-                <p id="section-5.1.1.2-2.4.1">Controlling iterative execution, including retries and refinements.<a href="#section-5.1.1.2-2.4.1" class="pilcrow">¶</a></p>
-</li>
-            </ul>
-<p id="section-5.1.1.2-3">The orchestrator does not perform retrieval or computation directly; instead, it delegates work to agents and manages the overall execution flow.<a href="#section-5.1.1.2-3" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="a2a-agent-communication-bus">
-<section id="section-5.1.1.3">
-            <h5 id="name-a2a-agent-communication-bus">
-<a href="#section-5.1.1.3" class="section-number selfRef">5.1.1.3. </a><a href="#name-a2a-agent-communication-bus" class="section-name selfRef">A2A Agent Communication Bus</a>
-            </h5>
-<p id="section-5.1.1.3-1">The <em>A2A Agent Communication Bus</em> provides a standardized messaging layer that enables agent-to-agent coordination. It supports:<a href="#section-5.1.1.3-1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-5.1.1.3-2.1">
-                <p id="section-5.1.1.3-2.1.1">Task dispatch and response exchange.<a href="#section-5.1.1.3-2.1.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="normal" id="section-5.1.1.3-2.2">
-                <p id="section-5.1.1.3-2.2.1">Collaboration among specialized agents.<a href="#section-5.1.1.3-2.2.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="normal" id="section-5.1.1.3-2.3">
-                <p id="section-5.1.1.3-2.3.1">Decoupling of agent implementations from orchestration logic.<a href="#section-5.1.1.3-2.3.1" class="pilcrow">¶</a></p>
-</li>
-            </ul>
-<p id="section-5.1.1.3-3">This bus allows agents to operate independently while still contributing to a coherent end-to-end workflow.<a href="#section-5.1.1.3-3" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="agents-mesh">
-<section id="section-5.1.1.4">
-            <h5 id="name-agents-mesh">
-<a href="#section-5.1.1.4" class="section-number selfRef">5.1.1.4. </a><a href="#name-agents-mesh" class="section-name selfRef">Agents Mesh</a>
-            </h5>
-<p id="section-5.1.1.4-1">The <em>Agents Mesh</em> block represents a set of specialized, cooperative agents operating over the A2A bus. Typical agent roles include:<a href="#section-5.1.1.4-1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-5.1.1.4-2.1">
-                <p id="section-5.1.1.4-2.1.1">Research and query expansion.<a href="#section-5.1.1.4-2.1.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="normal" id="section-5.1.1.4-2.2">
-                <p id="section-5.1.1.4-2.2.1">Retrieval and summarization.<a href="#section-5.1.1.4-2.2.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="normal" id="section-5.1.1.4-2.3">
-                <p id="section-5.1.1.4-2.3.1">Analysis and computation.<a href="#section-5.1.1.4-2.3.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="normal" id="section-5.1.1.4-2.4">
-                <p id="section-5.1.1.4-2.4.1">Validation and fact-checking.<a href="#section-5.1.1.4-2.4.1" class="pilcrow">¶</a></p>
-</li>
-            </ul>
-<p id="section-5.1.1.4-3">Agents are responsible for invoking tools, interpreting results, and returning structured observations to the orchestrator.<a href="#section-5.1.1.4-3" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="mcp-tooling-layer">
-<section id="section-5.1.1.5">
-            <h5 id="name-mcp-tooling-layer">
-<a href="#section-5.1.1.5" class="section-number selfRef">5.1.1.5. </a><a href="#name-mcp-tooling-layer" class="section-name selfRef">MCP Tooling Layer</a>
-            </h5>
-<p id="section-5.1.1.5-1">The <em>MCP Tooling Layer</em> provides a standardized interface between agents and external tools. It enables:<a href="#section-5.1.1.5-1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-5.1.1.5-2.1">
-                <p id="section-5.1.1.5-2.1.1">Discovery and invocation of tools using a common protocol.<a href="#section-5.1.1.5-2.1.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="normal" id="section-5.1.1.5-2.2">
-                <p id="section-5.1.1.5-2.2.1">Consistent input/output schemas across heterogeneous tools.<a href="#section-5.1.1.5-2.2.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="normal" id="section-5.1.1.5-2.3">
-                <p id="section-5.1.1.5-2.3.1">Isolation of agent logic from tool-specific details.<a href="#section-5.1.1.5-2.3.1" class="pilcrow">¶</a></p>
-</li>
-            </ul>
-<p id="section-5.1.1.5-3">MCP acts as an abstraction boundary that simplifies integration and evolution of external capabilities.<a href="#section-5.1.1.5-3" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="web-search-crawling">
-<section id="section-5.1.1.6">
-            <h5 id="name-web-search-crawling">
-<a href="#section-5.1.1.6" class="section-number selfRef">5.1.1.6. </a><a href="#name-web-search-crawling" class="section-name selfRef">Web Search &amp; Crawling</a>
-            </h5>
-<p id="section-5.1.1.6-1">The <em>Web Search &amp; Crawling</em> component combines content discovery and acquisition. It typically includes:<a href="#section-5.1.1.6-1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-5.1.1.6-2.1">
-                <p id="section-5.1.1.6-2.1.1">Search engine or SERP APIs for identifying relevant sources.<a href="#section-5.1.1.6-2.1.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="normal" id="section-5.1.1.6-2.2">
-                <p id="section-5.1.1.6-2.2.1">Focused crawling or fetching to retrieve selected content.<a href="#section-5.1.1.6-2.2.1" class="pilcrow">¶</a></p>
-</li>
-            </ul>
-<p id="section-5.1.1.6-3">This component supplies raw external data that can be further processed and indexed.<a href="#section-5.1.1.6-3" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="knowledge-base-kb-retrieval-augmented-generation-rag-index">
-<section id="section-5.1.1.7">
-            <h5 id="name-knowledge-base-kb-retrieval">
-<a href="#section-5.1.1.7" class="section-number selfRef">5.1.1.7. </a><a href="#name-knowledge-base-kb-retrieval" class="section-name selfRef">Knowledge Base (KB) / Retrieval Augmented Generation (RAG) Index</a>
-            </h5>
-<p id="section-5.1.1.7-1">The <em>KB / RAG Index</em> component manages knowledge representation and retrieval. Its responsibilities include:<a href="#section-5.1.1.7-1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-5.1.1.7-2.1">
-                <p id="section-5.1.1.7-2.1.1">Embedding and indexing retrieved content.<a href="#section-5.1.1.7-2.1.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="normal" id="section-5.1.1.7-2.2">
-                <p id="section-5.1.1.7-2.2.1">Ranking or re-ranking results based on relevance.<a href="#section-5.1.1.7-2.2.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="normal" id="section-5.1.1.7-2.3">
-                <p id="section-5.1.1.7-2.3.1">Supplying context to agents for retrieval-augmented generation (RAG).<a href="#section-5.1.1.7-2.3.1" class="pilcrow">¶</a></p>
-</li>
-            </ul>
-<p id="section-5.1.1.7-3">This block provides structured, queryable knowledge derived from external sources.<a href="#section-5.1.1.7-3" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="python-tools">
-<section id="section-5.1.1.8">
-            <h5 id="name-python-tools">
-<a href="#section-5.1.1.8" class="section-number selfRef">5.1.1.8. </a><a href="#name-python-tools" class="section-name selfRef">Python / Tools</a>
-            </h5>
-<p id="section-5.1.1.8-1">The <em>Python / Tools</em> component represents general-purpose computation and evaluation capabilities. Examples include:<a href="#section-5.1.1.8-1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-5.1.1.8-2.1">
-                <p id="section-5.1.1.8-2.1.1">Data processing and transformation.<a href="#section-5.1.1.8-2.1.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="normal" id="section-5.1.1.8-2.2">
-                <p id="section-5.1.1.8-2.2.1">Numerical analysis or simulations.<a href="#section-5.1.1.8-2.2.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="normal" id="section-5.1.1.8-2.3">
-                <p id="section-5.1.1.8-2.3.1">Quality evaluation, scoring, or consistency checks.<a href="#section-5.1.1.8-2.3.1" class="pilcrow">¶</a></p>
-</li>
-            </ul>
-<p id="section-5.1.1.8-3">These tools are typically invoked by analysis-oriented agents via the MCP layer.<a href="#section-5.1.1.8-3" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="iterative-improvement-loop">
-<section id="section-5.1.1.9">
-            <h5 id="name-iterative-improvement-loop">
-<a href="#section-5.1.1.9" class="section-number selfRef">5.1.1.9. </a><a href="#name-iterative-improvement-loop" class="section-name selfRef">Iterative Improvement Loop</a>
-            </h5>
-<p id="section-5.1.1.9-1">The <em>Iterative Improvement Loop</em> captures the system’s ability to refine results over multiple passes and is also implemeted by the DeepSearch Orchestrator. Conceptually, it follows a cycle of:<a href="#section-5.1.1.9-1" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-5.1.1.9-2">
-<pre>
-Plan -&gt; Act -&gt; Observe -&gt; Refine -&gt; Re-plan
-</pre><a href="#section-5.1.1.9-2" class="pilcrow">¶</a>
-</div>
-<p id="section-5.1.1.9-3">Observations and intermediate results are fed back into the orchestrator, which may adjust plans, agent assignments, or tool usage before producing the final output.<a href="#section-5.1.1.9-3" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="final-answer-output">
-<section id="section-5.1.1.10">
-            <h5 id="name-final-answer-output">
-<a href="#section-5.1.1.10" class="section-number selfRef">5.1.1.10. </a><a href="#name-final-answer-output" class="section-name selfRef">Final Answer / Output</a>
-            </h5>
-<p id="section-5.1.1.10-1">The <em>Final Answer / Output</em> is the synthesized result returned to the user. It may include:<a href="#section-5.1.1.10-1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-5.1.1.10-2.1">
-                <p id="section-5.1.1.10-2.1.1">A consolidated response or report.<a href="#section-5.1.1.10-2.1.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="normal" id="section-5.1.1.10-2.2">
-                <p id="section-5.1.1.10-2.2.1">References or citations to supporting evidence.<a href="#section-5.1.1.10-2.2.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="normal" id="section-5.1.1.10-2.3">
-                <p id="section-5.1.1.10-2.3.1">Confidence indicators or stated limitations.<a href="#section-5.1.1.10-2.3.1" class="pilcrow">¶</a></p>
-</li>
-            </ul>
-<p id="section-5.1.1.10-3">This output reflects the outcome of one or more iterative refinement cycles.<a href="#section-5.1.1.10-3" class="pilcrow">¶</a></p>
-</section>
-</div>
-</section>
-</div>
-<div id="why-this-use-case-matters">
-<section id="section-5.1.2">
-          <h4 id="name-why-this-use-case-matters">
-<a href="#section-5.1.2" class="section-number selfRef">5.1.2. </a><a href="#name-why-this-use-case-matters" class="section-name selfRef">Why This Use Case Matters</a>
-          </h4>
-<p id="section-5.1.2-1">Deep Search is inherently <em>compositional</em>: it coordinates <em>multiple</em> agents and <em>many</em> tools over extended time. Without standard protocols, systems devolve into brittle, one‑off integrations that are hard to test, secure, or reuse. Two complementary interoperability layers in the DeepSearch are especially relevant:<a href="#section-5.1.2-1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-5.1.2-2.1">
-              <p id="section-5.1.2-2.1.1"><strong>Agent‑to‑Tool standardization.</strong>
-The <em>Model Context Protocol (MCP)</em> defines a standardized mechanism by which agents and hosts can discover, describe, and invoke tools, resources, and prompts using JSON-RPC over multiple transports (e.g., stdio, HTTP with Server-Sent Events, and WebSocket). MCP enables portable and reusable tool catalogs (including search, crawling, retrieval-augmented generation (RAG), and general-purpose computation) with consistent schemas, capability negotiation, progress reporting, cancellation semantics, and explicit security prompts and user consent. Further details are specified in the MCP specification and related project documentation <span>[<a href="#MCP" class="cite xref">MCP</a>]</span><span>[<a href="#MCP-GITHUB" class="cite xref">MCP-GITHUB</a>]</span>.<a href="#section-5.1.2-2.1.1" class="pilcrow">¶</a></p>
-</li>
-            <li class="normal" id="section-5.1.2-2.2">
-              <p id="section-5.1.2-2.2.1"><strong>A2A Agent Communication Bus.</strong>
-The <em>Agent2Agent (A2A)</em> protocol focuses on standardized inter-agent collaboration. It defines mechanisms for agent capability discovery (e.g., Agent Cards), task lifecycle management (creation, cancellation, and status reporting), and streaming updates for long-running operations. A2A is designed to support opaque collaboration among agents while avoiding the need to disclose proprietary internal implementations. An overview of the protocol, along with its specification and design rationale, is available from the A2A project documentation <span>[<a href="#A2A" class="cite xref">A2A</a>]</span><span>[<a href="#A2A-GITHUB" class="cite xref">A2A-GITHUB</a>]</span>.<a href="#section-5.1.2-2.2.1" class="pilcrow">¶</a></p>
-</li>
-          </ul>
-<p id="section-5.1.2-3"><strong>Implications for Deep Search.</strong> Using A2A and MCP together lets implementers compose portable Deep Search stacks:<a href="#section-5.1.2-3" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-5.1.2-4.1">
-              <p id="section-5.1.2-4.1.1">Tools like crawlers, scholarly search, RAG, and Python are exposed via <strong>MCP</strong> with typed inputs/outputs and consent flows.<a href="#section-5.1.2-4.1.1" class="pilcrow">¶</a></p>
-</li>
-            <li class="normal" id="section-5.1.2-4.2">
-              <p id="section-5.1.2-4.2.1">Long‑running research tasks, delegation to specialized researcher/verifier agents, background execution, progress streaming, and result handoff occur via <strong>A2A</strong>.<a href="#section-5.1.2-4.2.1" class="pilcrow">¶</a></p>
-</li>
-            <li class="normal" id="section-5.1.2-4.3">
-              <p id="section-5.1.2-4.3.1">Provenance (URIs, hashes, timestamps) and citation schemas can also be standardized at the protocol boundary to enable verifiable research traces across vendors.<a href="#section-5.1.2-4.3.1" class="pilcrow">¶</a></p>
-</li>
-            <li class="normal" id="section-5.1.2-4.4">
-              <p id="section-5.1.2-4.4.1">Enterprise requirements (authn/z), quotas, observability/tracing, policy enforcement (robots/copyright), and safety reviews—become portable rather than per‑integration glue.<a href="#section-5.1.2-4.4.1" class="pilcrow">¶</a></p>
-</li>
-          </ul>
-</section>
-</div>
-<div id="example-open-deep-search-ods">
-<section id="section-5.1.3">
-          <h4 id="name-example-open-deep-search-od">
-<a href="#section-5.1.3" class="section-number selfRef">5.1.3. </a><a href="#name-example-open-deep-search-od" class="section-name selfRef">Example: Open Deep Search (ODS)</a>
-          </h4>
-<p id="section-5.1.3-1">Open implementations illustrate agentic architectures for Deep Search.<a href="#section-5.1.3-1" class="pilcrow">¶</a></p>
-<p id="section-5.1.3-2"><strong>Open Deep Search (ODS)</strong> is a modular, open-source framework that augments a base large language model with a dedicated Reasoning Agent and an Open Search tool. The framework is designed to support extensible, agentic search workflows in which an agent iteratively plans, invokes search tools, and synthesizes results to answer complex queries. Further details are available in the ODS publication and accompanying reference implementation <span>[<a href="#ODS" class="cite xref">ODS</a>]</span><span>[<a href="#ODS-GITHUB" class="cite xref">ODS-GITHUB</a>]</span>.<a href="#section-5.1.3-2" class="pilcrow">¶</a></p>
-<p id="section-5.1.3-3">ODS exemplifies the building blocks described earlier in this document and is consistent with the proposed interoperability layering, using standardized tool invocation for search and retrieval and agent-centric coordination to manage planning, execution, and refinement.<a href="#section-5.1.3-3" class="pilcrow">¶</a></p>
-</section>
-</div>
-</section>
-</div>
-<div id="hybrid-ai">
-<section id="section-5.2">
-        <h3 id="name-hybrid-ai">
-<a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-hybrid-ai" class="section-name selfRef">Hybrid AI</a>
-        </h3>
-<p id="section-5.2-1">Hybrid AI generally refers to an <em>edge–cloud cooperative</em> inference workflow in which two or more models collaborate to solve a task: (1) a <strong>smaller on‑device model</strong> (typically a few billion parameters) that prioritizes low latency, lower cost, and privacy; and (2) a <strong>larger cloud model</strong> (hundreds of billions to trillion‑scale parameters) that offers higher capability and broader knowledge. The two models coordinate over an agent‑to‑agent channel and may invoke tools locally or remotely as needed. Unlike single‑endpoint inference, Hybrid AI is <em>adaptive and budget‑aware</em>: the on‑device model handles as much work as possible locally (classification, summarization, intent detection, light reasoning), and escalates to the cloud model when additional capability is required (multi‑hop reasoning, long‑context synthesis, domain expertise). The models can exchange plans, partial results, and constraints over <span>[<a href="#A2A" class="cite xref">A2A</a>]</span>, and both sides can discover and invoke tools via <span>[<a href="#MCP" class="cite xref">MCP</a>]</span>.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
-<div id="building-blocks-1">
-<section id="section-5.2.1">
-          <h4 id="name-building-blocks-2">
-<a href="#section-5.2.1" class="section-number selfRef">5.2.1. </a><a href="#name-building-blocks-2" class="section-name selfRef">Building Blocks</a>
-          </h4>
-<p id="section-5.2.1-1">A Hybrid AI workflow may generally comprise the components shown in the next Figure:<a href="#section-5.2.1-1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-5.2.1-2.1">
-              <p id="section-5.2.1-2.1.1"><strong>On‑device Model (Edge).</strong>
-A compact LLM or task‑specific model (a few billion parameters) running on user hardware (e.g., phone, laptop). Advantages include: low latency for interactive turns, reduced cost, offline operation, and improved privacy by default (data locality). Typical functions: intent parsing, entity extraction, local retrieval, preliminary analysis, redaction/summarization prior to escalation.<a href="#section-5.2.1-2.1.1" class="pilcrow">¶</a></p>
-</li>
-            <li class="normal" id="section-5.2.1-2.2">
-              <p id="section-5.2.1-2.2.1"><strong>Cloud Model (Hosted).</strong>
-A large, higher‑capability LLM (hundreds of billions to ~trillion parameters) with stronger reasoning, knowledge coverage, tool‑use proficiency, and longer context windows. Typical functions: complex synthesis, multi‑step reasoning, broad web/KG retrieval, code execution, and advanced evaluation.<a href="#section-5.2.1-2.2.1" class="pilcrow">¶</a></p>
-</li>
-            <li class="normal" id="section-5.2.1-2.3">
-              <p id="section-5.2.1-2.3.1"><strong>A2A Inter‑Model Coordination.</strong>
-The edge and cloud models communicate via an <strong>Agent‑to‑Agent</strong> channel to exchange <strong>capabilities</strong>, <strong>cost/latency budgets</strong>, <strong>privacy constraints</strong>, <strong>task state</strong>, and <strong>partial artifacts</strong>. Common patterns include <em>negotiate‑and‑delegate</em>, <em>ask‑for‑help with evidence</em>, <em>propose/accept plan updates</em>, and <em>critique‑revise</em> cycles <span>[<a href="#A2A" class="cite xref">A2A</a>]</span>.<a href="#section-5.2.1-2.3.1" class="pilcrow">¶</a></p>
-</li>
-            <li class="normal" id="section-5.2.1-2.4">
-              <p id="section-5.2.1-2.4.1"><strong>MCP Tooling (Edge and Cloud).</strong>
-Both models use the <strong>Model Context Protocol</strong> to discover and invoke tools with consistent schemas (e.g., local sensors/files, calculators, vector indexes on edge; search/crawling, KB/RAG, Python/services in cloud). MCP enables capability discovery, streaming/progress, cancellation, and explicit consent prompts across transports <span>[<a href="#MCP" class="cite xref">MCP</a>]</span>.<a href="#section-5.2.1-2.4.1" class="pilcrow">¶</a></p>
-</li>
-            <li class="normal" id="section-5.2.1-2.5">
-              <p id="section-5.2.1-2.5.1"><strong>Policy, Budget, and Privacy Controls.</strong>
-Guardrails and policies that encode user/enterprise constraints (e.g., do not send raw PII to cloud; enforce token/time budgets; require consent for specific tools). The edge model may redact or summarize data before escalation; both sides log provenance and decisions for auditability.<a href="#section-5.2.1-2.5.1" class="pilcrow">¶</a></p>
-</li>
-            <li class="normal" id="section-5.2.1-2.6">
-              <p id="section-5.2.1-2.6.1"><strong>Shared Task State and Provenance.</strong>
-A compact state (goals, sub‑tasks, citations, hashes, timestamps) that both models can read/update to enable reproducibility, debugging, and verifiable traces.<a href="#section-5.2.1-2.6.1" class="pilcrow">¶</a></p>
-</li>
-          </ul>
-<div class="alignLeft art-ascii-art art-text artwork" id="section-5.2.1-3">
-<pre>
-+--------------------------------------------------------------+
-|                        User / Client                         |
-|              (Goal, Query, Constraints)                      |
-+--------------------------------------------------------------+
-                             |
-                             v
-+--------------------------------------------------------------+
-|                 On-Device Model (Edge)                       |
-|  - few-B params; low latency, privacy by default             |
-|  - local reasoning, redaction/summarization                  |
-|  - local tools via MCP (sensors, files, crypto)              |
-+--------------------------------------------------------------+
-         |                           \
-         | local MCP tools            \ when escalation is needed
-         v                             \
-+----------------------+                \
-| Edge MCP Tools       |                 \
-+----------------------+                  v
-                                   +----------------------------------+
-                                   |   A2A Session (Edge &lt;-&gt; Cloud)   |
-                                   |   - capability/budget exchange   |
-                                   |   - task handoff &amp; updates       |
-                                   +----------------------------------+
-                                                |
-                                                v
-+--------------------------------------------------------------+
-|                    Cloud Model (Hosted)                      |
-|  - 100B–1T+ params; higher capability &amp; breadth              |
-|  - complex synthesis, long-context reasoning                 |
-|  - cloud tools via MCP (search, KB/RAG, Python)              |
-+--------------------------------------------------------------+
-                             |
-                     cloud MCP tool calls
-                             v
-+----------------------+   +------------------+   +------------------+
-| Web Search &amp; Crawl   |--&gt;| KB / RAG Index   |--&gt;| Python / Services|
-+----------------------+   +------------------+   +------------------+
-                             ^
-                             |
-                 results/evidence via A2A to edge/cloud
-                             |
-                             v
-+--------------------------------------------------------------+
-|                 Final Answer / Output                        |
-|   (synthesis + citations + privacy/consent notes)            |
-+--------------------------------------------------------------+
-</pre><a href="#section-5.2.1-3" class="pilcrow">¶</a>
-</div>
-<p id="section-5.2.1-4">Each building block in the Hybrid AI architecture represents a logical function rather than a specific implementation, and components may be co‑located or distributed in practice.<a href="#section-5.2.1-4" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="interaction-model">
-<section id="section-5.2.2">
-          <h4 id="name-interaction-model">
-<a href="#section-5.2.2" class="section-number selfRef">5.2.2. </a><a href="#name-interaction-model" class="section-name selfRef">Interaction Model</a>
-          </h4>
-<p id="section-5.2.2-1">A typical Hybrid AI session proceeds as follows:<a href="#section-5.2.2-1" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-5.2.2-2">
-<li id="section-5.2.2-2.1">
-              <p id="section-5.2.2-2.1.1"><strong>Local First.</strong> The on‑device model interprets the user goal, applies local tools (e.g., retrieve snippets, parse files), and attempts a low‑cost solution within configured budgets.<a href="#section-5.2.2-2.1.1" class="pilcrow">¶</a></p>
-</li>
-            <li id="section-5.2.2-2.2">
-              <p id="section-5.2.2-2.2.1"><strong>Escalate with Minimization.</strong> If the local model estimates insufficient capability (e.g., confidence below threshold, missing evidence), it <strong>redacts/summarizes</strong> sensitive data and <strong>escalates</strong> the task—along with compact evidence and constraints—over <strong><span>[<a href="#A2A" class="cite xref">A2A</a>]</span></strong>.<a href="#section-5.2.2-2.2.1" class="pilcrow">¶</a></p>
-</li>
-            <li id="section-5.2.2-2.3">
-              <p id="section-5.2.2-2.3.1"><strong>Cloud Reasoning + Tools.</strong> The cloud model performs deeper reasoning and may invoke <strong><span>[<a href="#MCP" class="cite xref">MCP</a>]</span></strong> tools (web search/crawl, KB/RAG, Python) to gather evidence and compute results.<a href="#section-5.2.2-2.3.1" class="pilcrow">¶</a></p>
-</li>
-            <li id="section-5.2.2-2.4">
-              <p id="section-5.2.2-2.4.1"><strong>Refine &amp; Return.</strong> Intermediate artifacts and rationales flow back over <strong><span>[<a href="#A2A" class="cite xref">A2A</a>]</span></strong>. The edge model may integrate results, perform final checks, and produce the user‑facing output.<a href="#section-5.2.2-2.4.1" class="pilcrow">¶</a></p>
-</li>
-            <li id="section-5.2.2-2.5">
-              <p id="section-5.2.2-2.5.1"><strong>Iterate as Needed.</strong> The models repeat plan‑act‑observe‑refine until success criteria (quality, coverage, cost/time budget) are met.<a href="#section-5.2.2-2.5.1" class="pilcrow">¶</a></p>
-</li>
-          </ol>
-</section>
-</div>
-<div id="why-this-use-case-matters-1">
-<section id="section-5.2.3">
-          <h4 id="name-why-this-use-case-matters-2">
-<a href="#section-5.2.3" class="section-number selfRef">5.2.3. </a><a href="#name-why-this-use-case-matters-2" class="section-name selfRef">Why This Use Case Matters</a>
-          </h4>
-<p id="section-5.2.3-1">Hybrid AI is inherently <em>trade‑off aware</em>: it balances <strong>privacy</strong>, <strong>latency</strong>, and <strong>cost</strong> at the edge with <strong>capability</strong> and <strong>breadth</strong> in the cloud. Without standard protocols, inter‑model negotiations and tool interactions become bespoke and hard to audit. Two complementary interoperability layers are especially relevant:<a href="#section-5.2.3-1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-5.2.3-2.1">
-              <p id="section-5.2.3-2.1.1"><strong>Inter‑Model Coordination (A2A).</strong>
-A2A provides a structured channel for <strong>capability advertisement</strong>, <strong>budget negotiation</strong>, <strong>task handoffs</strong>, <strong>progress updates</strong>, and <strong>critique/revision</strong> between edge and cloud models. This enables portable escalation policies (e.g., “do not send raw PII”, “cap tokens/time per turn”, “require human consent for external web calls”) and consistent recovery behaviors across vendors <span>[<a href="#A2A" class="cite xref">A2A</a>]</span>.<a href="#section-5.2.3-2.1.1" class="pilcrow">¶</a></p>
-</li>
-            <li class="normal" id="section-5.2.3-2.2">
-              <p id="section-5.2.3-2.2.1"><strong>Tool Invocation (MCP).</strong>
-MCP standardizes tool discovery and invocation across both environments (edge and cloud), supporting consistent schemas, streaming/progress, cancellation, and explicit consent prompts. This allows implementers to swap local or remote tools—search, crawling, KB/RAG, Python/services—without rewriting agent logic or weakening privacy controls <span>[<a href="#MCP" class="cite xref">MCP</a>]</span>.<a href="#section-5.2.3-2.2.1" class="pilcrow">¶</a></p>
-</li>
-          </ul>
-<p id="section-5.2.3-3"><strong>Implications for Hybrid AI.</strong> Using standardized protocols lets implementers compose portable edge–cloud stacks:<a href="#section-5.2.3-3" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-5.2.3-4.1">
-              <p id="section-5.2.3-4.1.1">Edge‑first operation with <strong>escalation</strong> only when needed, guided by budgets and confidence.<a href="#section-5.2.3-4.1.1" class="pilcrow">¶</a></p>
-</li>
-            <li class="normal" id="section-5.2.3-4.2">
-              <p id="section-5.2.3-4.2.1"><strong>Data minimization</strong> (local redaction/summarization) and <strong>consent</strong> workflows at protocol boundaries.<a href="#section-5.2.3-4.2.1" class="pilcrow">¶</a></p>
-</li>
-            <li class="normal" id="section-5.2.3-4.3">
-              <p id="section-5.2.3-4.3.1">Consistent <strong>provenance</strong> (URIs, hashes, timestamps) and <strong>observability</strong> across edge and cloud for verifiable traces.<a href="#section-5.2.3-4.3.1" class="pilcrow">¶</a></p>
-</li>
-            <li class="normal" id="section-5.2.3-4.4">
-              <p id="section-5.2.3-4.4.1">Seamless <strong>tool portability</strong> (local/remote) and <strong>policy enforcement</strong> that travel with the task rather than the deployment.<a href="#section-5.2.3-4.4.1" class="pilcrow">¶</a></p>
-</li>
-          </ul>
-</section>
-</div>
-</section>
-</div>
-<div id="ai-based-troubleshooting-and-automation">
-<section id="section-5.3">
-        <h3 id="name-ai-based-troubleshooting-an">
-<a href="#section-5.3" class="section-number selfRef">5.3. </a><a href="#name-ai-based-troubleshooting-an" class="section-name selfRef">AI-based Troubleshooting and Automation</a>
-        </h3>
-<p id="section-5.3-1">Telecom networks have significantly increased in scale, complexity, and heterogeneity. The interplay of technologies such as Software-Defined Networking (SDN), virtualization, cloud-native architectures, network slicing, and 5G/6G systems has made infrastructures highly dynamic. While these innovations provide flexibility and service agility, they also introduce substantial operational challenges, particularly in fault detection, diagnosis, and resolution.<a href="#section-5.3-1" class="pilcrow">¶</a></p>
-<p id="section-5.3-2">Traditional troubleshooting methods, based on rule engines, static thresholds, correlation mechanisms, and manual expertise, struggle to process high-dimensional telemetry, multi-layer dependencies, and rapidly evolving conditions. Consequently, mean time to detect (MTTD) and mean time to repair (MTTR) may increase, impacting service reliability and user experience.<a href="#section-5.3-2" class="pilcrow">¶</a></p>
-<p id="section-5.3-3">Artificial Intelligence (AI) and Machine Learning (ML) offer new capabilities to enhance troubleshooting. AI-driven approaches apply data-driven models and automated reasoning to detect anomalies, determine root causes, predict failures, and recommend or execute corrective actions, leveraging telemetry, logs, configuration, topology, and historical data.<a href="#section-5.3-3" class="pilcrow">¶</a></p>
-<p id="section-5.3-4">Beyond troubleshooting, it is essential to further exploit network and service automation to enable coordinated, policy-based actions across multi-technology (e.g., RAN, IP, optical, virtualized), multi-layer, and dynamic environments. As degradations and faults often span multiple devices, domains, and layers, effective handling requires intelligent and increasingly autonomous mechanisms, ranging from proactive service assurance to automated fault-triggered workflows.<a href="#section-5.3-4" class="pilcrow">¶</a></p>
-<p id="section-5.3-5">This use case envisions a multi-agent AI framework that enhances network and service automation. Agents perform diagnosis and root cause analysis (RCA), while also supporting anomaly prediction, intent-based protection, and policy-driven remediation. The proposed multi-agent interworking autonomously maintains the network in an optimal operational state by correlating heterogeneous data sources, performing collaborative reasoning, and interacting with network elements and operators through standardized protocols, APIs, and natural language interfaces.<a href="#section-5.3-5" class="pilcrow">¶</a></p>
-<p id="section-5.3-6">AI agents form a distributed and scalable ecosystem leveraging advanced AI/ML, including generative AI (Gen-AI), combined with domain expertise to accelerate RCA, assess impact, and propose corrective actions. Each agent encapsulates capabilities such as data retrieval, hypothesis generation, validation, causal analysis, and action recommendation. Designed as composable and interoperable building blocks, agents operate across diverse domains (e.g., RAN, Core, IP, Optical, and virtualized infrastructures), while supporting lifecycle management, knowledge bases, and standardized interfaces.<a href="#section-5.3-6" class="pilcrow">¶</a></p>
-<div id="building-blocks-2">
-<section id="section-5.3.1">
-          <h4 id="name-building-blocks-3">
-<a href="#section-5.3.1" class="section-number selfRef">5.3.1. </a><a href="#name-building-blocks-3" class="section-name selfRef">Building Blocks</a>
-          </h4>
-<p id="section-5.3.1-1">The use case relies on decentralized multi-agent coordination, where agents exchange structured, context-enriched information to enable dynamic activation and collaborative troubleshooting workflows. A resource-aware orchestration layer manages agent deployment, scaling, and optimization across the network–cloud continuum. Policy frameworks ensure security, compliance, trustworthiness, and explainability, supporting resilient AI-driven network operations.<a href="#section-5.3.1-1" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="why-this-use-case-matters-2">
-<section id="section-5.3.2">
-          <h4 id="name-why-this-use-case-matters-3">
-<a href="#section-5.3.2" class="section-number selfRef">5.3.2. </a><a href="#name-why-this-use-case-matters-3" class="section-name selfRef">Why This Use Case Matters</a>
-          </h4>
-<p id="section-5.3.2-1">This use case highlights the need for interoperable, protocol-based integration of AI-driven troubleshooting and automation components within heterogeneous, multi-vendor environments. Telecom networks are inherently composed of equipment and control systems from different providers, spanning multiple administrative and technological domains. A multi-agent AI framework operating across such environments requires standardized mechanisms for data modeling, telemetry export, capability advertisement, and control interfaces. In particular, consistent information models (e.g., YANG-based models), secure transport protocols, and well-defined APIs are needed to ensure that AI agents can reliably discover, interpret, and act upon network state information across vendor boundaries.<a href="#section-5.3.2-1" class="pilcrow">¶</a></p>
-<p id="section-5.3.2-2">Service discovery and capability negotiation are also critical. AI agents must be able to dynamically identify available data sources, peer agents, orchestration functions, and control points, as well as understand their supported features and policy constraints. This implies the need for standardized discovery procedures, metadata descriptions, and context exchange formats that enable composability and coordinated workflows in decentralized environments. Without such interoperability mechanisms, multi-agent troubleshooting systems risk becoming vertically integrated and operationally siloed.<a href="#section-5.3.2-2" class="pilcrow">¶</a></p>
-<p id="section-5.3.2-3">Furthermore, governance, security, and trust frameworks are fundamental considerations. AI-driven agents capable of recommending or executing remediation actions introduce new requirements for authentication, authorization, accountability, and auditability. Secure communication channels, role-based access control, policy enforcement, and explainability mechanisms are necessary to prevent misuse, contain faults, and ensure compliance with operational and regulatory constraints.<a href="#section-5.3.2-3" class="pilcrow">¶</a></p>
-</section>
-</div>
-</section>
-</div>
-<div id="ai-based-operation-models">
-<section id="section-5.4">
-        <h3 id="name-ai-based-operation-models">
-<a href="#section-5.4" class="section-number selfRef">5.4. </a><a href="#name-ai-based-operation-models" class="section-name selfRef">AI-Based Operation Models</a>
-        </h3>
-<div id="agentic-ai-for-improved-user-experience">
-<section id="section-5.4.1">
-          <h4 id="name-agentic-ai-for-improved-use">
-<a href="#section-5.4.1" class="section-number selfRef">5.4.1. </a><a href="#name-agentic-ai-for-improved-use" class="section-name selfRef">Agentic AI for Improved User Experience</a>
-          </h4>
-<p id="section-5.4.1-1">AI agents have the potential to enhance future user experience by being integrated—individually or as collaborating groups—into telecom networks to deliver user-facing services. Such services may include autonomous multi-level Internet/Intranet search, coordination of calendar and email tasks, and execution of multi-step workflows involving multiple agents, as well as pre-built domain agents (e.g., HR, procurement, finance). This shift can fundamentally change enterprise operating models: agents can support decision-making and, where authorized, act on behalf of employees or the organization. In multi-agent scenarios, agents from different vendors communicate over networks and must interoperate. These interactions require coordinated communication flows and motivate a standardized agent communication protocol and framework. Given the need to comply with regulatory requirements (beyond network regulation), an open, standardized approach is preferable to proprietary implementations. Interoperability across operators and vendors implies an open ecosystem; therefore, a standardized AI agent protocol is required.<a href="#section-5.4.1-1" class="pilcrow">¶</a></p>
-<div id="building-blocks-3">
-<section id="section-5.4.1.1">
-            <h5 id="name-building-blocks-4">
-<a href="#section-5.4.1.1" class="section-number selfRef">5.4.1.1. </a><a href="#name-building-blocks-4" class="section-name selfRef">Building Blocks</a>
-            </h5>
-<p id="section-5.4.1.1-1">TODO<a href="#section-5.4.1.1-1" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="why-this-use-case-matters-3">
-<section id="section-5.4.1.2">
-            <h5 id="name-why-this-use-case-matters-4">
-<a href="#section-5.4.1.2" class="section-number selfRef">5.4.1.2. </a><a href="#name-why-this-use-case-matters-4" class="section-name selfRef">Why this Use Case Matters</a>
-            </h5>
-<p id="section-5.4.1.2-1">TODO<a href="#section-5.4.1.2-1" class="pilcrow">¶</a></p>
-</section>
-</div>
-</section>
-</div>
-<div id="voice-based-human-to-agent-communication">
-<section id="section-5.4.2">
-          <h4 id="name-voice-based-human-to-agent-">
-<a href="#section-5.4.2" class="section-number selfRef">5.4.2. </a><a href="#name-voice-based-human-to-agent-" class="section-name selfRef">Voice-Based Human-to-Agent Communication</a>
-          </h4>
-<p id="section-5.4.2-1">With the integration of AI and AI agents into networks, voice services may see renewed importance as a natural, low-friction interface for interacting with agents. Voice-based human-to-agent communication can complement text-based chat interfaces and enable rapid task initiation and conversational control. This use case introduces additional considerations, including security, authorization/permissions, and charging/accounting. Because voice services are regulated in many jurisdictions, this further motivates a standardized framework and standardized AI agent protocol. Network-integrated AI agents can assist users through voice interaction and improve overall user experience.<a href="#section-5.4.2-1" class="pilcrow">¶</a></p>
-<div id="building-blocks-4">
-<section id="section-5.4.2.1">
-            <h5 id="name-building-blocks-5">
-<a href="#section-5.4.2.1" class="section-number selfRef">5.4.2.1. </a><a href="#name-building-blocks-5" class="section-name selfRef">Building Blocks</a>
-            </h5>
-<p id="section-5.4.2.1-1">TODO<a href="#section-5.4.2.1-1" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="why-this-use-case-matters-4">
-<section id="section-5.4.2.2">
-            <h5 id="name-why-this-use-case-matters-5">
-<a href="#section-5.4.2.2" class="section-number selfRef">5.4.2.2. </a><a href="#name-why-this-use-case-matters-5" class="section-name selfRef">Why this Use Case Matters</a>
-            </h5>
-<p id="section-5.4.2.2-1">TODO<a href="#section-5.4.2.2-1" class="pilcrow">¶</a></p>
-</section>
-</div>
-</section>
-</div>
+<p id="section-5.2-7">Paths annotated (gap) identify areas where no adequate existing IETF protocol mechanism covers the stated requirement. Paths annotated (layering point) identify areas where existing IETF mechanisms provide a foundation that the agentic use case extends or constrains.<a href="#section-5.2-7" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -2419,6 +1944,14 @@ MCP standardizes tool discovery and invocation across both environments (edge an
 <dt id="A2A-GITHUB">[A2A-GITHUB]</dt>
         <dd>
 <span class="refTitle">"Agent2Agent Protocol – GitHub Repository"</span>, <span>n.d.</span>, <span>&lt;<a href="https://github.com/a2aproject/A2A">https://github.com/a2aproject/A2A</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="ACM-CCS">[ACM-CCS]</dt>
+        <dd>
+<span class="refTitle">"ACM Computing Classification System"</span>, <span>n.d.</span>, <span>&lt;<a href="https://dl.acm.org/ccs">https://dl.acm.org/ccs</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="DAWN-USE-CASES">[DAWN-USE-CASES]</dt>
+        <dd>
+<span class="refTitle">"Use Cases for the Discovery of Agents, Workloads, and Named Entities"</span>, <span>n.d.</span>, <span>&lt;<a href="https://datatracker.ietf.org/doc/draft-kay-dawn-use-cases/">https://datatracker.ietf.org/doc/draft-kay-dawn-use-cases/</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="MCP">[MCP]</dt>
         <dd>
