@@ -1051,7 +1051,7 @@ svg {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Schott, et al.</td>
-<td class="center">Expires 13 December 2026</td>
+<td class="center">Expires 17 December 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1064,12 +1064,12 @@ svg {
 <dd class="internet-draft">draft-scrm-aiproto-usecases-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-06-11" class="published">11 June 2026</time>
+<time datetime="2026-06-15" class="published">15 June 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-12-13">13 December 2026</time></dd>
+<dd class="expires"><time datetime="2026-12-17">17 December 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1125,7 +1125,7 @@ svg {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 13 December 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 17 December 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1792,72 +1792,61 @@ Security and Trust =&gt; Authentication
 <p id="section-5.2-1">This section illustrates the taxonomy methodology by applying it to the Internet-Draft "Use Cases for the Discovery of Agents, Workloads, and Named Entities" <span>[<a href="#DAWN-USE-CASES" class="cite xref">DAWN-USE-CASES</a>]</span>, which describes scenarios in which distributed entities — including AI agents, software services, compute workloads, network functions, and application endpoints — must locate and obtain minimum descriptive information about peer entities before communication or selection can begin.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
 <p id="section-5.2-2">The DAWN use cases span four discovery categories: capability-oriented discovery (locating entities that offer a needed function), resource-oriented discovery (locating data sources, compute pools, or inference services), administrative scope extensions (discovery across organizational or tenancy boundaries), and operational discovery (supporting human operators or management systems in locating entities across heterogeneous infrastructure). The draft explicitly excludes registration procedures, authentication, naming governance, candidate selection, and task orchestration from its scope; however, it identifies security and privacy considerations — including authenticity and integrity of discovery metadata, authorization controls on discovery queries, and privacy risks arising from the exposure of requester intent or deployment topology — as important constraints on any protocol that addresses the in-scope scenarios.<a href="#section-5.2-2" class="pilcrow">¶</a></p>
 <p id="section-5.2-3">The taxonomy profile for this use case is as follows.<a href="#section-5.2-3" class="pilcrow">¶</a></p>
-<span class="break"></span><dl class="dlParallel" id="section-5.2-4">
-          <dt id="section-5.2-4.1"><strong>Transport</strong></dt>
-          <dd style="margin-left: 1.5em" id="section-5.2-4.2">
-            <p id="section-5.2-4.2.1"><strong>Session Management.</strong> Discovery interactions range from simple single-round-trip queries to multi-step lookups that cross administrative boundaries. The discovery protocol must define session semantics sufficient to support these patterns reliably, including error recovery and cancellation for multi-hop discovery flows.<a href="#section-5.2-4.2.1" class="pilcrow">¶</a></p>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-5.2-4.3"></dt>
-          <dd style="margin-left: 1.5em" id="section-5.2-4.4">
-            <p id="section-5.2-4.4.1"><strong>Communication Modes.</strong> The DAWN use cases require at minimum a synchronous request/response mode for point-in-time capability lookups. Operational discovery scenarios — where management systems monitor dynamic entity populations — additionally motivate asynchronous notification or subscription patterns so that observers receive timely updates when entity availability or metadata changes.<a href="#section-5.2-4.4.1" class="pilcrow">¶</a></p>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-5.2-4.5"><strong>Discovery</strong></dt>
-          <dd style="margin-left: 1.5em" id="section-5.2-4.6">
-            <p id="section-5.2-4.6.1"><strong>Agent Discovery.</strong> This is the primary focus of the DAWN document. All four discovery categories directly address the problem of locating agents or agent-equivalent entities (workloads, services, network functions) that satisfy a stated requirement. The use cases motivate standardized lookup mechanisms operating at multiple scopes: within an administrative domain, across organizational boundaries, and across heterogeneous multi-vendor infrastructure.<a href="#section-5.2-4.6.1" class="pilcrow">¶</a></p>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-5.2-4.7"></dt>
-          <dd style="margin-left: 1.5em" id="section-5.2-4.8">
-            <p id="section-5.2-4.8.1"><strong>Capability Advertisement.</strong> Capability-oriented discovery presupposes that entities publish structured descriptions of their offered functions. The DAWN use cases identify the need for a "minimum discoverable information" set — a standardized baseline of metadata that any discoverable entity must expose — to enable consistent matching across heterogeneous registries or lookup services.<a href="#section-5.2-4.8.1" class="pilcrow">¶</a></p>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-5.2-4.9"></dt>
-          <dd style="margin-left: 1.5em" id="section-5.2-4.10">
-            <p id="section-5.2-4.10.1"><strong>Service Negotiation.</strong> Administrative scope extension scenarios involve discovery queries that cross organizational or tenancy boundaries, which requires agreement on the scope, format, and authorization of discovery requests between domains. While the DAWN draft does not define a negotiation protocol, it motivates one by exposing the need for scoped discovery views and cross-domain metadata exchange.<a href="#section-5.2-4.10.1" class="pilcrow">¶</a></p>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-5.2-4.11"><strong>Identity</strong></dt>
-          <dd style="margin-left: 1.5em" id="section-5.2-4.12">
-            <p id="section-5.2-4.12.1"><strong>Agent Naming and Addressing.</strong> The DAWN document explicitly addresses named entities and identifies naming as a prerequisite for discovery. A discovery protocol must be able to resolve both human-readable names and machine-oriented identifiers to network-reachable endpoints. The use cases surface the need for naming conventions that are stable enough to support persistent references while remaining resolvable across administrative boundaries.<a href="#section-5.2-4.12.1" class="pilcrow">¶</a></p>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-5.2-4.13"><strong>Security and Trust</strong></dt>
-          <dd style="margin-left: 1.5em" id="section-5.2-4.14">
-            <p id="section-5.2-4.14.1"><strong>Authentication.</strong> The DAWN draft identifies the authenticity and integrity of discovery metadata as a key security consideration: a requester must be able to verify that the metadata returned by a discovery lookup genuinely describes the entity it purports to describe, and has not been tampered with in transit or at the registry. This motivates cryptographic authentication of discovery responses, distinct from — but complementary to — the authentication of the discovered entity itself.<a href="#section-5.2-4.14.1" class="pilcrow">¶</a></p>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-5.2-4.15"></dt>
-          <dd style="margin-left: 1.5em" id="section-5.2-4.16">
-            <p id="section-5.2-4.16.1"><strong>Authorization.</strong> Discovery queries may themselves require authorization: not all requesters should be permitted to enumerate all entities within a registry, particularly across organizational boundaries. The DAWN use cases motivate authorization controls on discovery query scope, consistent with the principle that the ability to discover an entity should be governed by policy rather than assumed to be universally open.<a href="#section-5.2-4.16.1" class="pilcrow">¶</a></p>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-5.2-4.17"></dt>
-          <dd style="margin-left: 1.5em" id="section-5.2-4.18">
-            <p id="section-5.2-4.18.1"><strong>Accountability.</strong> Operational discovery scenarios, in which management systems or AIOps agents enumerate and monitor entities across a production infrastructure, motivate audit logging of discovery queries and responses. Accountability mechanisms allow operators to reconstruct which systems queried which entities at what time, supporting both forensic analysis and compliance with data governance requirements.<a href="#section-5.2-4.18.1" class="pilcrow">¶</a></p>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-5.2-4.19"><strong>Data and Context Management</strong></dt>
-          <dd style="margin-left: 1.5em" id="section-5.2-4.20">
-            <p id="section-5.2-4.20.1"><strong>Provenance and Citations.</strong> The DAWN draft notes that dynamic properties (such as load, price, and availability) change too rapidly to be reliably embedded in discovery records, and recommends that stable discovery metadata include a pointer to a separate service for current state. This architectural pattern motivates a provenance convention by which discovery responses carry verifiable references to the authoritative source of each metadata field, enabling requesters to distinguish stable identity attributes from volatile operational properties and to verify the freshness of each.<a href="#section-5.2-4.20.1" class="pilcrow">¶</a></p>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-5.2-4.21"></dt>
-          <dd style="margin-left: 1.5em" id="section-5.2-4.22">
-            <p id="section-5.2-4.22.1"><strong>Data Minimization.</strong> The DAWN draft identifies privacy risks arising from the exposure of requester intent through discovery queries and from the publication of deployment topology or model provenance through entity metadata. These considerations motivate data minimization at both ends: requesters should be able to issue queries without disclosing more about their intent than is necessary, and entities should be able to publish capability descriptors that reveal only the information required for matching without exposing proprietary implementation details. This overlaps with the Selective Disclosure subcategory of the Identity domain.<a href="#section-5.2-4.22.1" class="pilcrow">¶</a></p>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-5.2-4.23"><strong>Identity</strong></dt>
-          <dd style="margin-left: 1.5em" id="section-5.2-4.24">
-            <p id="section-5.2-4.24.1"><strong>Selective Disclosure.</strong> As noted in the Data and Context Management domain above, the DAWN privacy considerations motivate mechanisms by which discoverable entities can reveal capability attributes selectively — exposing different levels of detail to different requesters based on authorization context — without compromising the cryptographic verifiability of the disclosed information.<a href="#section-5.2-4.24.1" class="pilcrow">¶</a></p>
-</dd>
-        <dd class="break"></dd>
-</dl>
-<p id="section-5.2-5">The following figure summarizes the taxonomy profile in compact notation:<a href="#section-5.2-5" class="pilcrow">¶</a></p>
+<p id="section-5.2-4"><strong>Transport -&gt;</strong><a href="#section-5.2-4" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-5.2-5.1">
+            <p id="section-5.2-5.1.1"><strong>Session Management.</strong> Discovery interactions range from simple single-round-trip queries to multi-step lookups that cross administrative boundaries. The discovery protocol must define session semantics sufficient to support these patterns reliably, including error recovery and cancellation for multi-hop discovery flows.<a href="#section-5.2-5.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-5.2-5.2">
+            <p id="section-5.2-5.2.1"><strong>Communication Modes.</strong> The DAWN use cases require at minimum a synchronous request/response mode for point-in-time capability lookups. Operational discovery scenarios — where management systems monitor dynamic entity populations — additionally motivate asynchronous notification or subscription patterns so that observers receive timely updates when entity availability or metadata changes.<a href="#section-5.2-5.2.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-5.2-6"><strong>Security and Trust -&gt;</strong><a href="#section-5.2-6" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-5.2-7.1">
+            <p id="section-5.2-7.1.1"><strong>Authentication.</strong> The DAWN draft identifies the authenticity and integrity of discovery metadata as a key security consideration: a requester must be able to verify that the metadata returned by a discovery lookup genuinely describes the entity it purports to describe, and has not been tampered with in transit or at the registry. This motivates cryptographic authentication of discovery responses, distinct from — but complementary to — the authentication of the discovered entity itself.<a href="#section-5.2-7.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-5.2-7.2">
+            <p id="section-5.2-7.2.1"><strong>Authorization.</strong> Discovery queries may themselves require authorization: not all requesters should be permitted to enumerate all entities within a registry, particularly across organizational boundaries. The DAWN use cases motivate authorization controls on discovery query scope, consistent with the principle that the ability to discover an entity should be governed by policy rather than assumed to be universally open.<a href="#section-5.2-7.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-5.2-7.3">
+            <p id="section-5.2-7.3.1"><strong>Accountability.</strong> Operational discovery scenarios, in which management systems or AIOps agents enumerate and monitor entities across a production infrastructure, motivate audit logging of discovery queries and responses. Accountability mechanisms allow operators to reconstruct which systems queried which entities at what time, supporting both forensic analysis and compliance with data governance requirements.<a href="#section-5.2-7.3.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-5.2-8"><strong>Discovery -&gt;</strong><a href="#section-5.2-8" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-5.2-9.1">
+            <p id="section-5.2-9.1.1"><strong>Agent Discovery.</strong> This is the primary focus of the DAWN document. All four discovery categories directly address the problem of locating agents or agent-equivalent entities (workloads, services, network functions) that satisfy a stated requirement. The use cases motivate standardized lookup mechanisms operating at multiple scopes: within an administrative domain, across organizational boundaries, and across heterogeneous multi-vendor infrastructure.<a href="#section-5.2-9.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-5.2-9.2">
+            <p id="section-5.2-9.2.1"><strong>Capability Advertisement.</strong> Capability-oriented discovery presupposes that entities publish structured descriptions of their offered functions. The DAWN use cases identify the need for a "minimum discoverable information" set — a standardized baseline of metadata that any discoverable entity must expose — to enable consistent matching across heterogeneous registries or lookup services.<a href="#section-5.2-9.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-5.2-9.3">
+            <p id="section-5.2-9.3.1"><strong>Service Negotiation.</strong> Administrative scope extension scenarios involve discovery queries that cross organizational or tenancy boundaries, which requires agreement on the scope, format, and authorization of discovery requests between domains. While the DAWN draft does not define a negotiation protocol, it motivates one by exposing the need for scoped discovery views and cross-domain metadata exchange.<a href="#section-5.2-9.3.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-5.2-10"><strong>Identity -&gt;</strong><a href="#section-5.2-10" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-5.2-11.1">
+            <p id="section-5.2-11.1.1"><strong>Agent Naming and Addressing.</strong> The DAWN document explicitly addresses named entities and identifies naming as a prerequisite for discovery. A discovery protocol must be able to resolve both human-readable names and machine-oriented identifiers to network-reachable endpoints. The use cases surface the need for naming conventions that are stable enough to support persistent references while remaining resolvable across administrative boundaries.<a href="#section-5.2-11.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-5.2-11.2">
+            <p id="section-5.2-11.2.1"><strong>Selective Disclosure.</strong> As noted in the Data and Context Management domain above, the DAWN privacy considerations motivate mechanisms by which discoverable entities can reveal capability attributes selectively — exposing different levels of detail to different requesters based on authorization context — without compromising the cryptographic verifiability of the disclosed information.<a href="#section-5.2-11.2.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-5.2-12"><strong>Data and Context Management -&gt;</strong><a href="#section-5.2-12" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-5.2-13.1">
+            <p id="section-5.2-13.1.1"><strong>Provenance and Citations.</strong> The DAWN draft notes that dynamic properties (such as load, price, and availability) change too rapidly to be reliably embedded in discovery records, and recommends that stable discovery metadata include a pointer to a separate service for current state. This architectural pattern motivates a provenance convention by which discovery responses carry verifiable references to the authoritative source of each metadata field, enabling requesters to distinguish stable identity attributes from volatile operational properties and to verify the freshness of each.<a href="#section-5.2-13.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-5.2-13.2">
+            <p id="section-5.2-13.2.1"><strong>Data Minimization.</strong> The DAWN draft identifies privacy risks arising from the exposure of requester intent through discovery queries and from the publication of deployment topology or model provenance through entity metadata. These considerations motivate data minimization at both ends: requesters should be able to issue queries without disclosing more about their intent than is necessary, and entities should be able to publish capability descriptors that reveal only the information required for matching without exposing proprietary implementation details. This overlaps with the Selective Disclosure subcategory of the Identity domain.<a href="#section-5.2-13.2.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-5.2-14">The following figure summarizes the taxonomy profile in compact notation:<a href="#section-5.2-14" class="pilcrow">¶</a></p>
 <span id="name-taxonomy-profile-for-draft-"></span><div id="fig-dawn-taxonomy">
 <figure id="figure-2">
-          <div class="alignLeft art-ascii-art art-text artwork" id="section-5.2-6.1">
+          <div class="alignLeft art-ascii-art art-text artwork" id="section-5.2-15.1">
 <pre>
 DAWN Use Cases Taxonomy Profile
 |
@@ -1888,7 +1877,7 @@ DAWN Use Cases Taxonomy Profile
 <a href="#name-taxonomy-profile-for-draft-" class="selfRef">Taxonomy profile for draft-kay-dawn-use-cases</a>
           </figcaption></figure>
 </div>
-<p id="section-5.2-7">Paths annotated (gap) identify areas where no adequate existing IETF protocol mechanism covers the stated requirement. Paths annotated (layering point) identify areas where existing IETF mechanisms provide a foundation that the agentic use case extends or constrains.<a href="#section-5.2-7" class="pilcrow">¶</a></p>
+<p id="section-5.2-16">Paths annotated (gap) identify areas where no adequate existing IETF protocol mechanism covers the stated requirement. Paths annotated (layering point) identify areas where existing IETF mechanisms provide a foundation that the agentic use case extends or constrains.<a href="#section-5.2-16" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
