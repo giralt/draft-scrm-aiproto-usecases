@@ -5,15 +5,15 @@
 WG Working Group                                               R. Schott
 Internet-Draft                                          Deutsche Telekom
 Intended status: Informational                            J. Maisonneuve
-Expires: 17 December 2026                                          Nokia
+Expires: 23 December 2026                                          Nokia
                                                          L. M. Contreras
                                                               Telefonica
                                                            J. Ros-Giralt
                                                    Qualcomm Europe, Inc.
-                                                            15 June 2026
+                                                            21 June 2026
 
 
-                          Agentic AI Use Cases
+                   Taxonomy for Agentic AI Use Cases
                    draft-scrm-aiproto-usecases-latest
 
 Abstract
@@ -62,7 +62,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 17 December 2026.
+   This Internet-Draft will expire on 23 December 2026.
 
 Copyright Notice
 
