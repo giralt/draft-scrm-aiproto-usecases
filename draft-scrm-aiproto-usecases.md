@@ -1,7 +1,7 @@
 ---
 
-title: "Agentic AI Use Cases"
-abbrev: "Agentic AI Use Cases"
+title: "Taxonomy for Agentic AI Use Cases"
+abbrev: "Taxonomy for Agentic AI Use Cases"
 category: info
 
 docname: draft-scrm-aiproto-usecases-latest
