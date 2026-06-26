@@ -1,8 +1,8 @@
 <!-- regenerate: on (set to off if you edit this file) -->
 
-# Agentic AI Use Cases
+# Agentic AI Use Cases: A Taxonomy
 
-This is the working area for the individual Internet-Draft, "TODO - Your title".
+This is the working area for the individual Internet-Draft, "Taxonomy for Agentic AI Use Cases".
 
 * [Editor's Copy](https://giralt.github.io/draft-scrm-aiproto-usecases/#go.draft-scrm-aiproto-usecases.html)
 * [Datatracker Page](https://datatracker.ietf.org/doc/draft-scrm-aiproto-usecases)

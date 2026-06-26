@@ -351,7 +351,7 @@ Security and Trust => Authentication
 
 Authors of individual use case Internet-Drafts are encouraged to include a dedicated taxonomy section that enumerates the applicable paths using this notation. Doing so serves three purposes. First, it makes the protocol scope of the use case explicit and comparable to other use cases in a machine-readable way. Second, it guides gap analysis by mapping each path to the protocol area where standardization work is needed. Third, it facilitates working group ownership decisions by surfacing cross-area dependencies — a use case with paths into both Transport and Security and Trust, for instance, signals that coordination between working groups in those areas will be required.
 
-When constructing a taxonomy profile, authors should include all paths that represent substantive protocol-level requirements of the use case, and omit paths that are merely incidental or out of scope for IETF standardization. Authors should also note whether a given path represents a "gap" (no adequate existing IETF mechanism) or a "layering point" (an existing IETF protocol that the agentic use case builds upon).
+When constructing a taxonomy profile, authors should include all paths that represent substantive protocol-level requirements of the use case, and omit paths that are merely incidental or out of scope for IETF standardization. Authors should also note whether a given path represents a "gap" (no adequate existing IETF mechanism) or "covered" (an existing IETF protocol that the agentic use case builds upon).
 
 ## Example: Discovery of Agents, Workloads, and Named Entities
 
@@ -401,8 +401,8 @@ The following figure summarizes the taxonomy profile in compact notation:
 DAWN Use Cases Taxonomy Profile
 |
 |-- Transport
-|   |-- Session Management
-|   |-- Communication Modes
+|   |-- Session Management   (covered)
+|   |-- Communication Modes  (gap)
 |
 |-- Discovery
 |   |-- Agent Discovery           [primary focus; gap]
@@ -416,7 +416,7 @@ DAWN Use Cases Taxonomy Profile
 |-- Security and Trust
 |   |-- Authentication  (gap)
 |   |-- Authorization   (gap)
-|   |-- Accountability  (layering point: existing audit log conventions)
+|   |-- Accountability  (covered: existing audit log conventions)
 |
 |-- Data and Context Management
     |-- Provenance and Citations  (gap)
@@ -424,7 +424,7 @@ DAWN Use Cases Taxonomy Profile
 ~~~
 {: #fig-dawn-taxonomy artwork-align="left" title="Taxonomy profile for draft-kay-dawn-use-cases"}
 
-Paths annotated (gap) identify areas where no adequate existing IETF protocol mechanism covers the stated requirement. Paths annotated (layering point) identify areas where existing IETF mechanisms provide a foundation that the agentic use case extends or constrains.
+Paths annotated (gap) identify areas where no adequate existing IETF protocol mechanism covers the stated requirement. Paths annotated (covered) identify areas where existing IETF mechanisms provide a foundation that the agentic use case extends or constrains.
 
 # Security Considerations
 
