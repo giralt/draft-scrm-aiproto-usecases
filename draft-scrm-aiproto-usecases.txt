@@ -884,9 +884,9 @@ Table of Contents
    paths that represent substantive protocol-level requirements of the
    use case, and omit paths that are merely incidental or out of scope
    for IETF standardization.  Authors should also note whether a given
-   path represents a "gap" (no adequate existing IETF mechanism) or a
-   "layering point" (an existing IETF protocol that the agentic use case
-   builds upon).
+   path represents a "gap" (no adequate existing IETF mechanism) or
+   "covered" (an existing IETF protocol that the agentic use case builds
+   upon).
 
 5.2.  Example: Discovery of Agents, Workloads, and Named Entities
 
@@ -1034,36 +1034,36 @@ Table of Contents
    The following figure summarizes the taxonomy profile in compact
    notation:
 
-DAWN Use Cases Taxonomy Profile
-|
-|-- Transport
-|   |-- Session Management
-|   |-- Communication Modes
-|
-|-- Discovery
-|   |-- Agent Discovery           [primary focus; gap]
-|   |-- Capability Advertisement  (gap)
-|   |-- Service Negotiation       (gap)
-|
-|-- Identity
-|   |-- Agent Naming and Addressing  (gap)
-|   |-- Selective Disclosure         (gap)
-|
-|-- Security and Trust
-|   |-- Authentication  (gap)
-|   |-- Authorization   (gap)
-|   |-- Accountability  (layering point: existing audit log conventions)
-|
-|-- Data and Context Management
-    |-- Provenance and Citations  (gap)
-    |-- Data Minimization         (gap)
+   DAWN Use Cases Taxonomy Profile
+   |
+   |-- Transport
+   |   |-- Session Management   (covered)
+   |   |-- Communication Modes  (gap)
+   |
+   |-- Discovery
+   |   |-- Agent Discovery           [primary focus; gap]
+   |   |-- Capability Advertisement  (gap)
+   |   |-- Service Negotiation       (gap)
+   |
+   |-- Identity
+   |   |-- Agent Naming and Addressing  (gap)
+   |   |-- Selective Disclosure         (gap)
+   |
+   |-- Security and Trust
+   |   |-- Authentication  (gap)
+   |   |-- Authorization   (gap)
+   |   |-- Accountability  (covered: existing audit log conventions)
+   |
+   |-- Data and Context Management
+       |-- Provenance and Citations  (gap)
+       |-- Data Minimization         (gap)
 
-       Figure 2: Taxonomy profile for draft-kay-dawn-use-cases
+          Figure 2: Taxonomy profile for draft-kay-dawn-use-cases
 
    Paths annotated (gap) identify areas where no adequate existing IETF
    protocol mechanism covers the stated requirement.  Paths annotated
-   (layering point) identify areas where existing IETF mechanisms
-   provide a foundation that the agentic use case extends or constrains.
+   (covered) identify areas where existing IETF mechanisms provide a
+   foundation that the agentic use case extends or constrains.
 
 6.  Security Considerations
 
