@@ -5,12 +5,12 @@
 WG Working Group                                               R. Schott
 Internet-Draft                                          Deutsche Telekom
 Intended status: Informational                            J. Maisonneuve
-Expires: 28 December 2026                                          Nokia
+Expires: 5 January 2027                                            Nokia
                                                          L. M. Contreras
                                                               Telefonica
                                                            J. Ros-Giralt
                                                    Qualcomm Europe, Inc.
-                                                            26 June 2026
+                                                             4 July 2026
 
 
                    Taxonomy for Agentic AI Use Cases
@@ -22,19 +22,15 @@ Abstract
    multi-step tasks by interacting with tools and collaborating with
    other agents, creating new demands on Internet protocols for
    interoperability, scalability, and safe operation across
-   administrative domains.  This document inventories representative
-   Agentic AI use cases and captures the protocol-relevant requirements
-   they imply, with the goal of helping the IETF determine appropriate
-   standardization scope and perform gap analysis against emerging
-   proposals.  The use cases are written to expose concrete needs such
-   as long-lived and multi-modal interactions, delegation and
-   coordination patterns, and security/privacy hooks that have protocol
-   implications.  Through use case analysis, the document also aims to
-   help readers understand how agent-to-agent and agent-to-tool
-   protocols (e.g., [A2A] and [MCP]), and potential IETF-standardized
-   evolutions thereof, could be layered over existing IETF protocol
-   substrates and how the resulting work could be mapped to appropriate
-   IETF working groups.
+   administrative domains.  This document defines a taxonomy for
+   classifying Agentic AI use cases according to the functional protocol
+   domains they exercise, such as transport, security and trust,
+   discovery, identity, coordination and orchestration, data and context
+   management, and operations and management.  The taxonomy is intended
+   to give the IETF a structured vocabulary for describing and comparing
+   use cases, for identifying which protocol areas require
+   standardization attention, and for mapping use case requirements to
+   relevant IETF working groups.
 
 About This Document
 
@@ -62,7 +58,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 28 December 2026.
+   This Internet-Draft will expire on 5 January 2027.
 
 Copyright Notice
 
