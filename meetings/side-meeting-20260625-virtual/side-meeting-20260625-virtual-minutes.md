@@ -2,7 +2,7 @@
 ## Full Meeting Recap
 
 ## 1. Objective and Context
-- Introduce and refine a proposed taxonomy for **agentic AI use cases in the IETF**
+- Introduce and refine a proposed taxonomy for **agentic AI use cases in the IETF**: https://datatracker.ietf.org/doc/draft-scrm-aiproto-usecases/
 - Follows prior outcome (IETF 125) identifying the need for:
   - A **common structure** across drafts
   - A way to **organize and compare use cases**
@@ -61,6 +61,8 @@
 - Improve mapping to **IETF workstreams**
 
 ## 5. Worked Example: Discovery Use Cases Draft
+
+Kehan presented draft as a concrete example: https://datatracker.ietf.org/doc/draft-kay-dawn-use-cases/
 
 ### AI Agent Lifecycle
 - Registration → Discovery → Communication → Monitoring/Auditing
