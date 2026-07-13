@@ -6,12 +6,14 @@
 - Where: Room Park Suite 4 
 - When: July 20, 2026, from 12:30 to 14:30 CET
 - Webex (if you can't attend in person): Will be provided soon
+- Latest version of the taxonomy: https://datatracker.ietf.org/doc/draft-scrm-aiproto-usecases/
+- Collaborative repo: https://github.com/giralt/draft-scrm-aiproto-usecases
 
 ## 2. Purpose
 
 Follow up on the [IETF 125 side meeting](https://github.com/giralt/draft-scrm-aiproto-usecases/tree/main/meetings/IETF-125-side-meeting) and the [June 25, 2026 virtual side meeting](https://github.com/giralt/draft-scrm-aiproto-usecases/blob/main/meetings/IETF-20260625-side-meeting-virtual/side-meeting-20260625-virtual-minutes.md) to:
 
-- Present the current state of the Agentic AI Use Cases Taxonomy (Section 4 of the draft) and its worked example (Section 5).
+- Present the current state of the Agentic AI Use Cases Taxonomy (Section 4 of the draft) and its worked example (Section 5): https://datatracker.ietf.org/doc/draft-scrm-aiproto-usecases/
 
 - Collect in-person feedback ahead of continued mailing-list and GitHub iteration.
 
