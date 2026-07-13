@@ -9,7 +9,7 @@
 
 ## 2. Purpose
 
-Follow up on the [IETF 125 side meeting](https://github.com/giralt/ietf-agentic-ai-use-cases/edit/main/ietf-125-side-meeting-agentic-ai-use-cases/README.md) and the [June 25, 2026 virtual side meeting](https://github.com/giralt/draft-scrm-aiproto-usecases/blob/main/meetings/side-meeting-20260625-virtual/side-meeting-20260625-virtual-minutes.md) to:
+Follow up on the [IETF 125 side meeting](https://github.com/giralt/draft-scrm-aiproto-usecases/tree/main/meetings/IETF-125-side-meeting) and the [June 25, 2026 virtual side meeting](https://github.com/giralt/draft-scrm-aiproto-usecases/blob/main/meetings/IETF-20260625-side-meeting-virtual/side-meeting-20260625-virtual-minutes.md) to:
 
 - Present the current state of the Agentic AI Use Cases Taxonomy (Section 4 of the draft) and its worked example (Section 5).
 
@@ -37,7 +37,7 @@ Follow up on the [IETF 125 side meeting](https://github.com/giralt/ietf-agentic-
 - Design principle: right level of abstraction (avoid over-granularity and over-generality).
 
 ### 3.3 Worked Example
-- Applying the taxonomy methodology (root-to-leaf paths, ACM CCS analogy).
+- Applying the taxonomy methodology (root-to-leaf paths, ACM CCS analogy).  
 - Resulting taxonomy profile: gaps vs. layering points across Transport, Discovery, Identity, Security and Trust, and Data and Context Management.
 
 ### 3.4 Presentations of Agentic AI Use Cases
