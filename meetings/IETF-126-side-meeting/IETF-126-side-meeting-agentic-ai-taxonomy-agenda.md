@@ -62,8 +62,7 @@ Carried forward from the virtual side meeting:
 ### 3.5 Next Steps 
 - Continued taxonomy refinement via mailing list and GitHub.
 - Candidate use-case drafts to receive taxonomy profiles.
-- Path toward broader WG-forming discussion at future meetings.
-
+- Continued collaboration via github (https://github.com/giralt/draft-scrm-aiproto-usecases) and IETF mailing list(s)
 ## 4. References
 
 - [draft-scrm-aiproto-usecases](https://datatracker.ietf.org/doc/draft-scrm-aiproto-usecases/)
