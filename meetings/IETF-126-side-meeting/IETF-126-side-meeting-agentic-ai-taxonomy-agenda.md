@@ -40,16 +40,16 @@ Follow up on the [IETF 125 side meeting](https://github.com/giralt/draft-scrm-ai
 - Multi-dimensional, non-exclusive classification model — a use case maps to multiple branches.
 - Design principle: right level of abstraction (avoid over-granularity and over-generality).
 
-### 3.3 Worked Example
-- Applying the taxonomy methodology (root-to-leaf paths, ACM CCS analogy).  
-- Resulting taxonomy profile: gaps vs. layering points across Transport, Discovery, Identity, Security and Trust, and Data and Context Management.
-
-### 3.4 Presentations of Agentic AI Use Cases
+### 3.3 Presentations of Agentic AI Use Cases
 
 - Three authors will describe use cases and position in the context of the taxonomy:
     - https://datatracker.ietf.org/doc/draft-kay-dawn-use-cases/
     - https://datatracker.ietf.org/doc/draft-agentic-ai-usecases-requirements/
     - https://datatracker.ietf.org/doc/draft-ihsanullah-dnsid/
+
+### 3.4 Worked Example
+- Applying the taxonomy methodology (root-to-leaf paths, ACM CCS analogy).  
+- Resulting taxonomy profile: gaps vs. layering points across Transport, Discovery, Identity, Security and Trust, and Data and Context Management.
       
 ### 3.4 Open Discussion Topics 
 Carried forward from the virtual side meeting:
