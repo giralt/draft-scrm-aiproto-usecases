@@ -5,7 +5,7 @@
 - Topic: “A Taxonomy to Organize IETF Agentic AI Use Cases”
 - Where: Room Park Suite 4 
 - When: July 20, 2026, from 12:30 to 14:30 CET
-- Webex (if you can't attend in person): Will be provided soon
+- Webex (if you can't attend in person): https://ietf.webex.com/meet/sidemeetings1
 - Latest version of the taxonomy: https://datatracker.ietf.org/doc/draft-scrm-aiproto-usecases/
 - Collaborative repo: https://github.com/giralt/draft-scrm-aiproto-usecases
 
@@ -22,6 +22,8 @@ Follow up on the [IETF 125 side meeting](https://github.com/giralt/draft-scrm-ai
 - Align on open modeling questions (entities, evaluation, tooling) actively held in the IETF.
 
 - Enable participation from the various IETF use cases drafts authors or anyone interested.
+
+- Relate to other Agentic AI taxonomies in other SDOs.
 
 - Scope next steps toward.
 
@@ -44,24 +46,29 @@ Follow up on the [IETF 125 side meeting](https://github.com/giralt/draft-scrm-ai
 
 ### 3.4 Presentations of Agentic AI Use Cases
 
-- Several Agentic AI Use Cases to be presented by various authors
-- Note: This section will be updated soon as the presenters list is currently being determined.
-
+- Three authors will describe use cases and position in the context of the taxonomy:
+    - https://datatracker.ietf.org/doc/draft-kay-dawn-use-cases/
+    - https://datatracker.ietf.org/doc/draft-agentic-ai-usecases-requirements/
+    - https://datatracker.ietf.org/doc/draft-ihsanullah-dnsid/
+      
 ### 3.4 Open Discussion Topics 
 Carried forward from the virtual side meeting:
 - **Entity modeling** — agents, workloads, data, services, tools, models; need for a common minimal structure (Minimum Discoverable Information).
 - **Single unified taxonomy vs. multiple** — current consensus favors one taxonomy with extension via subclasses.
 - **Evaluation and metrics** — making the taxonomy actionable for gap analysis and performance comparison.
 - **Tooling and ecosystem integration** — GitHub-based collaboration, Datatracker integration, alignment with other SDOs and open-source communities.
+- **Relation to existing taxonomies** — Within the IETF and other SDOs.
 
 ### 3.5 Next Steps 
 - Continued taxonomy refinement via mailing list and GitHub.
 - Candidate use-case drafts to receive taxonomy profiles.
 - Path toward broader WG-forming discussion at future meetings.
 
-## 4. References (to be completed)
+## 4. References
 
 - [draft-scrm-aiproto-usecases](https://datatracker.ietf.org/doc/draft-scrm-aiproto-usecases/)
 - [draft-kay-dawn-use-cases](https://datatracker.ietf.org/doc/draft-kay-dawn-use-cases/)
+- [draft-agentic-ai-usecases-requirements](https://datatracker.ietf.org/doc/draft-agentic-ai-usecases-requirements/)
+- [draft-ihsanullah-dnsid](https://datatracker.ietf.org/doc/draft-ihsanullah-dnsid/)
 - [IETF 125 side meeting minutes](../../../ietf-agentic-ai-use-cases/ietf-125-side-meeting-agentic-ai-use-cases/meeting-minutes.md)
 - [June 25, 2026 virtual side meeting minutes](../IETF-20260625-side-meeting-virtual/side-meeting-20260625-virtual-minutes.md)
