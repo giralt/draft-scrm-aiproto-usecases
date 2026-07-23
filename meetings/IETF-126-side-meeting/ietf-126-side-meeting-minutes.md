@@ -4,6 +4,7 @@
 - **Date:** 07/20/26 
 - **Duration:** 2 hours
 - **Github repo:** https://github.com/giralt/draft-scrm-aiproto-usecases/tree/main/meetings/IETF-126-side-meeting
+- **Side meeting video recording:** https://ietf.webex.com/recordingservice/sites/ietf/recording/db52eafdd7c34b78b375551371bec38c/playback
 
 ---
 
