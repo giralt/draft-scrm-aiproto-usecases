@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-07-21T01:52:58.270152+00:00",
+  "timestamp": "2026-07-23T01:59:13.083070+00:00",
   "repo": "giralt/draft-scrm-aiproto-usecases",
   "labels": [
     {
@@ -63,6 +63,38 @@
       "body": "https://mailarchive.ietf.org/arch/msg/agent2agent/3FCFP0xEzg6M54roHdpeZf6-Wa0/\n\n\"Could the document first identify concrete agentic AI use cases and then explain which protocol requirements are genuinely new or materially different from those of traditional distributed applications? Without that distinction, it is difficult to understand what makes this an Agentic AI use-case taxonomy.\"",
       "createdAt": "2026-06-28T20:41:31Z",
       "updatedAt": "2026-06-28T20:41:31Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 7,
+      "id": "I_kwDOQ7GYI88AAAABJmJlVg",
+      "title": "Consider moving from agent centric to entity centric",
+      "url": "https://github.com/giralt/draft-scrm-aiproto-usecases/issues/7",
+      "state": "OPEN",
+      "author": "giralt",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "Specially for the class \"Discovery\", since DAWN is entity centric.",
+      "createdAt": "2026-07-21T12:42:00Z",
+      "updatedAt": "2026-07-21T12:42:00Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 8,
+      "id": "I_kwDOQ7GYI88AAAABJmOLMQ",
+      "title": "Collect feedback from presenters @ taxonomy side meeting",
+      "url": "https://github.com/giralt/draft-scrm-aiproto-usecases/issues/8",
+      "state": "OPEN",
+      "author": "giralt",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "How to improve the taxonomy to make it most useful to their use cases drafts?",
+      "createdAt": "2026-07-21T12:50:50Z",
+      "updatedAt": "2026-07-21T12:50:50Z",
       "closedAt": null,
       "comments": []
     }
