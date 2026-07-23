@@ -124,4 +124,4 @@ The group reaffirmed that the taxonomy should remain community-driven and easy t
 
 ## Key Takeaway
 
-The meeting concluded that the taxonomy should become a practical community tool that helps organize Agentic AI use cases, identify protocol gaps, and guide standardization efforts. Particular emphasis should be placed on discovery, identity, trust, accountability, and ensuring alignment with existing BOF and Working Group efforts so that the taxonomy delivers immediate value across the IETF ecosystem.
+The meeting concluded that the taxonomy should become a practical community tool that helps organize Agentic AI use cases, identify protocol gaps, and guide standardization efforts. Particular emphasis should be placed on ensuring alignment with existing BOF and Working Group efforts so that the taxonomy delivers immediate value across the IETF ecosystem.
