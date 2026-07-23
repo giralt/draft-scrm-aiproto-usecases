@@ -1,9 +1,9 @@
 # Meeting Minutes
 
-**Topic:** Agentic AI Taxonomy Development and IETF Alignment  
-**Date:** 07/20/26 
-**Duration:** 2 hours
-**Github repo:** https://github.com/giralt/draft-scrm-aiproto-usecases/tree/main/meetings/IETF-126-side-meeting
+- **Topic:** Agentic AI Taxonomy Development and IETF Alignment  
+- **Date:** 07/20/26 
+- **Duration:** 2 hours
+- **Github repo:** https://github.com/giralt/draft-scrm-aiproto-usecases/tree/main/meetings/IETF-126-side-meeting
 
 ---
 
